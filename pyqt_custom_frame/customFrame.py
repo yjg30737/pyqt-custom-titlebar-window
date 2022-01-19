@@ -148,15 +148,16 @@ class CustomFrame(QWidget):
                     self.__move()
         # double click event to maximize/minimize
         elif e.type() == 4:
-            p = e.pos()
-            if self.__menuBar.actionAt(p):
-                pass
-            else:
-                if self.__menuBar.activeAction():
+            if e.button() == Qt.LeftButton:
+                p = e.pos()
+                if self.__menuBar.actionAt(p):
                     pass
                 else:
-                    if self.isMaximized():
-                        self.showNormal()
+                    if self.__menuBar.activeAction():
+                        pass
                     else:
-                        self.showMaximized()
+                        if self.isMaximized():
+                            self.showNormal()
+                        else:
+                            self.showMaximized()
         return super().eventFilter(obj, e)
