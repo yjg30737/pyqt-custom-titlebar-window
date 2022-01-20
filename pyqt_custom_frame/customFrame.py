@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QCursor
-from PyQt5.QtWidgets import QGridLayout, QWidget, QMainWindow, QApplication, QMenuBar, QMenu
+from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QToolButton
 
 
 class CustomFrame(QWidget):
@@ -38,10 +38,10 @@ class CustomFrame(QWidget):
 
     def __setCursorShapeForCurrentPoint(self, p):
         rect = self.rect()
-        rect.setX(self.rect().x()+self.__margin)
-        rect.setY(self.rect().y()+self.__margin)
-        rect.setWidth(self.rect().width()-self.__margin*2)
-        rect.setHeight(self.rect().height()-self.__margin*2)
+        rect.setX(self.rect().x() + self.__margin)
+        rect.setY(self.rect().y() + self.__margin)
+        rect.setWidth(self.rect().width() - self.__margin * 2)
+        rect.setHeight(self.rect().height() - self.__margin * 2)
 
         self.__resized = rect.contains(p)
         if self.__resized:
@@ -60,10 +60,10 @@ class CustomFrame(QWidget):
             x2 = self.rect().width()
             y2 = self.rect().height()
 
-            self.__left = abs(x-x1) <= self.__margin
-            self.__top = abs(y-y1) <= self.__margin
-            self.__right = abs(x-(x2+x1)) <= self.__margin
-            self.__bottom = abs(y-(y2+y1)) <= self.__margin
+            self.__left = abs(x - x1) <= self.__margin
+            self.__top = abs(y - y1) <= self.__margin
+            self.__right = abs(x - (x2 + x1)) <= self.__margin
+            self.__bottom = abs(y - (y2 + y1)) <= self.__margin
 
             if self.__top and self.__left:
                 self.__cursor.setShape(Qt.SizeFDiagCursor)
@@ -158,6 +158,36 @@ class CustomFrame(QWidget):
 
     def __showNormalOrMaximized(self):
         if self.isMaximized():
+            self.__maximizeBtn.setText('🗖')
             self.showNormal()
         else:
+            self.__maximizeBtn.setText('🗗')
             self.showMaximized()
+
+    def setMinMaxCloseButton(self):
+        minimizeBtn = QToolButton()
+        minimizeBtn.setText('🗕')
+        minimizeBtn.clicked.connect(self.showMinimized)
+        minimizeBtn.setMaximumSize(minimizeBtn.sizeHint().width(), minimizeBtn.sizeHint().height())
+
+        self.__maximizeBtn = QToolButton()
+        self.__maximizeBtn.setText('🗖')
+        self.__maximizeBtn.clicked.connect(self.__showNormalOrMaximized)
+        self.__maximizeBtn.setMaximumSize(minimizeBtn.sizeHint().width(), minimizeBtn.sizeHint().height())
+
+        closeBtn = QToolButton()
+        closeBtn.setText('🗙')
+        closeBtn.clicked.connect(self.close)
+        closeBtn.setMaximumSize(minimizeBtn.sizeHint().width(), minimizeBtn.sizeHint().height())
+
+        lay = QHBoxLayout()
+        lay.addWidget(minimizeBtn)
+        lay.addWidget(self.__maximizeBtn)
+        lay.addWidget(closeBtn)
+        lay.setContentsMargins(0, 0, 0, 0)
+        lay.setSpacing(0)
+
+        cornerWidget = QWidget()
+        cornerWidget.setLayout(lay)
+
+        self.__menuBar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
