@@ -1,5 +1,5 @@
 # pyqt-custom-frame
-PyQt Custom Frame
+PyQt Custom Frame(movable, resizable). User can put customized widget in the frame.
 
 ## Requirements
 PyQt5 >= 5.15
