@@ -24,13 +24,14 @@ Type of inner widget should be QMainWindow.
 ```python
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from pyqt_custom_frame import CustomFrame
+from pyqt_dark_calculator import Calculator
 
 
 if __name__ == "__main__":
     import sys
 
     app = QApplication(sys.argv)
-    customFrameExample = CustomFrame(QMainWindow())
+    customFrameExample = CustomFrame(Calculator())
     customFrameExample.setMinMaxCloseButton()
     customFrameExample.show()
     app.exec_()
@@ -38,5 +39,5 @@ if __name__ == "__main__":
 
 ### Result
 
-![image](https://user-images.githubusercontent.com/55078043/150272696-023a9847-2304-4a3f-a2d2-00758bed7871.png)
+![image](https://user-images.githubusercontent.com/55078043/150276535-22fd9804-dafc-4c18-8a5a-802f4611e43f.png)
 
