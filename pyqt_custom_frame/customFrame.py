@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QCursor
-from PyQt5.QtWidgets import QGridLayout, QWidget, QMainWindow
+from PyQt5.QtWidgets import QGridLayout, QWidget, QMainWindow, QApplication, QMenuBar, QMenu
 
 
 class CustomFrame(QWidget):
@@ -135,28 +135,29 @@ class CustomFrame(QWidget):
         return super().enterEvent(e)
 
     def eventFilter(self, obj, e) -> bool:
-        # move
-        if e.type() == 5:
-            p = e.pos()
-            if self.__menuBar.actionAt(p):
+        # double click or move event
+        if e.type() == 4 or e.type() == 5:
+            self.__execMenuBarMoveOrDoubleClickEvent(e)
+        return super().eventFilter(obj, e)
+
+    def __execMenuBarMoveOrDoubleClickEvent(self, e):
+        p = e.pos()
+        if self.__menuBar.actionAt(p):
+            pass
+        else:
+            if self.__menuBar.activeAction():
                 pass
             else:
-                if self.__menuBar.activeAction():
-                    pass
+                # double click (show maximized/normal)
+                if e.type() == 4:
+                    if e.button() == Qt.LeftButton:
+                        self.__showNormalOrMaximized()
+                # move
                 else:
                     self.__move()
-        # double click event to show maximize/normal
-        elif e.type() == 4:
-            if e.button() == Qt.LeftButton:
-                p = e.pos()
-                if self.__menuBar.actionAt(p):
-                    pass
-                else:
-                    if self.__menuBar.activeAction():
-                        pass
-                    else:
-                        if self.isMaximized():
-                            self.showNormal()
-                        else:
-                            self.showMaximized()
-        return super().eventFilter(obj, e)
+
+    def __showNormalOrMaximized(self):
+        if self.isMaximized():
+            self.showNormal()
+        else:
+            self.showMaximized()
