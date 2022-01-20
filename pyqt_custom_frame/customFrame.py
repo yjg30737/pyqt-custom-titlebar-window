@@ -180,7 +180,7 @@ class CustomFrame(QWidget):
         btns = [minimizeBtn, self.__maximizeBtn, closeBtn]
 
         menubar_base_color = self.__menuBar.palette().color(QPalette.Base)
-        menubar_base_color = menubar_base_color.darker(100)
+        menubar_base_color = menubar_base_color.darker(50)
         tool_button_style = f'QToolButton ' \
                             f'{{ background: transparent; border: 0; }} ' \
                             f'QToolButton:hover ' \
