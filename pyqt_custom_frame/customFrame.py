@@ -30,6 +30,9 @@ class CustomFrame(QWidget):
         lay.setContentsMargins(self.__margin, self.__margin, self.__margin, self.__margin)
         self.setLayout(lay)
 
+        color = self.__menuBar.palette().color(QPalette.Base)
+        self.setStyleSheet(f'QWidget {{ background-color: {color.name()} }}')
+
     def __initPosition(self):
         self.__top = False
         self.__bottom = False
@@ -180,7 +183,7 @@ class CustomFrame(QWidget):
         btns = [minimizeBtn, self.__maximizeBtn, closeBtn]
 
         menubar_base_color = self.__menuBar.palette().color(QPalette.Base)
-        menubar_base_color = menubar_base_color.darker(50)
+        menubar_base_color = menubar_base_color.lighter(150)
         tool_button_style = f'QToolButton ' \
                             f'{{ background: transparent; border: 0; }} ' \
                             f'QToolButton:hover ' \
