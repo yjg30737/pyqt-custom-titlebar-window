@@ -30,8 +30,8 @@ if __name__ == "__main__":
     import sys
 
     app = QApplication(sys.argv)
-    systemSpecificCustomFramelessMainWindow = CustomFrame(DarkNotepad()) # DarkNotepad is main class of pyqt-dark-notepad
-    systemSpecificCustomFramelessMainWindow.show()
+    customFrameExample = CustomFrame(DarkNotepad()) # DarkNotepad is main class of pyqt-dark-notepad
+    customFrameExample.show()
     app.exec_()
 ```
 
