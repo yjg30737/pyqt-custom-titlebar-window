@@ -1,5 +1,5 @@
 # pyqt-custom-frame
-PyQt Custom Frame(resizable). User can put customized widget(QMainWindow only) in the frame. Drag menu bar on QMainWindow to move the window, double-click it to maximize/normalize. 
+PyQt Custom Frame(resizable). User can put customized widget(QMainWindow only) in the frame. Drag menu bar on QMainWindow to move the window, double-click it to show maximize/normal. 
 
 ## Requirements
 PyQt5 >= 5.15
