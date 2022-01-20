@@ -41,5 +41,5 @@ In the code sample, <a href="https://github.com/yjg30737/pyqt-dark-calculator.gi
 
 ### Result
 
-![image](https://user-images.githubusercontent.com/55078043/150276535-22fd9804-dafc-4c18-8a5a-802f4611e43f.png)
+![image](https://user-images.githubusercontent.com/55078043/150296182-5d1b719b-c59c-44ec-963e-d32e497243a4.png)
 
