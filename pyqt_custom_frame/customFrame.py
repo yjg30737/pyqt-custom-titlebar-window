@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QCursor
-from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QToolButton
+from PyQt5.QtGui import QCursor, QPalette
+from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QToolButton, qApp
 
 
 class CustomFrame(QWidget):
@@ -168,24 +168,36 @@ class CustomFrame(QWidget):
         minimizeBtn = QToolButton()
         minimizeBtn.setText('🗕')
         minimizeBtn.clicked.connect(self.showMinimized)
-        minimizeBtn.setMaximumSize(minimizeBtn.sizeHint().width(), minimizeBtn.sizeHint().height())
 
         self.__maximizeBtn = QToolButton()
         self.__maximizeBtn.setText('🗖')
         self.__maximizeBtn.clicked.connect(self.__showNormalOrMaximized)
-        self.__maximizeBtn.setMaximumSize(minimizeBtn.sizeHint().width(), minimizeBtn.sizeHint().height())
 
         closeBtn = QToolButton()
         closeBtn.setText('🗙')
         closeBtn.clicked.connect(self.close)
-        closeBtn.setMaximumSize(minimizeBtn.sizeHint().width(), minimizeBtn.sizeHint().height())
+
+        btns = [minimizeBtn, self.__maximizeBtn, closeBtn]
+
+        menubar_base_color = self.__menuBar.palette().color(QPalette.Base)
+        menubar_base_color = menubar_base_color.darker(300)
+        tool_button_style = f'QToolButton ' \
+                            f'{{ background: transparent; border: 0; }} ' \
+                            f'QToolButton:hover ' \
+                            f'{{ background-color: {menubar_base_color.name()}; }}'
+
+        font_size = qApp.font().pointSize() * 1.2
 
         lay = QHBoxLayout()
-        lay.addWidget(minimizeBtn)
-        lay.addWidget(self.__maximizeBtn)
-        lay.addWidget(closeBtn)
         lay.setContentsMargins(0, 0, 0, 0)
         lay.setSpacing(0)
+
+        for btn in btns:
+            font = btn.font()
+            font.setPointSize(font_size)
+            btn.setFont(font)
+            btn.setStyleSheet(tool_button_style)
+            lay.addWidget(btn)
 
         cornerWidget = QWidget()
         cornerWidget.setLayout(lay)
