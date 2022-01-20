@@ -1,11 +1,10 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QCursor
-from PyQt5.QtWidgets import QGridLayout, QWidget, QApplication
-from pyqt_custom_frame.mainWindow import MainWindow
+from PyQt5.QtWidgets import QGridLayout, QWidget, QMainWindow
 
 
 class CustomFrame(QWidget):
-    def __init__(self):
+    def __init__(self, main_window: QMainWindow):
         super().__init__()
         self.__resized = False
 
@@ -13,14 +12,14 @@ class CustomFrame(QWidget):
         self.__cursor = QCursor()
 
         self.__initPosition()
-        self.__initUi()
+        self.__initUi(main_window)
 
-    def __initUi(self):
+    def __initUi(self, main_window):
         self.setMinimumSize(60, 60)
         self.setMouseTracking(True)
         self.setWindowFlags(Qt.FramelessWindowHint)
 
-        self.__mainWindow = MainWindow()
+        self.__mainWindow = main_window
         self.__mainWindow.enterEvent = self.enterTheMainWindowEvent
 
         self.__menuBar = self.__mainWindow.menuBar()
