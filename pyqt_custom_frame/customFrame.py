@@ -189,6 +189,9 @@ class CustomFrame(QWidget):
                             f'QToolButton:hover ' \
                             f'{{ background-color: {menubar_base_color.name()}; }}'
 
+        close_button_style = '''QToolButton { background: transparent; border: 0; }
+        QToolButton:hover { background-color: #EE0000; }'''
+
         font_size = qApp.font().pointSize() * 1.2
 
         lay = QHBoxLayout()
@@ -201,6 +204,8 @@ class CustomFrame(QWidget):
             btn.setFont(font)
             btn.setStyleSheet(tool_button_style)
             lay.addWidget(btn)
+
+        closeBtn.setStyleSheet(close_button_style)
 
         cornerWidget = QWidget()
         cornerWidget.setLayout(lay)
