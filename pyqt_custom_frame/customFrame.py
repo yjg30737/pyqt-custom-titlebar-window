@@ -145,7 +145,7 @@ class CustomFrame(QWidget):
                     pass
                 else:
                     self.__move()
-        # double click event to maximize/minimize
+        # double click event to show maximize/normal
         elif e.type() == 4:
             if e.button() == Qt.LeftButton:
                 p = e.pos()
