@@ -17,34 +17,10 @@ Give your customized widget to the constructor like ```CustomFrame(CustomizedWid
 * <b>v0.2.0 or above</b> - You can add min/max/close button on the top right corner of menu bar with ```setMinMaxCloseButton```. 
 
 ## Note
-On version v0.1.0, type of inner widget should be QMainWindow.
+Type of inner widget should be QMainWindow.
 
 ## Example
-### v0.1.0
-#### Code Sample
-```python
-from PyQt5.QtWidgets import QApplication
-from pyqt_custom_frame import CustomFrame
-from pyqt_dark_notepad import DarkNotepad
-
-
-if __name__ == "__main__":
-    import sys
-
-    app = QApplication(sys.argv)
-    customFrameExample = CustomFrame(DarkNotepad()) # DarkNotepad is main class of pyqt-dark-notepad
-    customFrameExample.show()
-    app.exec_()
-```
-
-<a href="https://github.com/yjg30737/pyqt-dark-notepad.git">pyqt-dark-notepad</a>
-
-#### Result
-
-![image](https://user-images.githubusercontent.com/55078043/150244463-7558e45d-4450-4422-91a2-4c85d806c996.png)
-
-### v0.2.0
-#### Code Sample
+### Code Sample
 ```python
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from pyqt_custom_frame import CustomFrame
@@ -60,7 +36,7 @@ if __name__ == "__main__":
     app.exec_()
 ```
 
-#### Result
+### Result
 
 ![image](https://user-images.githubusercontent.com/55078043/150272696-023a9847-2304-4a3f-a2d2-00758bed7871.png)
 
