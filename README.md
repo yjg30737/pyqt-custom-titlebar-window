@@ -31,11 +31,13 @@ if __name__ == "__main__":
     import sys
 
     app = QApplication(sys.argv)
-    customFrameExample = CustomFrame(Calculator())
+    customFrameExample = CustomFrame(Calculator()) # pyqt-dark-calculator
     customFrameExample.setMinMaxCloseButton()
     customFrameExample.show()
     app.exec_()
 ```
+
+In the code sample, <a href="https://github.com/yjg30737/pyqt-dark-calculator.git">pyqt-dark-calculator</a> is being used as inner widget.  
 
 ### Result
 
