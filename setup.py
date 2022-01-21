@@ -7,7 +7,7 @@ setup(
     author_email='yjg30737@gmail.com',
     license='MIT',
     packages=find_packages(),
-    description='PyQt Custom Title Bar Window (resizable, movable, minimize/maximize/close)',
+    description='PyQt Custom Titlebar Window (resizable, movable, minimize/maximize/close)',
     url='https://github.com/yjg30737/pyqt-custom-titlebar-window.git',
     install_requires=[
         'PyQt5>=5.15'
