@@ -5,7 +5,7 @@ PyQt Custom Titlebar Window (resizable, movable, minimize/maximize/close). User 
 PyQt5 >= 5.15
 
 ## Setup
-```pip3 install git+https://github.com/yjg30737/pyqt-custom-frame.git --upgrade```
+```pip3 install git+https://github.com/yjg30737/pyqt-custom-titlebar-window.git --upgrade```
 
 ## Usage
 Give your customized widget to the constructor like ```CustomFrame(CustomizedWidgetByUser())```.
