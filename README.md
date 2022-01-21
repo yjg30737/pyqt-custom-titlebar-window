@@ -8,7 +8,7 @@ PyQt5 >= 5.15
 ```pip3 install git+https://github.com/yjg30737/pyqt-custom-titlebar-window.git --upgrade```
 
 ## Usage
-Give your customized widget to the constructor like ```CustomFrame(CustomizedWidgetByUser())```.
+Give your customized widget to the constructor like ```CustomTitlebarWindow(CustomizedWidgetByUser())```.
 
 ## Feature
 * If you drag the frame, window will be resized.
