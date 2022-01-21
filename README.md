@@ -1,5 +1,5 @@
 # pyqt-custom-titlebar-window
-PyQt Custom Title Bar Window (resizable, movable, minimize/maximize/close). User can put customized widget(QMainWindow only) in the frame. Drag menu bar on QMainWindow to move the window, double-click it to show maximize/normal. 
+PyQt Custom Titlebar Window (resizable, movable, minimize/maximize/close). User can put customized widget(QMainWindow only) in the frame. Drag menu bar on QMainWindow to move the window, double-click it to show maximize/normal. 
 
 ## Requirements
 PyQt5 >= 5.15
