@@ -3,7 +3,7 @@ from PyQt5.QtGui import QCursor, QPalette
 from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QToolButton, qApp
 
 
-class CustomFrame(QWidget):
+class CustomTitlebarWindow(QWidget):
     def __init__(self, main_window: QMainWindow):
         super().__init__()
         self.__resized = False

@@ -21,17 +21,17 @@ Type of inner widget should be QMainWindow.
 
 ## Example
 ### Code Sample
+
 ```python
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from pyqt_custom_frame import CustomFrame
+from pyqt_custom_titlebar_window import CustomTitlebarWindow
 from pyqt_dark_calculator import Calculator
-
 
 if __name__ == "__main__":
     import sys
 
     app = QApplication(sys.argv)
-    customFrameExample = CustomFrame(Calculator()) # pyqt-dark-calculator
+    customFrameExample = CustomTitlebarWindow(Calculator())  # pyqt-dark-calculator
     customFrameExample.setMinMaxCloseButton()
     customFrameExample.show()
     app.exec_()
