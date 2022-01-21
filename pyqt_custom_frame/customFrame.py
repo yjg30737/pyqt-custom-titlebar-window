@@ -17,7 +17,7 @@ class CustomFrame(QWidget):
     def __initUi(self, main_window):
         self.setMinimumSize(60, 60)
         self.setMouseTracking(True)
-        self.setWindowFlags(Qt.FramelessWindowHint)
+        self.setWindowFlags(Qt.Window | Qt.FramelessWindowHint | Qt.WindowMinMaxButtonsHint)
 
         self.__mainWindow = main_window
         self.__mainWindow.enterEvent = self.enterTheMainWindowEvent
