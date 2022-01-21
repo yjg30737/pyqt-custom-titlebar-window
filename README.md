@@ -14,7 +14,7 @@ Give your customized widget to the constructor like ```CustomFrame(CustomizedWid
 * If you drag the frame, window will be resized.
 * If you drag the menu bar of inner widget, window will be moved.
 * If you double-click the menu bar, window will be maximized/normalized.
-* <b>v0.2.0 or above</b> - You can add min/max/close button on the top right corner of menu bar with ```setMinMaxCloseButton```. 
+* Available to add min/max/close button on the top right corner of menu bar with ```setMinMaxCloseButton```. 
 
 ## Note
 Type of inner widget should be QMainWindow.
