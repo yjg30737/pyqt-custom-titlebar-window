@@ -213,4 +213,8 @@ class CustomTitlebarWindow(QWidget):
         cornerWidget = QWidget()
         cornerWidget.setLayout(lay)
 
+        existingCornerWidget = self.__menuBar.cornerWidget(Qt.TopRightCorner)
+        if existingCornerWidget:
+            lay.insertWidget(0, existingCornerWidget)
+
         self.__menuBar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
