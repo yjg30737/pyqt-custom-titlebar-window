@@ -180,6 +180,9 @@ class CustomTitlebarWindow(QWidget):
         closeBtn.setText('🗙')
         closeBtn.clicked.connect(self.close)
 
+        # connect the close event with inner widget
+        self.closeEvent = self.__mainWindow.closeEvent
+
         btns = [minimizeBtn, self.__maximizeBtn, closeBtn]
 
         menubar_base_color = self.__menuBar.palette().color(QPalette.Base)
