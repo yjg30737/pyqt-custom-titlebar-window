@@ -15,7 +15,7 @@ Give your customized widget to the constructor like ```CustomTitlebarWindow(Cust
 * If you drag the menu bar of inner widget, window will be moved.
 * If you double-click the menu bar, window will be maximized/normalized.
 * Available to add min/max/close button on the top right corner of menu bar with ```setMinMaxCloseButton```.
-* Set the window title by itself if you set your QMainWindow's title with ```setWindowTitle```. It also catchs the windowTitleChanged signal of your QMainWindow.
+* Set the window title by itself if you set your QMainWindow's title with ```setWindowTitle```. It also catches the windowTitleChanged signal of your QMainWindow.
 
 ## Note
 Type of inner widget should be QMainWindow.
