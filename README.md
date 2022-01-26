@@ -42,10 +42,10 @@ In the code sample, <a href="https://github.com/yjg30737/pyqt-dark-calculator.gi
 
 ### Result
 
-![image](https://user-images.githubusercontent.com/55078043/150296182-5d1b719b-c59c-44ec-963e-d32e497243a4.png)
+![image](https://user-images.githubusercontent.com/55078043/151106910-0bce8fa2-0cad-425c-8dda-18196536c3ac.png)
 
 Here's another example with <a href="https://github.com/yjg30737/pyqt-dark-notepad.git">pyqt-dark-notepad</a>.
 
-![image](https://user-images.githubusercontent.com/55078043/150919907-33ebf90e-ba35-45f6-8c94-44a1405fd1c0.png)
+![image](https://user-images.githubusercontent.com/55078043/151106977-76a169cc-bcaf-4a46-8771-9216ee583b9f.png)
 
 As you see, existing corner widget doesn't matter.
