@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QCursor, QPalette
-from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QToolButton, qApp
+from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QToolButton, qApp, QLabel, QSizePolicy, QMenuBar
 
 
 class CustomTitlebarWindow(QWidget):
@@ -10,6 +10,7 @@ class CustomTitlebarWindow(QWidget):
 
         self.__margin = 3
         self.__cursor = QCursor()
+        self.__titleLbl = ''
 
         self.__initPosition()
         self.__initUi(main_window)
@@ -21,6 +22,7 @@ class CustomTitlebarWindow(QWidget):
 
         self.__mainWindow = main_window
         self.__mainWindow.enterEvent = self.enterTheMainWindowEvent
+        self.__mainWindow.installEventFilter(self)
 
         self.__menuBar = self.__mainWindow.menuBar()
         self.__menuBar.installEventFilter(self)
@@ -138,9 +140,14 @@ class CustomTitlebarWindow(QWidget):
         return super().enterEvent(e)
 
     def eventFilter(self, obj, e) -> bool:
-        # double click or move event
-        if e.type() == 4 or e.type() == 5:
-            self.__execMenuBarMoveOrDoubleClickEvent(e)
+        if isinstance(obj, QMainWindow):
+            # catch the title changed event
+            if e.type() == 33:
+                self.__titleLbl.setText(obj.windowTitle())
+        elif isinstance(obj, QMenuBar):
+            # catch the double click or move event
+            if e.type() == 4 or e.type() == 5:
+                self.__execMenuBarMoveOrDoubleClickEvent(e)
         return super().eventFilter(obj, e)
 
     def __execMenuBarMoveOrDoubleClickEvent(self, e):
@@ -167,7 +174,14 @@ class CustomTitlebarWindow(QWidget):
             self.__maximizeBtn.setText('🗗')
             self.showMaximized()
 
-    def setMinMaxCloseButton(self):
+    def setMinMaxCloseButton(self, title: str = ''):
+        self.__titleLbl = QLabel()
+        if title:
+            pass
+        else:
+            title = self.__mainWindow.windowTitle()
+        self.__titleLbl.setText(title)
+
         minimizeBtn = QToolButton()
         minimizeBtn.setText('🗕')
         minimizeBtn.clicked.connect(self.showMinimized)
@@ -216,5 +230,6 @@ class CustomTitlebarWindow(QWidget):
         existingCornerWidget = self.__menuBar.cornerWidget(Qt.TopRightCorner)
         if existingCornerWidget:
             lay.insertWidget(0, existingCornerWidget)
+        lay.insertWidget(0, self.__titleLbl, alignment=Qt.AlignLeft)
 
         self.__menuBar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
