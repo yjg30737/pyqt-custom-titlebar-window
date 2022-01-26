@@ -10,7 +10,6 @@ class CustomTitlebarWindow(QWidget):
 
         self.__margin = 3
         self.__cursor = QCursor()
-        self.__titleLbl = ''
 
         self.__initPosition()
         self.__initUi(main_window)
