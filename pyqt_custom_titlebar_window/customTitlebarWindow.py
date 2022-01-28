@@ -119,9 +119,16 @@ class CustomTitlebarWindow(FramelessWindow):
         cornerWidget = QWidget()
         cornerWidget.setLayout(lay)
 
+        # set the corner widget that already exists in QMenuBar
         existingCornerWidget = self.__menuBar.cornerWidget(Qt.TopRightCorner)
         if existingCornerWidget:
             lay.insertWidget(0, existingCornerWidget)
-        lay.insertWidget(0, self.__titleLbl, alignment=Qt.AlignLeft)
+
+        # set the title
+        if len(self.__menuBar.actions()) > 0:
+            lay.insertWidget(0, self.__titleLbl, alignment=Qt.AlignLeft)
+        else:
+            self.__titleLbl.setContentsMargins(5, 0, 0, 0)
+            self.__menuBar.setCornerWidget(self.__titleLbl, Qt.TopLeftCorner)
 
         self.__menuBar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
