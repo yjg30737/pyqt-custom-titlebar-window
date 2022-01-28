@@ -8,6 +8,7 @@ PyQt Custom Titlebar Window (resizable, movable, minimize/maximize/close). User 
 * [Feature](#feature)
 * [Note](#note)
 * [Example](#example)
+* [Release Info](#release-info)
 
 ## Requirements
 PyQt5 >= 5.15
@@ -17,6 +18,9 @@ PyQt5 >= 5.15
 
 ## Usage
 Give your customized widget to the constructor like ```CustomTitlebarWindow(CustomizedWidgetByUser())```.
+
+## Included package
+* <a href="https://github.com/yjg30737/pyqt-frameless-window.git">pyqt-frameless-window</a>
 
 ## Feature
 * If you drag the frame, window will be resized.
@@ -60,3 +64,12 @@ Here's another example with <a href="https://github.com/yjg30737/pyqt-dark-notep
 ![image](https://user-images.githubusercontent.com/55078043/151106977-76a169cc-bcaf-4a46-8771-9216ee583b9f.png)
 
 As you see, existing corner widget doesn't matter.
+
+## Release Info
+(Start from 0.5.0)
+
+### January 28, 2021 (version 0.6.0)
+
+Now this module inherits the <a href="https://github.com/yjg30737/pyqt-frameless-window.git">pyqt-frameless-window</a> to reduce the redundancy.
+
+<small>Note: I update this release info if update information is really crucial to know.</small>
