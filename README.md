@@ -72,4 +72,4 @@ As you see, existing corner widget doesn't matter.
 
 Now this module inherits the <a href="https://github.com/yjg30737/pyqt-frameless-window.git">pyqt-frameless-window</a> to reduce the redundancy.
 
-<small>Note: I update this release info if update information is really crucial to know.</small>
+<small>Note for release info: I update this release info if update information is really crucial to know.</small>
