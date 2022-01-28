@@ -28,7 +28,6 @@ class CustomTitlebarWindow(FramelessWindow):
         self.setStyleSheet(f'QWidget {{ background-color: {color.name()} }}')
 
     def enterTheMainWindowEvent(self, e):
-        print(e, 'unsetCursor')
         self.unsetCursor()
         self._resized = False
 
