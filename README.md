@@ -65,11 +65,11 @@ Here's another example with <a href="https://github.com/yjg30737/pyqt-dark-notep
 
 As you see, existing corner widget doesn't matter.
 
-## Release Info
+## Release Note
 (Start from 0.5.0)
 
 ### January 28, 2021 (version 0.6.0)
 
 Now this module inherits the <a href="https://github.com/yjg30737/pyqt-frameless-window.git">pyqt-frameless-window</a> to reduce the redundancy.
 
-<small>Note for release info: I update this release info if update information is really crucial to know.</small>
+<small>Note for release note: I update this release info if update information is really crucial to know.</small>
