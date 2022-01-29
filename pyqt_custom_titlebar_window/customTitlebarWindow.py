@@ -27,6 +27,11 @@ class CustomTitlebarWindow(FramelessWindow):
         color = self.__menuBar.palette().color(QPalette.Base)
         self.setStyleSheet(f'QWidget {{ background-color: {color.name()} }}')
 
+        self.__titleLbl = QLabel()
+        self.__minimizeBtn = QToolButton()
+        self.__maximizeBtn = QToolButton()
+        self.__closeBtn = QToolButton()
+
     def enterTheMainWindowEvent(self, e):
         self.unsetCursor()
         self._resized = False
@@ -67,29 +72,25 @@ class CustomTitlebarWindow(FramelessWindow):
             self.showMaximized()
 
     def setMinMaxCloseButton(self, title: str = ''):
-        self.__titleLbl = QLabel()
         if title:
             pass
         else:
             title = self.__mainWindow.windowTitle()
         self.__titleLbl.setText(title)
 
-        minimizeBtn = QToolButton()
-        minimizeBtn.setText('🗕')
-        minimizeBtn.clicked.connect(self.showMinimized)
+        self.__minimizeBtn.setText('🗕')
+        self.__minimizeBtn.clicked.connect(self.showMinimized)
 
-        self.__maximizeBtn = QToolButton()
         self.__maximizeBtn.setText('🗖')
         self.__maximizeBtn.clicked.connect(self.__showNormalOrMaximized)
 
-        closeBtn = QToolButton()
-        closeBtn.setText('🗙')
-        closeBtn.clicked.connect(self.close)
+        self.__closeBtn.setText('🗙')
+        self.__closeBtn.clicked.connect(self.close)
 
         # connect the close event with inner widget
         self.closeEvent = self.__mainWindow.closeEvent
 
-        btns = [minimizeBtn, self.__maximizeBtn, closeBtn]
+        btns = [self.__minimizeBtn, self.__maximizeBtn, self.__closeBtn]
 
         menubar_base_color = self.__menuBar.palette().color(QPalette.Base)
         menubar_base_color = menubar_base_color.lighter(150)
@@ -114,7 +115,7 @@ class CustomTitlebarWindow(FramelessWindow):
             btn.setStyleSheet(tool_button_style)
             lay.addWidget(btn)
 
-        closeBtn.setStyleSheet(close_button_style)
+        self.__closeBtn.setStyleSheet(close_button_style)
 
         cornerWidget = QWidget()
         cornerWidget.setLayout(lay)
@@ -124,7 +125,7 @@ class CustomTitlebarWindow(FramelessWindow):
         if existingCornerWidget:
             lay.insertWidget(0, existingCornerWidget)
 
-        # set the title
+        # Place the title on appropriate location of QMenuBar
         if len(self.__menuBar.actions()) > 0:
             lay.insertWidget(0, self.__titleLbl, alignment=Qt.AlignLeft)
         else:
