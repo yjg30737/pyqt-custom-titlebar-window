@@ -84,11 +84,8 @@ class CustomTitlebarWindow(FramelessWindow):
             self.__maximizeBtn.setText('🗗')
             self.showMaximized()
 
-    def setMinMaxCloseButton(self, title: str = ''):
-        if title:
-            pass
-        else:
-            title = self.__mainWindow.windowTitle()
+    def setMinMaxCloseButton(self):
+        title = self.__mainWindow.windowTitle()
         self.__titleLbl.setText(title)
 
         self.__minimizeBtn.setText('🗕')
