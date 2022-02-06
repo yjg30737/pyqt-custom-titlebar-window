@@ -9,7 +9,8 @@ from pyqt_frameless_window.framelessWindow import FramelessWindow
 class CustomTitlebarWindow(FramelessWindow):
     def __init__(self, main_window: QMainWindow):
         super().__init__(main_window)
-        self.__initUi(main_window)
+        self.__initVal(main_window)
+        self.__initUi()
 
     def __initVal(self, main_window):
         self.__mainWindow = main_window
@@ -21,12 +22,10 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__topTitleBar = QWidget()
         self.__windowTitleIconLabel = QLabel()
 
-    def __initUi(self, main_window):
-        self.__mainWindow = main_window
+    def __initUi(self):
         self.__mainWindow.enterEvent = self.enterTheMainWindowEvent
         self.__mainWindow.installEventFilter(self)
 
-        self.__menuBar = self.__mainWindow.menuBar()
         self.__menuBar.installEventFilter(self)
 
         lay = QGridLayout()
@@ -36,11 +35,6 @@ class CustomTitlebarWindow(FramelessWindow):
 
         color = self.__menuBar.palette().color(QPalette.Base)
         self.setStyleSheet(f'QWidget {{ background-color: {color.name()} }}')
-
-        self.__titleLbl = QLabel()
-        self.__minimizeBtn = QToolButton()
-        self.__maximizeBtn = QToolButton()
-        self.__closeBtn = QToolButton()
 
     def enterTheMainWindowEvent(self, e):
         self.unsetCursor()
