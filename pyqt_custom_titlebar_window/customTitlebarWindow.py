@@ -144,7 +144,7 @@ class CustomTitlebarWindow(FramelessWindow):
 
         self.__menuBar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
 
-    def setSeparatedTitleBar(self, icon: QIcon = QIcon(), font: QFont = QFont('Arial', 12)):
+    def setSeparatedTitleBar(self, icon: QIcon = QIcon(), font: QFont = QFont('Arial', 12), align=Qt.AlignCenter):
         if icon.isNull():
             self.__windowTitleIconLabel.setVisible(False)
         else:
@@ -161,7 +161,7 @@ class CustomTitlebarWindow(FramelessWindow):
         lay = QHBoxLayout()
         lay.addWidget(self.__windowTitleIconLabel)
         lay.addWidget(self.__titleLbl)
-        lay.setAlignment(Qt.AlignCenter)
+        lay.setAlignment(align)
         lay.setContentsMargins(2, 2, 2, 2)
 
         self.__topTitleBar.setObjectName('topTitleBar')
