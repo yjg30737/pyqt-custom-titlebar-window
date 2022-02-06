@@ -11,6 +11,15 @@ class CustomTitlebarWindow(FramelessWindow):
         super().__init__(main_window)
         self.__initUi(main_window)
 
+    def __initVal(self, main_window):
+        self.__mainWindow = main_window
+        self.__menuBar = self.__mainWindow.menuBar()
+        self.__titleLbl = QLabel()
+        self.__minimizeBtn = QToolButton()
+        self.__maximizeBtn = QToolButton()
+        self.__closeBtn = QToolButton()
+        self.__topTitleBar = QWidget()
+
     def __initUi(self, main_window):
         self.__mainWindow = main_window
         self.__mainWindow.enterEvent = self.enterTheMainWindowEvent
