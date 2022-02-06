@@ -23,9 +23,7 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__windowTitleIconLabel = QLabel()
 
     def __initUi(self):
-        self.__mainWindow.enterEvent = self.enterTheMainWindowEvent
         self.__mainWindow.installEventFilter(self)
-
         self.__menuBar.installEventFilter(self)
 
         lay = QGridLayout()
@@ -36,19 +34,23 @@ class CustomTitlebarWindow(FramelessWindow):
         color = self.__menuBar.palette().color(QPalette.Base)
         self.setStyleSheet(f'QWidget {{ background-color: {color.name()} }}')
 
-    def enterTheMainWindowEvent(self, e):
-        self.unsetCursor()
-        self._resized = False
-
     def eventFilter(self, obj, e) -> bool:
         if isinstance(obj, QMainWindow):
+            # catch the enter event
+            if e.type() == 10:
+                self.unsetCursor()
+                self._resized = False
             # catch the title changed event
-            if e.type() == 33:
+            elif e.type() == 33:
                 self.__titleLbl.setText(obj.windowTitle())
         elif isinstance(obj, QMenuBar):
             # catch the double click or move event
             if e.type() == 4 or e.type() == 5:
                 self.__execMenuBarMoveOrDoubleClickEvent(e)
+        elif isinstance(obj, QWidget):
+            if obj.objectName() == 'topTitleBar':
+                if e.type() == 4 or e.type() == 5:
+                    self.__execTitleBarMoveOrDoubleClickEvent(e)
         return super().eventFilter(obj, e)
 
     def __execMenuBarMoveOrDoubleClickEvent(self, e):
@@ -60,12 +62,17 @@ class CustomTitlebarWindow(FramelessWindow):
                 pass
             else:
                 # double click (show maximized/normal)
-                if e.type() == 4:
-                    if e.button() == Qt.LeftButton:
+                if e.type() == 4 and e.button() == Qt.LeftButton:
                         self.__showNormalOrMaximized()
                 # move
                 else:
                     self._move()
+
+    def __execTitleBarMoveOrDoubleClickEvent(self, e):
+        if e.type() == 4 and e.button() == Qt.LeftButton:
+            self.__showNormalOrMaximized()
+        else:
+            self._move()
 
     def __showNormalOrMaximized(self):
         if self.isMaximized():
@@ -161,7 +168,10 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__topTitleBar.setStyleSheet('QWidget { background-color: #444; }')
         self.__topTitleBar.setMinimumHeight(self.__titleLbl.fontMetrics().height())
         self.__topTitleBar.setLayout(lay)
+
         self.__topTitleBar.installEventFilter(self)
+        self.__topTitleBar.setMouseTracking(True)
+        self.__menuBar.removeEventFilter(self)
 
         lay = self.layout()
         centralWidget = lay.itemAt(0).widget()
