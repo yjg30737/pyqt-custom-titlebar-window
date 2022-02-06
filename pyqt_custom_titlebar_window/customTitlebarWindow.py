@@ -148,6 +148,7 @@ class CustomTitlebarWindow(FramelessWindow):
         if icon.isNull():
             self.__windowTitleIconLabel.setVisible(False)
         else:
+            self.setWindowIcon(icon)
             icon_size = font.pointSize()
             icon = icon.pixmap(icon_size * 1.5, icon_size * 1.5)
             pixmap = QPixmap(icon)
