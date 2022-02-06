@@ -138,7 +138,7 @@ class CustomTitlebarWindow(FramelessWindow):
 
         self.__menuBar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
 
-    def setSeparatedTitleBar(self, font=QFont('Arial', 32)):
+    def setSeparatedTitleBar(self, font: QFont = QFont('Arial', 16)):
         self.__windowTitleIconLabel.setVisible(False)
 
         self.__titleLbl.setFont(font)
