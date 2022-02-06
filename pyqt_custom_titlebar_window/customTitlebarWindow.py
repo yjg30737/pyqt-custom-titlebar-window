@@ -1,5 +1,5 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPalette, QFont
+from PyQt5.QtGui import QPalette, QFont, QIcon, QPixmap
 from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QToolButton, qApp, QLabel, \
     QMenuBar
 
@@ -138,8 +138,15 @@ class CustomTitlebarWindow(FramelessWindow):
 
         self.__menuBar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
 
-    def setSeparatedTitleBar(self, font: QFont = QFont('Arial', 16)):
-        self.__windowTitleIconLabel.setVisible(False)
+    def setSeparatedTitleBar(self, icon: QIcon = QIcon(), font: QFont = QFont('Arial', 12)):
+        if icon.isNull():
+            self.__windowTitleIconLabel.setVisible(False)
+        else:
+            icon_size = font.pointSize()
+            icon = icon.pixmap(icon_size*1.5, icon_size*1.5)
+            pixmap = QPixmap(icon)
+            self.__windowTitleIconLabel.setPixmap(pixmap)
+            self.__windowTitleIconLabel.setMaximumWidth(pixmap.width())
 
         self.__titleLbl.setFont(font)
         self.__titleLbl.setStyleSheet('QLabel { color: white; }')
