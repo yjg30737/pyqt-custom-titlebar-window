@@ -1,5 +1,5 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPalette
+from PyQt5.QtGui import QPalette, QFont
 from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QToolButton, qApp, QLabel, \
     QMenuBar
 
@@ -19,6 +19,7 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__maximizeBtn = QToolButton()
         self.__closeBtn = QToolButton()
         self.__topTitleBar = QWidget()
+        self.__windowTitleIconLabel = QLabel()
 
     def __initUi(self, main_window):
         self.__mainWindow = main_window
@@ -142,3 +143,26 @@ class CustomTitlebarWindow(FramelessWindow):
             self.__menuBar.setCornerWidget(self.__titleLbl, Qt.TopLeftCorner)
 
         self.__menuBar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
+
+    def setSeparatedTitleBar(self, font=QFont('Arial', 32)):
+        self.__windowTitleIconLabel.setVisible(False)
+
+        self.__titleLbl.setFont(font)
+        self.__titleLbl.setStyleSheet('QLabel { color: white; }')
+
+        lay = QHBoxLayout()
+        lay.addWidget(self.__windowTitleIconLabel)
+        lay.addWidget(self.__titleLbl)
+        lay.setAlignment(Qt.AlignCenter)
+        lay.setContentsMargins(2, 2, 2, 2)
+
+        self.__topTitleBar.setObjectName('topTitleBar')
+        self.__topTitleBar.setStyleSheet('QWidget { background-color: #444; }')
+        self.__topTitleBar.setMinimumHeight(self.__titleLbl.fontMetrics().height())
+        self.__topTitleBar.setLayout(lay)
+        self.__topTitleBar.installEventFilter(self)
+
+        lay = self.layout()
+        centralWidget = lay.itemAt(0).widget()
+        lay.addWidget(self.__topTitleBar, 0, 0, 1, 1)
+        lay.addWidget(centralWidget, 1, 0, 1, 1)
