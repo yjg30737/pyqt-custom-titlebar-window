@@ -26,6 +26,8 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__mainWindow.installEventFilter(self)
         self.__menuBar.installEventFilter(self)
 
+        self._dragMenuBarOnlyWayToMoveWindowFlag = True
+
         lay = QGridLayout()
         lay.addWidget(self.__mainWindow)
         lay.setContentsMargins(self._margin, self._margin, self._margin, self._margin)
@@ -63,7 +65,7 @@ class CustomTitlebarWindow(FramelessWindow):
             else:
                 # double click (show maximized/normal)
                 if e.type() == 4 and e.button() == Qt.LeftButton:
-                        self.__showNormalOrMaximized()
+                    self.__showNormalOrMaximized()
                 # move
                 else:
                     self._move()
@@ -150,7 +152,7 @@ class CustomTitlebarWindow(FramelessWindow):
             self.__windowTitleIconLabel.setVisible(False)
         else:
             icon_size = font.pointSize()
-            icon = icon.pixmap(icon_size*1.5, icon_size*1.5)
+            icon = icon.pixmap(icon_size * 1.5, icon_size * 1.5)
             pixmap = QPixmap(icon)
             self.__windowTitleIconLabel.setPixmap(pixmap)
             self.__windowTitleIconLabel.setMaximumWidth(pixmap.width())
@@ -177,3 +179,6 @@ class CustomTitlebarWindow(FramelessWindow):
         centralWidget = lay.itemAt(0).widget()
         lay.addWidget(self.__topTitleBar, 0, 0, 1, 1)
         lay.addWidget(centralWidget, 1, 0, 1, 1)
+
+    def setDragMenuBarOnlyWayToMoveWindow(self, f: bool):
+        self._dragMenuBarOnlyWayToMoveWindowFlag = f
