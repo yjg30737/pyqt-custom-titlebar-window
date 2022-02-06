@@ -8,7 +8,7 @@ PyQt Custom Titlebar Window (resizable, movable, minimize/maximize/close). User 
 * [Feature](#feature)
 * [Note](#note)
 * [Example](#example)
-* [Release Info](#release-info)
+* [Release Note](#release-note)
 
 ## Requirements
 PyQt5 >= 5.15
