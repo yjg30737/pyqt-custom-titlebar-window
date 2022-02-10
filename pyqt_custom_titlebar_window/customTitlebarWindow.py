@@ -84,7 +84,7 @@ class CustomTitlebarWindow(FramelessWindow):
             self.__maximizeBtn.setText('🗗')
             self.showMaximized()
 
-    def setMinMaxCloseButton(self):
+    def setMinMaxCloseButton(self, hint=Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint):
         title = self.__mainWindow.windowTitle()
         self.__titleLbl.setText(title)
 
@@ -114,18 +114,31 @@ class CustomTitlebarWindow(FramelessWindow):
 
         font_size = qApp.font().pointSize() * 1.2
 
-        lay = QHBoxLayout()
-        lay.setContentsMargins(0, 0, 0, 0)
-        lay.setSpacing(0)
-
         for btn in btns:
             font = btn.font()
             font.setPointSize(font_size)
             btn.setFont(font)
             btn.setStyleSheet(tool_button_style)
-            lay.addWidget(btn)
 
         self.__closeBtn.setStyleSheet(close_button_style)
+
+        lay = QHBoxLayout()
+        lay.setContentsMargins(0, 0, 0, 0)
+        lay.setSpacing(0)
+
+        if hint:
+            if hint == Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint:
+                lay.addWidget(self.__minimizeBtn)
+                lay.addWidget(self.__maximizeBtn)
+                lay.addWidget(self.__closeBtn)
+            elif hint == Qt.WindowMinimizeButtonHint | Qt.WindowCloseButtonHint:
+                lay.addWidget(self.__minimizeBtn)
+                lay.addWidget(self.__closeBtn)
+            elif hint == Qt.WindowCloseButtonHint:
+                lay.addWidget(self.__closeBtn)
+            else:
+                #todo for another type of flags
+                pass
 
         cornerWidget = QWidget()
         cornerWidget.setLayout(lay)
