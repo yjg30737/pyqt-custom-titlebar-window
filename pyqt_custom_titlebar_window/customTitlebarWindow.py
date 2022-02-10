@@ -177,8 +177,10 @@ class CustomTitlebarWindow(FramelessWindow):
         lay.setAlignment(align)
         lay.setContentsMargins(2, 2, 2, 2)
 
+        menubar_base_color = self.__menuBar.palette().color(QPalette.Base)
+
         self.__topTitleBar.setObjectName('topTitleBar')
-        self.__topTitleBar.setStyleSheet('QWidget { background-color: #444; }')
+        self.__topTitleBar.setStyleSheet(f'QWidget {{ background-color: {menubar_base_color}; }}')
         self.__topTitleBar.setMinimumHeight(self.__titleLbl.fontMetrics().height())
         self.__topTitleBar.setLayout(lay)
 
