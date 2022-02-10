@@ -26,7 +26,7 @@ Give your customized widget to the constructor like ```CustomTitlebarWindow(Cust
 * If you drag the frame, window will be resized.
 * If you drag the menu bar of inner widget, window will be moved.
 * If you double-click the menu bar, window will be maximized/normalized.
-* Available to add min/max/close button on the top right corner of menu bar with ```setMinMaxCloseButton```.
+* Available to add min/max/close button on the top right corner of menu bar with ```setMinMaxCloseButton(hint=Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint)```. If you want to add close button only, give the value like ```setMinMaxCloseButton(hint=Qt.WindowCloseButtonHint)```. There are three options available(close, min/close, min/max/close). Default value is min/max/close.
 * Set the window title by itself if you set your ```QMainWindow```'s title with ```setWindowTitle```. It also catches the ```windowTitleChanged``` signal of your ```QMainWindow```.
 * Frame's color synchronizes with the ```QMenuBar```'s background color.
 * Applied stylesheets of min/max/close are based on the common min/max/close button style of Windows 10. (I'm currently using Windows 10.) For example, when you place the mouse on top of the close button, close button's color will turn into red. No animation involved currently.
