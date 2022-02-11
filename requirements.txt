@@ -1,1 +1,2 @@
 git+https://git@github.com/yjg30737/pyqt-frameless-window.git@main
+git+https://git@github.com/yjg30737/python-color-getter.git@main

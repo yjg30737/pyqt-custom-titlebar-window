@@ -1,8 +1,9 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPalette, QFont, QIcon, QPixmap
+from PyQt5.QtGui import QPalette, QFont, QIcon, QPixmap, QColor
 from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QToolButton, qApp, QLabel, \
     QMenuBar
 
+from python_color_getter.pythonColorGetter import PythonColorGetter
 from pyqt_frameless_window.framelessWindow import FramelessWindow
 
 
@@ -169,7 +170,6 @@ class CustomTitlebarWindow(FramelessWindow):
             self.__windowTitleIconLabel.setMaximumWidth(pixmap.width())
 
         self.__titleLbl.setFont(font)
-        self.__titleLbl.setStyleSheet('QLabel { color: white; }')
 
         lay = QHBoxLayout()
         lay.addWidget(self.__windowTitleIconLabel)
@@ -180,9 +180,15 @@ class CustomTitlebarWindow(FramelessWindow):
         menubar_base_color = self.__menuBar.palette().color(QPalette.Base)
 
         self.__topTitleBar.setObjectName('topTitleBar')
-        self.__topTitleBar.setStyleSheet(f'QWidget {{ background-color: {menubar_base_color}; }}')
+        self.__topTitleBar.setStyleSheet(f'QWidget {{ background-color: {menubar_base_color.name()}; }}')
         self.__topTitleBar.setMinimumHeight(self.__titleLbl.fontMetrics().height())
         self.__topTitleBar.setLayout(lay)
+
+        title_lbl_r, title_lbl_g, title_lbl_b = PythonColorGetter.get_complementary_color(menubar_base_color.red(),
+                                                                                          menubar_base_color.green(),
+                                                                                          menubar_base_color.blue())
+        title_lbl_color = QColor(title_lbl_r, title_lbl_g, title_lbl_b)
+        self.__titleLbl.setStyleSheet(f'QLabel {{ color: {title_lbl_color.name()}; }}')
 
         self.__topTitleBar.installEventFilter(self)
         self.__topTitleBar.setMouseTracking(True)
