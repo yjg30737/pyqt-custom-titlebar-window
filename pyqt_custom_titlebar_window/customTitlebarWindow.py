@@ -201,3 +201,6 @@ class CustomTitlebarWindow(FramelessWindow):
 
     def setDragMenuBarOnlyWayToMoveWindow(self, f: bool):
         self._dragMenuBarOnlyWayToMoveWindowFlag = f
+
+    def getCornerWidget(self):
+        return self.__menuBar.cornerWidget()
