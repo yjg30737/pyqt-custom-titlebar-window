@@ -99,7 +99,7 @@ class CustomTitlebarWindow(FramelessWindow):
         else:
             self.showMaximized()
 
-    def setMenuStyle(self, style='Windows'):
+    def setMenuStyle(self, style: str = 'Windows'):
         self.__styleBasedOnOS = style
 
     def setMinMaxCloseButton(self, hint=Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint, style='Windows'):
