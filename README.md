@@ -21,6 +21,8 @@ Give your customized widget to the constructor like ```CustomTitlebarWindow(Cust
 
 ## Included package
 * <a href="https://github.com/yjg30737/pyqt-frameless-window.git">pyqt-frameless-window</a>
+* <a href="https://github.com/yjg30737/python-color-getter.git">python-color-getter</a>
+* <a href="https://github.com/yjg30737/pyqt-mac-min-max-close-buttons-widget.git">pyqt-mac-min-max-close-buttons-widget</a>
 
 ## Feature
 * If you drag the frame, window will be resized.
