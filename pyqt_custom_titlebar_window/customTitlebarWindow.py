@@ -18,7 +18,7 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__mainWindow = main_window
         self.__menuBar = self.__mainWindow.menuBar()
         self.__titleLbl = QLabel()
-        self.__minMaxCloseBtnStyle = 'Windows'
+        self.__styleBasedOnOS = 'Windows'
         self.__minimizeBtn = QToolButton()
         self.__maximizeBtn = QToolButton()
         self.__closeBtn = QToolButton()
@@ -80,11 +80,11 @@ class CustomTitlebarWindow(FramelessWindow):
             self._move()
 
     def __showNormalOrMaximized(self):
-        if self.__minMaxCloseBtnStyle == 'Windows':
+        if self.__styleBasedOnOS == 'Windows':
             self.__showWindowsOSNormalOrMaximized()
-        elif self.__minMaxCloseBtnStyle == 'Mac':
+        elif self.__styleBasedOnOS == 'Mac':
             self.__showMacOSNormalOrMaximized()
-
+            
     def __showWindowsOSNormalOrMaximized(self):
         if self.isMaximized():
             self.__maximizeBtn.setText('🗖')
@@ -92,7 +92,7 @@ class CustomTitlebarWindow(FramelessWindow):
         else:
             self.__maximizeBtn.setText('🗗')
             self.showMaximized()
-
+            
     def __showMacOSNormalOrMaximized(self):
         if self.isMaximized():
             self.showNormal()
@@ -106,8 +106,8 @@ class CustomTitlebarWindow(FramelessWindow):
         lay = QHBoxLayout()
         lay.setContentsMargins(0, 0, 0, 0)
 
-        self.__minMaxCloseBtnStyle = style
-        if self.__minMaxCloseBtnStyle == 'Windows':
+        self.__styleBasedOnOS = style
+        if self.__styleBasedOnOS == 'Windows':
             lay.setSpacing(0)
 
             self.__minimizeBtn.setText('🗕')
@@ -135,7 +135,7 @@ class CustomTitlebarWindow(FramelessWindow):
                 btn.setStyleSheet(tool_button_style)
 
             self.__closeBtn.setStyleSheet(close_button_style)
-        elif self.__minMaxCloseBtnStyle == 'Mac':
+        elif self.__styleBasedOnOS == 'Mac':
             lay.setSpacing(2)
             macMinMaxCloseButtonsWidget = MacMinMaxCloseButtonsWidget()
             self.__minimizeBtn = macMinMaxCloseButtonsWidget.getMinimizedBtn()
