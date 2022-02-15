@@ -80,13 +80,23 @@ class CustomTitlebarWindow(FramelessWindow):
             self._move()
 
     def __showNormalOrMaximized(self):
+        if self.__minMaxCloseBtnStyle == 'Windows':
+            self.__showWindowsOSNormalOrMaximized()
+        elif self.__minMaxCloseBtnStyle == 'Mac':
+            self.__showMacOSNormalOrMaximized()
+
+    def __showWindowsOSNormalOrMaximized(self):
         if self.isMaximized():
-            if self.__minMaxCloseBtnStyle == 'Windows':
-                self.__maximizeBtn.setText('🗖')
+            self.__maximizeBtn.setText('🗖')
             self.showNormal()
         else:
-            if self.__minMaxCloseBtnStyle == 'Windows':
-                self.__maximizeBtn.setText('🗗')
+            self.__maximizeBtn.setText('🗗')
+            self.showMaximized()
+
+    def __showMacOSNormalOrMaximized(self):
+        if self.isMaximized():
+            self.showNormal()
+        else:
             self.showMaximized()
 
     def setMinMaxCloseButton(self, hint=Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint, style='Windows'):
