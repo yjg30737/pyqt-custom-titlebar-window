@@ -34,6 +34,7 @@ Give your customized widget to the constructor like ```CustomTitlebarWindow(Cust
 * Applied stylesheets of min/max/close are based on the common min/max/close button style of Windows 10. (I'm currently using Windows 10.) For example, when you place the mouse on top of the close button, close button's color will turn into red. No animation involved currently.
 * ```setSeparatedTitleBar(icon: QIcon = QIcon(), font: QFont = QFont('Arial', 16), align=Qt.AlignCenter)``` to set title bar above the menu bar. You can set the font of title bar and icon(which not only becomes an icon next to the title bar, but becomes window icon at the same time.) and alignment of title layout. Note: This needs to be refined more.
 * ```getCornerWidget()``` to get corner widget of ```QMenuBar``` easily
+* ```setMenuStyle(style: str = 'Windows')``` to set menu style based on style which should be name of the OS. You can either give the 'Windows' or 'Mac' to the argument. Windows is set by default.  
 
 ## Note
 Type of inner widget should be ```QMainWindow```. Because without ```QMenuBar``` this won't work.
