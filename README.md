@@ -70,6 +70,10 @@ As you see, existing corner widget doesn't matter.
 ## Release Note
 (Start from 0.5.0)
 
+### January 28, 2021 (version 0.8.0)
+
+Now this module uses the <a href="https://github.com/yjg30737/pyqt-mac-min-max-close-buttons-widget.git">pyqt-mac-min-max-close-buttons-widget</a> to make user able to set macOS style to each button(min/max/close).
+
 ### January 28, 2021 (version 0.6.0)
 
 Now this module inherits the <a href="https://github.com/yjg30737/pyqt-frameless-window.git">pyqt-frameless-window</a> to reduce the redundancy.
