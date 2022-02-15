@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QToo
 
 from python_color_getter.pythonColorGetter import PythonColorGetter
 from pyqt_frameless_window.framelessWindow import FramelessWindow
+from pyqt_mac_min_max_close_buttons_widget import MacMinMaxCloseButtonsWidget
 
 
 class CustomTitlebarWindow(FramelessWindow):
@@ -17,6 +18,7 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__mainWindow = main_window
         self.__menuBar = self.__mainWindow.menuBar()
         self.__titleLbl = QLabel()
+        self.__minMaxCloseBtnStyle = 'Windows'
         self.__minimizeBtn = QToolButton()
         self.__maximizeBtn = QToolButton()
         self.__closeBtn = QToolButton()
@@ -79,53 +81,63 @@ class CustomTitlebarWindow(FramelessWindow):
 
     def __showNormalOrMaximized(self):
         if self.isMaximized():
-            self.__maximizeBtn.setText('🗖')
+            if self.__minMaxCloseBtnStyle == 'Windows':
+                self.__maximizeBtn.setText('🗖')
             self.showNormal()
         else:
-            self.__maximizeBtn.setText('🗗')
+            if self.__minMaxCloseBtnStyle == 'Windows':
+                self.__maximizeBtn.setText('🗗')
             self.showMaximized()
 
-    def setMinMaxCloseButton(self, hint=Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint):
+    def setMinMaxCloseButton(self, hint=Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint, style='Windows'):
         title = self.__mainWindow.windowTitle()
         self.__titleLbl.setText(title)
 
-        self.__minimizeBtn.setText('🗕')
+        lay = QHBoxLayout()
+        lay.setContentsMargins(0, 0, 0, 0)
+
+        self.__minMaxCloseBtnStyle = style
+        if self.__minMaxCloseBtnStyle == 'Windows':
+            lay.setSpacing(0)
+
+            self.__minimizeBtn.setText('🗕')
+            self.__maximizeBtn.setText('🗖')
+            self.__closeBtn.setText('🗙')
+
+            btns = [self.__minimizeBtn, self.__maximizeBtn, self.__closeBtn]
+
+            menubar_base_color = self.__menuBar.palette().color(QPalette.Base)
+            menubar_base_color = menubar_base_color.lighter(150)
+            tool_button_style = f'QToolButton ' \
+                                f'{{ background: transparent; border: 0; }} ' \
+                                f'QToolButton:hover ' \
+                                f'{{ background-color: {menubar_base_color.name()}; }}'
+
+            close_button_style = '''QToolButton { background: transparent; border: 0; }
+            QToolButton:hover { background-color: #EE0000; }'''
+
+            font_size = qApp.font().pointSize() * 1.2
+
+            for btn in btns:
+                font = btn.font()
+                font.setPointSize(font_size)
+                btn.setFont(font)
+                btn.setStyleSheet(tool_button_style)
+
+            self.__closeBtn.setStyleSheet(close_button_style)
+        elif self.__minMaxCloseBtnStyle == 'Mac':
+            lay.setSpacing(2)
+            macMinMaxCloseButtonsWidget = MacMinMaxCloseButtonsWidget()
+            self.__minimizeBtn = macMinMaxCloseButtonsWidget.getMinimizedBtn()
+            self.__maximizeBtn = macMinMaxCloseButtonsWidget.getMaximizedBtn()
+            self.__closeBtn = macMinMaxCloseButtonsWidget.getCloseBtn()
+
         self.__minimizeBtn.clicked.connect(self.showMinimized)
-
-        self.__maximizeBtn.setText('🗖')
         self.__maximizeBtn.clicked.connect(self.__showNormalOrMaximized)
-
-        self.__closeBtn.setText('🗙')
         self.__closeBtn.clicked.connect(self.close)
 
         # connect the close event with inner widget
         self.closeEvent = self.__mainWindow.closeEvent
-
-        btns = [self.__minimizeBtn, self.__maximizeBtn, self.__closeBtn]
-
-        menubar_base_color = self.__menuBar.palette().color(QPalette.Base)
-        menubar_base_color = menubar_base_color.lighter(150)
-        tool_button_style = f'QToolButton ' \
-                            f'{{ background: transparent; border: 0; }} ' \
-                            f'QToolButton:hover ' \
-                            f'{{ background-color: {menubar_base_color.name()}; }}'
-
-        close_button_style = '''QToolButton { background: transparent; border: 0; }
-        QToolButton:hover { background-color: #EE0000; }'''
-
-        font_size = qApp.font().pointSize() * 1.2
-
-        for btn in btns:
-            font = btn.font()
-            font.setPointSize(font_size)
-            btn.setFont(font)
-            btn.setStyleSheet(tool_button_style)
-
-        self.__closeBtn.setStyleSheet(close_button_style)
-
-        lay = QHBoxLayout()
-        lay.setContentsMargins(0, 0, 0, 0)
-        lay.setSpacing(0)
 
         if hint:
             if hint == Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint:
