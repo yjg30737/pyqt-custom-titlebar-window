@@ -77,7 +77,7 @@ As you see, existing corner widget doesn't matter.
 
 Use the package(<a href="https://github.com/yjg30737/pyqt-windows-min-max-close-buttons-widget.git">pyqt-windows-min-max-close-buttons-widget</a>) to making the windows 10 OS button code and reduce redundancy and length of code
 
-### January 28, 2021 (version 0.8.0)
+### February 15, 2021 (version 0.8.0)
 
 Now this module uses the <a href="https://github.com/yjg30737/pyqt-mac-min-max-close-buttons-widget.git">pyqt-mac-min-max-close-buttons-widget</a> to make user able to set macOS style to each button(min/max/close).
 
