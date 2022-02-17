@@ -73,6 +73,9 @@ As you see, existing corner widget doesn't matter.
 
 ## Release Note
 (Start from 0.5.0)
+### January 28, 2021 (version 0.9.0)
+
+Use the package(<a href="https://github.com/yjg30737/pyqt-windows-min-max-close-buttons-widget.git">pyqt-windows-min-max-close-buttons-widget</a>) to making the windows 10 OS button code and reduce redundancy and length of code
 
 ### January 28, 2021 (version 0.8.0)
 
