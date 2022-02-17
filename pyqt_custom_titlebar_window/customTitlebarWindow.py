@@ -112,34 +112,6 @@ class CustomTitlebarWindow(FramelessWindow):
 
         self.__styleBasedOnOS = style
         if self.__styleBasedOnOS == 'Windows':
-            lay.setSpacing(0)
-
-            self.__minimizeBtn.setText('🗕')
-            self.__maximizeBtn.setText('🗖')
-            self.__closeBtn.setText('🗙')
-
-            btns = [self.__minimizeBtn, self.__maximizeBtn, self.__closeBtn]
-
-            menubar_base_color = self.__menuBar.palette().color(QPalette.Base)
-            menubar_base_color = menubar_base_color.lighter(150)
-            tool_button_style = f'QToolButton ' \
-                                f'{{ background: transparent; border: 0; }} ' \
-                                f'QToolButton:hover ' \
-                                f'{{ background-color: {menubar_base_color.name()}; }}'
-
-            close_button_style = '''QToolButton { background: transparent; border: 0; }
-            QToolButton:hover { background-color: #EE0000; }'''
-
-            font_size = qApp.font().pointSize() * 1.2
-
-            for btn in btns:
-                font = btn.font()
-                font.setPointSize(font_size)
-                btn.setFont(font)
-                btn.setStyleSheet(tool_button_style)
-
-            self.__closeBtn.setStyleSheet(close_button_style)
-        if self.__styleBasedOnOS == 'Windows':
             btnWidget = WindowsMinMaxCloseButtonsWidget(self.__menuBar, hint)
         elif self.__styleBasedOnOS == 'Mac':
             btnWidget = MacMinMaxCloseButtonsWidget(hint)
