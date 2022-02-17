@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QToo
 
 from python_color_getter.pythonColorGetter import PythonColorGetter
 from pyqt_frameless_window.framelessWindow import FramelessWindow
+from pyqt_windows_min_max_close_buttons_widget import WindowsMinMaxCloseButtonsWidget
 from pyqt_mac_min_max_close_buttons_widget import MacMinMaxCloseButtonsWidget
 
 
@@ -109,9 +110,7 @@ class CustomTitlebarWindow(FramelessWindow):
         lay = QHBoxLayout()
         lay.setContentsMargins(0, 0, 0, 0)
 
-        btnWidget = QWidget()
         self.__styleBasedOnOS = style
-
         if self.__styleBasedOnOS == 'Windows':
             lay.setSpacing(0)
 
@@ -140,6 +139,8 @@ class CustomTitlebarWindow(FramelessWindow):
                 btn.setStyleSheet(tool_button_style)
 
             self.__closeBtn.setStyleSheet(close_button_style)
+        if self.__styleBasedOnOS == 'Windows':
+            btnWidget = WindowsMinMaxCloseButtonsWidget(self.__menuBar, hint)
         elif self.__styleBasedOnOS == 'Mac':
             btnWidget = MacMinMaxCloseButtonsWidget(hint)
         self.initButtonsEvent(btnWidget)
