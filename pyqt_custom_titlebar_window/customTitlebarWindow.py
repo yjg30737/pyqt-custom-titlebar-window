@@ -84,7 +84,7 @@ class CustomTitlebarWindow(FramelessWindow):
             self.__showWindowsOSNormalOrMaximized()
         elif self.__styleBasedOnOS == 'Mac':
             self.__showMacOSNormalOrMaximized()
-            
+
     def __showWindowsOSNormalOrMaximized(self):
         if self.isMaximized():
             self.__maximizeBtn.setText('🗖')
@@ -92,7 +92,7 @@ class CustomTitlebarWindow(FramelessWindow):
         else:
             self.__maximizeBtn.setText('🗗')
             self.showMaximized()
-            
+
     def __showMacOSNormalOrMaximized(self):
         if self.isMaximized():
             self.showNormal()
@@ -109,7 +109,9 @@ class CustomTitlebarWindow(FramelessWindow):
         lay = QHBoxLayout()
         lay.setContentsMargins(0, 0, 0, 0)
 
+        btnWidget = QWidget()
         self.__styleBasedOnOS = style
+
         if self.__styleBasedOnOS == 'Windows':
             lay.setSpacing(0)
 
@@ -139,32 +141,12 @@ class CustomTitlebarWindow(FramelessWindow):
 
             self.__closeBtn.setStyleSheet(close_button_style)
         elif self.__styleBasedOnOS == 'Mac':
-            lay.setSpacing(2)
-            macMinMaxCloseButtonsWidget = MacMinMaxCloseButtonsWidget()
-            self.__minimizeBtn = macMinMaxCloseButtonsWidget.getMinimizedBtn()
-            self.__maximizeBtn = macMinMaxCloseButtonsWidget.getMaximizedBtn()
-            self.__closeBtn = macMinMaxCloseButtonsWidget.getCloseBtn()
-
-        self.__minimizeBtn.clicked.connect(self.showMinimized)
-        self.__maximizeBtn.clicked.connect(self.__showNormalOrMaximized)
-        self.__closeBtn.clicked.connect(self.close)
+            btnWidget = MacMinMaxCloseButtonsWidget(hint)
+        self.initButtonsEvent(btnWidget)
+        lay.addWidget(btnWidget)
 
         # connect the close event with inner widget
         self.closeEvent = self.__mainWindow.closeEvent
-
-        if hint:
-            if hint == Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint:
-                lay.addWidget(self.__minimizeBtn)
-                lay.addWidget(self.__maximizeBtn)
-                lay.addWidget(self.__closeBtn)
-            elif hint == Qt.WindowMinimizeButtonHint | Qt.WindowCloseButtonHint:
-                lay.addWidget(self.__minimizeBtn)
-                lay.addWidget(self.__closeBtn)
-            elif hint == Qt.WindowCloseButtonHint:
-                lay.addWidget(self.__closeBtn)
-            else:
-                #todo for another type of flags
-                pass
 
         cornerWidget = QWidget()
         cornerWidget.setLayout(lay)
@@ -229,3 +211,12 @@ class CustomTitlebarWindow(FramelessWindow):
 
     def getCornerWidget(self):
         return self.__menuBar.cornerWidget()
+
+    def initButtonsEvent(self, btnWidget):
+        self.__minimizeBtn = btnWidget.getMinimizedBtn()
+        self.__maximizeBtn = btnWidget.getMaximizedBtn()
+        self.__closeBtn = btnWidget.getCloseBtn()
+
+        self.__minimizeBtn.clicked.connect(self.showMinimized)
+        self.__maximizeBtn.clicked.connect(self.__showNormalOrMaximized)
+        self.__closeBtn.clicked.connect(self.close)
