@@ -22,6 +22,7 @@ Give your customized widget to the constructor like ```CustomTitlebarWindow(Cust
 ## Included package
 * <a href="https://github.com/yjg30737/pyqt-frameless-window.git">pyqt-frameless-window</a> - Parent widget
 * <a href="https://github.com/yjg30737/python-color-getter.git">python-color-getter</a> - To get the complementary color of base ```QWidget``` to make the title ```QLabel``` conspicuous
+* <a href="https://github.com/yjg30737/pyqt-windows-min-max-close-buttons-widget.git">pyqt-windows-min-max-close-buttons-widget</a> - To provide the min/max/close buttons with the Windows 10 OS style
 * <a href="https://github.com/yjg30737/pyqt-mac-min-max-close-buttons-widget.git">pyqt-mac-min-max-close-buttons-widget</a> - To provide the min/max/close buttons with the macOS style
 
 ## Feature
