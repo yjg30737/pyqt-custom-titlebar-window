@@ -98,7 +98,7 @@ if __name__ == "__main__":
 
 ### Result
 
-![image](https://user-images.githubusercontent.com/55078043/154782740-be322633-66a0-4b0e-bb32-044599653920.png)
+![image](https://user-images.githubusercontent.com/55078043/154799161-912fa324-dbfd-469a-a1b6-e67d907eb828.png)
 
 ## Release Note
 (Start from 0.5.0)
