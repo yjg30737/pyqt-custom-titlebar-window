@@ -3,8 +3,11 @@ from PyQt5.QtGui import QPalette, QFont, QIcon, QPixmap, QColor
 from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QToolButton, qApp, QLabel, \
     QMenuBar
 
-from python_color_getter.pythonColorGetter import PythonColorGetter
 from pyqt_frameless_window.framelessWindow import FramelessWindow
+
+from pyqt_top_titlebar_widget import TopTitleBarWidget
+
+from python_color_getter.pythonColorGetter import PythonColorGetter
 from pyqt_windows_min_max_close_buttons_widget import WindowsMinMaxCloseButtonsWidget
 from pyqt_mac_min_max_close_buttons_widget import MacMinMaxCloseButtonsWidget
 
@@ -18,13 +21,19 @@ class CustomTitlebarWindow(FramelessWindow):
     def __initVal(self, main_window):
         self.__mainWindow = main_window
         self.__menuBar = self.__mainWindow.menuBar()
+
+        self.__windowTitleIconLabel = QLabel()
         self.__titleLbl = QLabel()
-        self.__styleBasedOnOS = 'Windows'
+
+        self.__topTitleBar = QWidget()
+        self.__btnWidget = QWidget()
+        self.__btnHint = Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint
+
         self.__minimizeBtn = QToolButton()
         self.__maximizeBtn = QToolButton()
         self.__closeBtn = QToolButton()
-        self.__topTitleBar = QWidget()
-        self.__windowTitleIconLabel = QLabel()
+
+        self.__styleBasedOnOS = 'Windows'
 
     def __initUi(self):
         self.__mainWindow.installEventFilter(self)
@@ -138,41 +147,30 @@ class CustomTitlebarWindow(FramelessWindow):
 
         self.__menuBar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
 
-    def setSeparatedTitleBar(self, icon: QIcon = QIcon(), font: QFont = QFont('Arial', 12), align=Qt.AlignCenter):
-        if icon.isNull():
-            self.__windowTitleIconLabel.setVisible(False)
+    def setSeparatedTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12), align=Qt.AlignCenter):
+        if title:
+            self.__mainWindow.setWindowTitle(title)
         else:
-            self.setWindowIcon(icon)
-            icon_size = font.pointSize()
-            icon = icon.pixmap(icon_size * 1.5, icon_size * 1.5)
-            pixmap = QPixmap(icon)
-            self.__windowTitleIconLabel.setPixmap(pixmap)
-            self.__windowTitleIconLabel.setMaximumWidth(pixmap.width())
+            title = self.__mainWindow.windowTitle()
 
-        self.__titleLbl.setFont(font)
+        if icon_filename:
+            self.setWindowIcon(QIcon(icon_filename))
+        else:
+            icon_filename = self.__mainWindow.windowIcon().name()
 
-        lay = QHBoxLayout()
-        lay.addWidget(self.__windowTitleIconLabel)
-        lay.addWidget(self.__titleLbl)
-        lay.setAlignment(align)
-        lay.setContentsMargins(2, 2, 2, 2)
-
-        menubar_base_color = self.__menuBar.palette().color(QPalette.Base)
-
-        self.__topTitleBar.setObjectName('topTitleBar')
-        self.__topTitleBar.setStyleSheet(f'QWidget {{ background-color: {menubar_base_color.name()}; }}')
-        self.__topTitleBar.setMinimumHeight(self.__titleLbl.fontMetrics().height())
-        self.__topTitleBar.setLayout(lay)
-
-        title_lbl_r, title_lbl_g, title_lbl_b = PythonColorGetter.get_complementary_color(menubar_base_color.red(),
-                                                                                          menubar_base_color.green(),
-                                                                                          menubar_base_color.blue())
-        title_lbl_color = QColor(title_lbl_r, title_lbl_g, title_lbl_b)
-        self.__titleLbl.setStyleSheet(f'QLabel {{ color: {title_lbl_color.name()}; }}')
-
+        self.__topTitleBar = TopTitleBarWidget(self.__menuBar, text=title, font=font, icon_filename=icon_filename, align=align, hint=self.__btnHint)
         self.__topTitleBar.installEventFilter(self)
         self.__topTitleBar.setMouseTracking(True)
         self.__menuBar.removeEventFilter(self)
+
+        iconTitleWidget = self.__topTitleBar.getIconTitleWidget()
+
+        cornerWidget = self.__menuBar.cornerWidget()
+        cornerWidget.layout().removeWidget(self.__btnWidget)
+
+        self.__btnWidget = self.__topTitleBar.getBtnWidget()
+        self.initTitleEvent(iconTitleWidget)
+        self.initButtonsEvent()
 
         lay = self.layout()
         centralWidget = lay.itemAt(0).widget()
@@ -184,6 +182,10 @@ class CustomTitlebarWindow(FramelessWindow):
 
     def getCornerWidget(self):
         return self.__menuBar.cornerWidget()
+
+    def initTitleEvent(self, titleWidget):
+        self.__windowTitleIconLabel = titleWidget.getSvgLabel()
+        self.__titleLbl = titleWidget.getTextLabel()
 
     def initButtonsEvent(self, btnWidget):
         self.__minimizeBtn = btnWidget.getMinimizedBtn()
