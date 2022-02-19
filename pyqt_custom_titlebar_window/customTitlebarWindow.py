@@ -170,6 +170,7 @@ class CustomTitlebarWindow(FramelessWindow):
 
         cornerWidget = self.__menuBar.cornerWidget()
         cornerWidget.layout().removeWidget(self.__btnWidget)
+        cornerWidget.layout().removeWidget(self.__titleLbl)
 
         self.__btnWidget = self.__topTitleBar.getBtnWidget()
         self.initTitleEvent(iconTitleWidget)
