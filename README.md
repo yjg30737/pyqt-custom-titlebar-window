@@ -21,7 +21,7 @@ Give your customized widget to the constructor like ```CustomTitlebarWindow(Cust
 
 ## Included package
 * <a href="https://github.com/yjg30737/pyqt-frameless-window.git">pyqt-frameless-window</a> - Parent widget
-* <a href="https://github.com/yjg30737/python-color-getter.git">python-color-getter</a> - To get the complementary color of base ```QWidget``` to make the title ```QLabel``` conspicuous
+* <a href="https://github.com/yjg30737/python-color-getter.git">python-color-getter</a> - To get the complementary color of base ```QWidget``` to make the title ```QLabel``` conspicuous (since v1.0.0 this is not being used at all. Because ```pyqt-top-titlebar-widget``` package do the task instead.) 
 * <a href="https://github.com/yjg30737/pyqt-windows-min-max-close-buttons-widget.git">pyqt-windows-min-max-close-buttons-widget</a> - To provide the min/max/close buttons with the Windows 10 OS style
 * <a href="https://github.com/yjg30737/pyqt-mac-min-max-close-buttons-widget.git">pyqt-mac-min-max-close-buttons-widget</a> - To provide the min/max/close buttons with the macOS style
 * <a href="https://github.com/yjg30737/pyqt-top-titlebar-widget.git">pyqt-top-titlebar-widget</a> - For separated title bar feature
@@ -38,13 +38,13 @@ Give your customized widget to the constructor like ```CustomTitlebarWindow(Cust
     * <b>Below v1.0.0</b> - ```setSeparatedTitleBar(icon: QIcon = QIcon(), font: QFont = QFont('Arial', 16), align=Qt.AlignCenter)```
     * <b>Since v1.0.0</b> - ```setSeparatedTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12), align=Qt.AlignCenter)``` - I change the ```QIcon``` type argument to ```str``` type argument which is named ```icon_filename``` because as far as i know QIcon doesn't support svg file well. ```icon_filename``` will pass to ```TopTitleBarWidget``` class which is included in ```pyqt-top-titlebar-widget```. The class is main widget of the separate title bar and shows svg icon label nicely.
 * ```getCornerWidget()``` to get corner widget of ```QMenuBar``` easily
-* ```setMenuStyle(style: str = 'Windows')``` to set menu style based on style which should be name of the OS. You can either give the 'Windows' or 'Mac' to the argument. Windows is set by default.  
+* ```setMenuStyle(style: str = 'Windows')``` to set menu style based on style which should be name of the OS. You can either give the 'Windows' or 'Mac' to the argument. Windows is set by default.
 
 ## Note
 Type of inner widget should be ```QMainWindow```. Because without ```QMenuBar``` this won't work.
 
 ## Example
-### Code Sample
+### Code Sample (Menu bar only)
 
 ```python
 from PyQt5.QtWidgets import QApplication
@@ -73,6 +73,32 @@ Here's another example with <a href="https://github.com/yjg30737/pyqt-dark-notep
 ![image](https://user-images.githubusercontent.com/55078043/151106977-76a169cc-bcaf-4a46-8771-9216ee583b9f.png)
 
 As you see, existing corner widget doesn't matter.
+
+### Code Sample (Including Title Bar)
+
+```python
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from pyqt_custom_titlebar_window import CustomTitlebarWindow
+from pyqt_dark_notepad import DarkNotepad
+
+
+if __name__ == "__main__":
+    import sys
+
+    app = QApplication(sys.argv)
+    window = DarkNotepad()
+    customTitlebarWindow = CustomTitlebarWindow(window)
+    customTitlebarWindow.setMinMaxCloseButton()
+    customTitlebarWindow.setSeparatedTitleBar(icon_filename='dark-notepad.svg')
+    customTitlebarWindow.show()
+    app.exec_()
+```
+
+### Result
+
+![image](https://user-images.githubusercontent.com/55078043/154782740-be322633-66a0-4b0e-bb32-044599653920.png)
 
 ## Release Note
 (Start from 0.5.0)
