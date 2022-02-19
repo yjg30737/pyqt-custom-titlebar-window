@@ -74,7 +74,7 @@ Here's another example with <a href="https://github.com/yjg30737/pyqt-dark-notep
 
 As you see, existing corner widget doesn't matter.
 
-### Code Sample (Including Title Bar)
+### Code Sample (Including title bar)
 
 ```python
 from PyQt5.QtCore import Qt
