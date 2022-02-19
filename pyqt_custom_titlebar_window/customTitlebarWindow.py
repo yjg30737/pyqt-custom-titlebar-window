@@ -64,6 +64,7 @@ class CustomTitlebarWindow(FramelessWindow):
                 self.__execMenuBarMoveOrDoubleClickEvent(e)
         elif isinstance(obj, QWidget):
             if obj.objectName() == 'topTitleBar':
+                self.unsetCursor()
                 if e.type() == 4 or e.type() == 5:
                     self.__execTitleBarMoveOrDoubleClickEvent(e)
         return super().eventFilter(obj, e)
