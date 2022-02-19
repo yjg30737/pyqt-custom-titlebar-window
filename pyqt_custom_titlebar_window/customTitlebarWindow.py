@@ -7,7 +7,6 @@ from pyqt_frameless_window.framelessWindow import FramelessWindow
 
 from pyqt_top_titlebar_widget import TopTitleBarWidget
 
-from python_color_getter.pythonColorGetter import PythonColorGetter
 from pyqt_windows_min_max_close_buttons_widget import WindowsMinMaxCloseButtonsWidget
 from pyqt_mac_min_max_close_buttons_widget import MacMinMaxCloseButtonsWidget
 
