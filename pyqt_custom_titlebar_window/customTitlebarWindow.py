@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPalette, QFont, QIcon, QPixmap, QColor
-from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QToolButton, qApp, QLabel, \
+from PyQt5.QtGui import QPalette, QFont, QIcon
+from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QToolButton, QLabel, \
     QMenuBar
 
 from pyqt_frameless_window.framelessWindow import FramelessWindow
