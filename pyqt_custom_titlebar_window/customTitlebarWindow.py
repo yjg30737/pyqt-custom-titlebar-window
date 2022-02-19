@@ -119,7 +119,9 @@ class CustomTitlebarWindow(FramelessWindow):
         lay = QHBoxLayout()
         lay.setContentsMargins(0, 0, 0, 0)
 
+        self.__btnHint = hint
         self.__styleBasedOnOS = style
+
         if self.__styleBasedOnOS == 'Windows':
             self.__btnWidget = WindowsMinMaxCloseButtonsWidget(self.__menuBar, hint)
         elif self.__styleBasedOnOS == 'Mac':
