@@ -121,11 +121,11 @@ class CustomTitlebarWindow(FramelessWindow):
 
         self.__styleBasedOnOS = style
         if self.__styleBasedOnOS == 'Windows':
-            btnWidget = WindowsMinMaxCloseButtonsWidget(self.__menuBar, hint)
+            self.__btnWidget = WindowsMinMaxCloseButtonsWidget(self.__menuBar, hint)
         elif self.__styleBasedOnOS == 'Mac':
-            btnWidget = MacMinMaxCloseButtonsWidget(hint)
-        self.initButtonsEvent(btnWidget)
-        lay.addWidget(btnWidget)
+            self.__btnWidget = MacMinMaxCloseButtonsWidget(hint)
+        self.initButtonsEvent()
+        lay.addWidget(self.__btnWidget)
 
         # connect the close event with inner widget
         self.closeEvent = self.__mainWindow.closeEvent
@@ -187,10 +187,10 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__windowTitleIconLabel = titleWidget.getSvgLabel()
         self.__titleLbl = titleWidget.getTextLabel()
 
-    def initButtonsEvent(self, btnWidget):
-        self.__minimizeBtn = btnWidget.getMinimizedBtn()
-        self.__maximizeBtn = btnWidget.getMaximizedBtn()
-        self.__closeBtn = btnWidget.getCloseBtn()
+    def initButtonsEvent(self):
+        self.__minimizeBtn = self.__btnWidget.getMinimizedBtn()
+        self.__maximizeBtn = self.__btnWidget.getMaximizedBtn()
+        self.__closeBtn = self.__btnWidget.getCloseBtn()
 
         self.__minimizeBtn.clicked.connect(self.showMinimized)
         self.__maximizeBtn.clicked.connect(self.__showNormalOrMaximized)
