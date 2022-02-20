@@ -18,6 +18,8 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__initUi()
 
     def __initVal(self, main_window):
+        self.setObjectName('titleBar')
+
         self.__mainWindow = main_window
         self.__menuBar = self.__mainWindow.menuBar()
 
@@ -46,7 +48,7 @@ class CustomTitlebarWindow(FramelessWindow):
         self.setLayout(lay)
 
         color = self.__menuBar.palette().color(QPalette.Base)
-        self.setStyleSheet(f'QWidget {{ background-color: {color.name()} }}')
+        self.setStyleSheet(f'QWidget#titleBar {{ background-color: {color.name()} }}')
 
     def eventFilter(self, obj, e) -> bool:
         if isinstance(obj, QMainWindow):
