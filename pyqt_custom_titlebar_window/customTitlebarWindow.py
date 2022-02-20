@@ -169,9 +169,10 @@ class CustomTitlebarWindow(FramelessWindow):
 
         # Remove button widget and title label on QMenuBar
         cornerWidget = self.__menuBar.cornerWidget()
-        lay = cornerWidget.layout()
-        lay.removeWidget(self.__btnWidget)
-        lay.removeWidget(self.__titleLbl)
+        if cornerWidget:
+            lay = cornerWidget.layout()
+            lay.removeWidget(self.__btnWidget)
+            lay.removeWidget(self.__titleLbl)
 
         self.__btnWidget = self.__topTitleBar.getBtnWidget()
         self.initTitleEvent(iconTitleWidget)
