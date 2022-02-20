@@ -151,7 +151,7 @@ class CustomTitlebarWindow(FramelessWindow):
 
         self.__menuBar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
 
-    def setSeparatedTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12), align=Qt.AlignCenter):
+    def setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12), align=Qt.AlignCenter):
         if title:
             self.__mainWindow.setWindowTitle(title)
         else:

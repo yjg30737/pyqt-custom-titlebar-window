@@ -83,17 +83,16 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from pyqt_custom_titlebar_window import CustomTitlebarWindow
 from pyqt_dark_notepad import DarkNotepad
 
-
 if __name__ == "__main__":
-    import sys
+  import sys
 
-    app = QApplication(sys.argv)
-    window = DarkNotepad()
-    customTitlebarWindow = CustomTitlebarWindow(window)
-    customTitlebarWindow.setMinMaxCloseButton()
-    customTitlebarWindow.setSeparatedTitleBar(icon_filename='dark-notepad.svg')
-    customTitlebarWindow.show()
-    app.exec_()
+  app = QApplication(sys.argv)
+  window = DarkNotepad()
+  customTitlebarWindow = CustomTitlebarWindow(window)
+  customTitlebarWindow.setMinMaxCloseButton()
+  customTitlebarWindow.setTopTitleBar(icon_filename='dark-notepad.svg')
+  customTitlebarWindow.show()
+  app.exec_()
 ```
 
 ### Result
