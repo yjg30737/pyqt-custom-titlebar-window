@@ -122,7 +122,12 @@ if __name__ == "__main__":
 
 ## Release Note
 (Start from 0.5.0)
-### February 19, 2021 (version 1.0.2)
+
+### February 21, 2021 (version 1.1.0)
+
+Set order of calling method(setTopTitleBar -> setMinMaxCloseButton) and make it able to set Mac style to top title bar
+
+### February 19, 2021 (version 1.0.3)
 
 Use the package(<a href="https://github.com/yjg30737/pyqt-top-titlebar-widget.git">pyqt-top-titlebar-widget</a>) to reduce redunancy and length of code.
 
