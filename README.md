@@ -4,7 +4,6 @@ PyQt Custom Titlebar Window (resizable, movable, minimize/maximize/close). User 
 ## Table of Contents
 * [Requirements](#requirements)
 * [Setup](#setup)
-* [Usage](#usage)
 * [Feature](#feature)
 * [Note](#note)
 * [Example](#example)
@@ -15,9 +14,6 @@ PyQt5 >= 5.15
 
 ## Setup
 ```pip3 install git+https://github.com/yjg30737/pyqt-custom-titlebar-window.git --upgrade```
-
-## Usage
-Give your customized widget to the constructor like ```CustomTitlebarWindow(CustomizedWidgetByUser())```.
 
 ## Included package
 * <a href="https://github.com/yjg30737/pyqt-frameless-window.git">pyqt-frameless-window</a> - Parent widget
@@ -30,6 +26,7 @@ Give your customized widget to the constructor like ```CustomTitlebarWindow(Cust
 * If you drag the frame, window will be resized.
 * If you drag the menu bar of inner widget, window will be moved.
 * If you double-click the menu bar, window will be maximized/normalized.
+* ```CustomTitlebarWindow(CustomizedWidgetByUser())``` - Constructor.
 * Available to add min/max/close button on the top right corner of menu bar with ```setMinMaxCloseButton(hint=Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint, style='Windows')```. If you want to add close button only, give the value like ```setMinMaxCloseButton(hint=Qt.WindowCloseButtonHint)```. There are three options available(close, min/close, min/max/close). Default value is min/max/close. About ```style``` argument, This accepts only two string('Windows', 'Mac'). Buttons' style will be changed by given OS' style.  
 * Set the window title by itself if you set your ```QMainWindow```'s title with ```setWindowTitle```. It also catches the ```windowTitleChanged``` signal of your ```QMainWindow```.
 * Frame's color synchronizes with the ```QMenuBar```'s background color.
