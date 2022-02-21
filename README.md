@@ -130,6 +130,10 @@ if __name__ == "__main__":
 ## Release Note
 (Start from 0.5.0)
 
+### February 21, 2021 (version 1.2.0)
+
+Make this able to handle not only ```QMainWindow```, but also ```QWidget```, ```QDialog``` to enhance flexibility
+
 ### February 21, 2021 (version 1.1.0)
 
 Set order of calling method(setTopTitleBar -> setMinMaxCloseButton) and make it able to set Mac style to top title bar
