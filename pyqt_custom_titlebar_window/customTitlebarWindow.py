@@ -12,16 +12,22 @@ from pyqt_mac_min_max_close_buttons_widget import MacMinMaxCloseButtonsWidget
 
 
 class CustomTitlebarWindow(FramelessWindow):
-    def __init__(self, main_window: QMainWindow):
-        super().__init__(main_window)
-        self.__initVal(main_window)
+    def __init__(self, widget: QWidget):
+        super().__init__(widget)
+        self.__initVal(widget)
         self.__initUi()
 
-    def __initVal(self, main_window):
+    def __initVal(self, widget):
         self.setObjectName('titleBar')
 
-        self.__mainWindow = main_window
-        self.__menuBar = self.__mainWindow.menuBar()
+        self.__widget = widget
+        self.__menubar = ''
+
+        # if inner widget type is QMainWindow, set menu bar as navigation widget
+        # navigation widget is the widget which is able to drag to move the window, double click to maximize/normal
+        if isinstance(self.__widget, QMainWindow):
+            self.__menubar = self.__widget.menuBar()
+            self.__menubar.setObjectName('navWidget')
 
         self.__windowTitleIconLabel = QLabel()
         self.__titleLbl = QLabel()
@@ -37,45 +43,48 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__styleBasedOnOS = 'Windows'
 
     def __initUi(self):
-        self.__mainWindow.installEventFilter(self)
-        self.__menuBar.installEventFilter(self)
+        self.__widget.installEventFilter(self)
+        self.installEventFilter(self)
 
         self._dragMenuBarOnlyWayToMoveWindowFlag = True
 
         lay = QGridLayout()
-        lay.addWidget(self.__mainWindow)
+        lay.addWidget(self.__widget)
         lay.setContentsMargins(self._margin, self._margin, self._margin, self._margin)
         self.setLayout(lay)
 
-        color = self.__menuBar.palette().color(QPalette.Base)
+        if isinstance(self.__menubar, QMenuBar):
+            self.__menubar.installEventFilter(self)
+            color = self.__menubar.palette().color(QPalette.Base)
+        else:
+            color = self.__widget.palette().color(QPalette.Base)
         self.setStyleSheet(f'QWidget#titleBar {{ background-color: {color.name()} }}')
 
     def eventFilter(self, obj, e) -> bool:
-        if isinstance(obj, QMainWindow):
-            # catch the enter event
-            if e.type() == 10:
-                self.unsetCursor()
-                self._resized = False
-            # catch the title changed event
-            elif e.type() == 33:
-                self.__titleLbl.setText(obj.windowTitle())
-        elif isinstance(obj, QMenuBar):
-            # catch the double click or move event
-            if e.type() == 4 or e.type() == 5:
-                self.__execMenuBarMoveOrDoubleClickEvent(e)
-        elif isinstance(obj, QWidget):
-            if obj.objectName() == 'topTitleBar':
-                self.unsetCursor()
+        # catch the enter event
+        if e.type() == 10:
+            self.unsetCursor()
+            self._resized = False
+        # catch the title change event
+        if e.type() == 33:
+            self.__titleLbl.setText(obj.windowTitle())
+        if obj.objectName() == 'navWidget':
+            # catch the menubar enter event
+            if isinstance(obj, QMenuBar):
+                if e.type() == 4 or e.type() == 5:
+                    self.__execMenuBarMoveOrDoubleClickEvent(e)
+            # catch the titlebar enter event
+            elif isinstance(obj, TopTitleBarWidget):
                 if e.type() == 4 or e.type() == 5:
                     self.__execTitleBarMoveOrDoubleClickEvent(e)
         return super().eventFilter(obj, e)
 
     def __execMenuBarMoveOrDoubleClickEvent(self, e):
         p = e.pos()
-        if self.__menuBar.actionAt(p):
+        if self.__menubar.actionAt(p):
             pass
         else:
-            if self.__menuBar.activeAction():
+            if self.__menubar.activeAction():
                 pass
             else:
                 # double click (show maximized/normal)
@@ -123,7 +132,7 @@ class CustomTitlebarWindow(FramelessWindow):
             self.initTitleEvent(iconTitleWidget)
             self.initButtonsEvent()
         else:
-            title = self.__mainWindow.windowTitle()
+            title = self.__widget.windowTitle()
             self.__titleLbl.setText(title)
 
             lay = QHBoxLayout()
@@ -133,47 +142,57 @@ class CustomTitlebarWindow(FramelessWindow):
             self.__styleBasedOnOS = style
 
             if self.__styleBasedOnOS == 'Windows':
-                self.__btnWidget = WindowsMinMaxCloseButtonsWidget(self.__menuBar, hint)
+                if isinstance(self.__menubar, QMenuBar):
+                    self.__btnWidget = WindowsMinMaxCloseButtonsWidget(self.__menubar, hint)
+                else:
+                    self.__btnWidget = WindowsMinMaxCloseButtonsWidget(self.__widget, hint)
             elif self.__styleBasedOnOS == 'Mac':
                 self.__btnWidget = MacMinMaxCloseButtonsWidget(hint)
             self.initButtonsEvent()
             lay.addWidget(self.__btnWidget)
 
             # connect the close event with inner widget
-            self.closeEvent = self.__mainWindow.closeEvent
+            self.closeEvent = self.__widget.closeEvent
 
             cornerWidget = QWidget()
             cornerWidget.setLayout(lay)
 
             # set the corner widget that already exists in QMenuBar
-            existingCornerWidget = self.__menuBar.cornerWidget(Qt.TopRightCorner)
+            existingCornerWidget = self.__menubar.cornerWidget(Qt.TopRightCorner)
             if existingCornerWidget:
                 lay.insertWidget(0, existingCornerWidget)
 
             # Place the title on appropriate location of QMenuBar
-            if len(self.__menuBar.actions()) > 0:
+            if len(self.__menubar.actions()) > 0:
                 lay.insertWidget(0, self.__titleLbl, alignment=Qt.AlignLeft)
             else:
                 self.__titleLbl.setContentsMargins(5, 0, 0, 0)
-                self.__menuBar.setCornerWidget(self.__titleLbl, Qt.TopLeftCorner)
+                self.__menubar.setCornerWidget(self.__titleLbl, Qt.TopLeftCorner)
 
-            self.__menuBar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
+            self.__menubar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
 
-    def setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12), align=Qt.AlignCenter):
+    def setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12),
+                       align=Qt.AlignCenter):
         if title:
-            self.__mainWindow.setWindowTitle(title)
+            self.__widget.setWindowTitle(title)
         else:
-            title = self.__mainWindow.windowTitle()
+            title = self.__widget.windowTitle()
 
         if icon_filename:
             self.setWindowIcon(QIcon(icon_filename))
         else:
-            icon_filename = self.__mainWindow.windowIcon().name()
+            icon_filename = self.__widget.windowIcon().name()
 
-        self.__topTitleBar = TopTitleBarWidget(self.__menuBar, text=title, font=font, icon_filename=icon_filename, align=align)
+        if isinstance(self.__menubar, QMenuBar):
+            self.__topTitleBar = TopTitleBarWidget(self.__menubar, text=title, font=font, icon_filename=icon_filename,
+                                                   align=align)
+            self.__menubar.removeEventFilter(self)
+        else:
+            self.__topTitleBar = TopTitleBarWidget(self.__widget, text=title, font=font, icon_filename=icon_filename,
+                                                   align=align)
         self.__topTitleBar.installEventFilter(self)
         self.__topTitleBar.setMouseTracking(True)
-        self.__menuBar.removeEventFilter(self)
+        self.__topTitleBar.setObjectName('navWidget')
 
         lay = self.layout()
         centralWidget = lay.itemAt(0).widget()
@@ -184,7 +203,7 @@ class CustomTitlebarWindow(FramelessWindow):
         self._dragMenuBarOnlyWayToMoveWindowFlag = f
 
     def getCornerWidget(self):
-        return self.__menuBar.cornerWidget()
+        return self.__menubar.cornerWidget()
 
     def initTitleEvent(self, titleWidget):
         self.__windowTitleIconLabel = titleWidget.getSvgLabel()
