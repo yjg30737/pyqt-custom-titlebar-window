@@ -116,7 +116,12 @@ class CustomTitlebarWindow(FramelessWindow):
 
     def setMinMaxCloseButton(self, hint=Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint, style='Windows'):
         if isinstance(self.__topTitleBar, TopTitleBarWidget):
-            pass
+            self.__topTitleBar.setButtons(hint, style)
+            iconTitleWidget = self.__topTitleBar.getIconTitleWidget()
+
+            self.__btnWidget = self.__topTitleBar.getBtnWidget()
+            self.initTitleEvent(iconTitleWidget)
+            self.initButtonsEvent()
         else:
             title = self.__mainWindow.windowTitle()
             self.__titleLbl.setText(title)
@@ -165,24 +170,10 @@ class CustomTitlebarWindow(FramelessWindow):
         else:
             icon_filename = self.__mainWindow.windowIcon().name()
 
-        self.__topTitleBar = TopTitleBarWidget(self.__menuBar, text=title, font=font, icon_filename=icon_filename, align=align, hint=self.__btnHint)
+        self.__topTitleBar = TopTitleBarWidget(self.__menuBar, text=title, font=font, icon_filename=icon_filename, align=align)
         self.__topTitleBar.installEventFilter(self)
         self.__topTitleBar.setMouseTracking(True)
         self.__menuBar.removeEventFilter(self)
-
-        iconTitleWidget = self.__topTitleBar.getIconTitleWidget()
-
-        # Remove button widget and title label on QMenuBar
-        cornerWidget = self.__menuBar.cornerWidget()
-        if cornerWidget:
-            lay = cornerWidget.layout()
-            if lay:
-                lay.removeWidget(self.__btnWidget)
-                lay.removeWidget(self.__titleLbl)
-
-        self.__btnWidget = self.__topTitleBar.getBtnWidget()
-        self.initTitleEvent(iconTitleWidget)
-        self.initButtonsEvent()
 
         lay = self.layout()
         centralWidget = lay.itemAt(0).widget()
