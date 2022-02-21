@@ -76,6 +76,8 @@ As you see, existing corner widget doesn't matter.
 
 ### Code Sample (Including title bar)
 
+#### v1.0.3
+
 ```python
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
@@ -91,6 +93,26 @@ if __name__ == "__main__":
   customTitlebarWindow = CustomTitlebarWindow(window)
   customTitlebarWindow.setMinMaxCloseButton()
   customTitlebarWindow.setTopTitleBar(icon_filename='dark-notepad.svg')
+  customTitlebarWindow.show()
+  app.exec_()
+```
+
+#### v1.1.0
+
+```python
+from PyQt5.QtWidgets import QApplication
+from pyqt_custom_titlebar_window import CustomTitlebarWindow
+from pyqt_dark_notepad import DarkNotepad
+
+
+if __name__ == "__main__":
+  import sys
+
+  app = QApplication(sys.argv)
+  window = DarkNotepad()
+  customTitlebarWindow = CustomTitlebarWindow(window)
+  customTitlebarWindow.setTopTitleBar(icon_filename='dark-notepad.svg')
+  customTitlebarWindow.setMinMaxCloseButton()
   customTitlebarWindow.show()
   app.exec_()
 ```
