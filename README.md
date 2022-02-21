@@ -22,7 +22,7 @@ PyQt5 >= 5.15
 * <s><a href="https://github.com/yjg30737/python-color-getter.git">python-color-getter</a></s> - To get the complementary color of base ```QWidget``` to make the title ```QLabel``` conspicuous (since v1.0.0 this is not being used at all. Because ```pyqt-top-titlebar-widget``` package do the task instead.) 
 * <a href="https://github.com/yjg30737/pyqt-windows-min-max-close-buttons-widget.git">pyqt-windows-min-max-close-buttons-widget</a> - To provide the min/max/close buttons with the Windows 10 OS style
 * <a href="https://github.com/yjg30737/pyqt-mac-min-max-close-buttons-widget.git">pyqt-mac-min-max-close-buttons-widget</a> - To provide the min/max/close buttons with the macOS style
-* <a href="https://github.com/yjg30737/pyqt-top-titlebar-widget.git">pyqt-top-titlebar-widget</a> - For adding top title bar feature
+* <a href="https://github.com/yjg30737/pyqt-top-titlebar-widget.git">pyqt-top-titlebar-widget</a> - For adding top title bar feature (included since v1.0.0)
 
 ## Feature
 * If you drag the frame, window will be resized.
