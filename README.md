@@ -4,7 +4,8 @@ PyQt Custom Titlebar Window (resizable, movable, minimize/maximize/close). User 
 ## Table of Contents
 * [Requirements](#requirements)
 * [Setup](#setup)
-* [Feature](#feature)
+* [Feature & Usage](#feature-usage)
+   * [v1.1.0](#v1.1.0)
 * [Note](#note)
 * [Example](#example)
    * [Code Sample (Menu bar only)](#code-sample-menu-bar-only)
@@ -24,7 +25,7 @@ PyQt5 >= 5.15
 * <a href="https://github.com/yjg30737/pyqt-mac-min-max-close-buttons-widget.git">pyqt-mac-min-max-close-buttons-widget</a> - To provide the min/max/close buttons with the macOS style
 * <a href="https://github.com/yjg30737/pyqt-top-titlebar-widget.git">pyqt-top-titlebar-widget</a> - For adding top title bar feature (included since v1.0.0)
 
-## Feature
+## Feature & Usage
 * If you drag the frame, window will be resized.
 * If you drag the menu bar of inner widget, window will be moved.
 * If you double-click the menu bar, window will be maximized/normalized.
@@ -38,6 +39,13 @@ PyQt5 >= 5.15
     * <b>Since v1.0.0</b> - ```setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12), align=Qt.AlignCenter)``` - I change the ```QIcon``` type argument to ```str``` type argument which is named ```icon_filename``` because as far as i know QIcon doesn't support svg file well. ```icon_filename``` will pass to ```TopTitleBarWidget``` class which is included in ```pyqt-top-titlebar-widget```. The class is main widget of the separate title bar and shows svg icon label nicely.
 * ```getCornerWidget()``` to get corner widget of ```QMenuBar``` easily
 * ```setMenuStyle(style: str = 'Windows')``` to set menu style based on style which should be name of the OS. You can either give the 'Windows' or 'Mac' to the argument. Windows is set by default.
+### v1.1.0
+```python
+customTitlebarWindow = CustomTitlebarWindow(window)
+customTitlebarWindow.setTopTitleBar()
+customTitlebarWindow.setMinMaxCloseButton()
+```
+After v1.1.0, the correct order of calling method is ```setTopTitleBar -> setMinMaxCloseButton``` if you want to set top title bar and each min/max/close button on it.   
 
 ## Note
 Type of inner widget should be ```QMainWindow```. Because without ```QMenuBar``` this won't work.
