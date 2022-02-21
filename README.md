@@ -130,7 +130,7 @@ if __name__ == "__main__":
 ## Release Note
 (Start from 0.5.0)
 
-### February 21, 2021 (version 1.2.0)
+### February 21, 2021 (version 1.2.1)
 
 Make this able to handle not only ```QMainWindow```, but also ```QWidget```, ```QDialog``` to enhance flexibility
 
