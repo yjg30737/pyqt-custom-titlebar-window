@@ -47,7 +47,7 @@ customTitlebarWindow.setMinMaxCloseButton()
 After v1.1.0, the correct order of calling method is ```setTopTitleBar -> setMinMaxCloseButton``` if you want to set top title bar and each min/max/close button on it.   
 
 ## Note
-Type of inner widget should be ```QMainWindow```. Because without ```QMenuBar``` this won't work.
+Below v1.2.0, type of inner widget should be ```QMainWindow```. Because without ```QMenuBar``` this won't work.
 
 ## Example
 ### Code Sample (Menu bar only)
