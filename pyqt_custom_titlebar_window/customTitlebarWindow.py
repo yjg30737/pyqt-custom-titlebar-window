@@ -115,41 +115,44 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__styleBasedOnOS = style
 
     def setMinMaxCloseButton(self, hint=Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint, style='Windows'):
-        title = self.__mainWindow.windowTitle()
-        self.__titleLbl.setText(title)
-
-        lay = QHBoxLayout()
-        lay.setContentsMargins(0, 0, 0, 0)
-
-        self.__btnHint = hint
-        self.__styleBasedOnOS = style
-
-        if self.__styleBasedOnOS == 'Windows':
-            self.__btnWidget = WindowsMinMaxCloseButtonsWidget(self.__menuBar, hint)
-        elif self.__styleBasedOnOS == 'Mac':
-            self.__btnWidget = MacMinMaxCloseButtonsWidget(hint)
-        self.initButtonsEvent()
-        lay.addWidget(self.__btnWidget)
-
-        # connect the close event with inner widget
-        self.closeEvent = self.__mainWindow.closeEvent
-
-        cornerWidget = QWidget()
-        cornerWidget.setLayout(lay)
-
-        # set the corner widget that already exists in QMenuBar
-        existingCornerWidget = self.__menuBar.cornerWidget(Qt.TopRightCorner)
-        if existingCornerWidget:
-            lay.insertWidget(0, existingCornerWidget)
-
-        # Place the title on appropriate location of QMenuBar
-        if len(self.__menuBar.actions()) > 0:
-            lay.insertWidget(0, self.__titleLbl, alignment=Qt.AlignLeft)
+        if isinstance(self.__topTitleBar, TopTitleBarWidget):
+            pass
         else:
-            self.__titleLbl.setContentsMargins(5, 0, 0, 0)
-            self.__menuBar.setCornerWidget(self.__titleLbl, Qt.TopLeftCorner)
+            title = self.__mainWindow.windowTitle()
+            self.__titleLbl.setText(title)
 
-        self.__menuBar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
+            lay = QHBoxLayout()
+            lay.setContentsMargins(0, 0, 0, 0)
+
+            self.__btnHint = hint
+            self.__styleBasedOnOS = style
+
+            if self.__styleBasedOnOS == 'Windows':
+                self.__btnWidget = WindowsMinMaxCloseButtonsWidget(self.__menuBar, hint)
+            elif self.__styleBasedOnOS == 'Mac':
+                self.__btnWidget = MacMinMaxCloseButtonsWidget(hint)
+            self.initButtonsEvent()
+            lay.addWidget(self.__btnWidget)
+
+            # connect the close event with inner widget
+            self.closeEvent = self.__mainWindow.closeEvent
+
+            cornerWidget = QWidget()
+            cornerWidget.setLayout(lay)
+
+            # set the corner widget that already exists in QMenuBar
+            existingCornerWidget = self.__menuBar.cornerWidget(Qt.TopRightCorner)
+            if existingCornerWidget:
+                lay.insertWidget(0, existingCornerWidget)
+
+            # Place the title on appropriate location of QMenuBar
+            if len(self.__menuBar.actions()) > 0:
+                lay.insertWidget(0, self.__titleLbl, alignment=Qt.AlignLeft)
+            else:
+                self.__titleLbl.setContentsMargins(5, 0, 0, 0)
+                self.__menuBar.setCornerWidget(self.__titleLbl, Qt.TopLeftCorner)
+
+            self.__menuBar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
 
     def setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12), align=Qt.AlignCenter):
         if title:
@@ -173,8 +176,9 @@ class CustomTitlebarWindow(FramelessWindow):
         cornerWidget = self.__menuBar.cornerWidget()
         if cornerWidget:
             lay = cornerWidget.layout()
-            lay.removeWidget(self.__btnWidget)
-            lay.removeWidget(self.__titleLbl)
+            if lay:
+                lay.removeWidget(self.__btnWidget)
+                lay.removeWidget(self.__titleLbl)
 
         self.__btnWidget = self.__topTitleBar.getBtnWidget()
         self.initTitleEvent(iconTitleWidget)
