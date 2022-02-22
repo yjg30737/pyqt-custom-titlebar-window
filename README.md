@@ -26,29 +26,16 @@ PyQt5 >= 5.15
 
 ## Feature & Usage
 * If you drag the frame, window will be resized.
-* If you drag the menu bar of inner widget, window will be moved.
+* If you drag the title bar(menu bar if there is no title bar) of inner widget, window will be moved.
 * If you double-click the menu bar, window will be maximized/normalized.
+* * Set the window title by itself if you set your inner widget's title with ```setWindowTitle```. It also catches the ```windowTitleChanged``` signal of your inner widget.
 * ```CustomTitlebarWindow(CustomizedWidgetByUser())``` - Constructor.
-* Available to add min/max/close button on the top right corner of menu bar with ```setMinMaxCloseButton(hint=Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint, style='Windows')```. If you want to add close button only, give the value like ```setMinMaxCloseButton(hint=Qt.WindowCloseButtonHint)```. There are three options available(close, min/close, min/max/close). Default value is min/max/close. About ```style``` argument, This accepts only two string('Windows', 'Mac'). Buttons' style will be changed by given OS' style.  
-* Set the window title by itself if you set your inner widget's title with ```setWindowTitle```. It also catches the ```windowTitleChanged``` signal of your inner widget.
+* ```setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12), align=Qt.AlignCenter)``` to set title bar on the top of the window.
+* ```setButtons()``` to add min/max/close button on the top right corner of title/menu bar
+* ```setButtonHint(hint)``` to set hints of buttons. There are three options available(close, min/close, min/max/close). Default value is min/max/close.
+* ```setButtonStyle(style)``` to set style of buttons, This accepts only two string('Windows', 'Mac').
 * Frame's color synchronizes with the ```QMenuBar```'s background color or inner ```QWidget```'s color if inner widget is not ```QMainWindow```.
-* Applied stylesheets of min/max/close are based on the common min/max/close button style of Windows 10. (I'm currently using Windows 10.) For example, when you place the mouse on top of the close button, close button's color will turn into red. No animation involved currently.
-* ```setTopTitleBar``` to set title bar above the menu bar. You can set the font of title bar and icon(which not only becomes an icon next to the title bar, but becomes window icon at the same time.) and alignment of title layout. Note: Below v1.0.3 version, title bar style will set to Windows OS only.
-    * <b>Below v1.0.0</b> - ```setTopTitleBar(icon: QIcon = QIcon(), font: QFont = QFont('Arial', 16), align=Qt.AlignCenter)```
-    * <b>Since v1.0.0</b> - ```setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12), align=Qt.AlignCenter)``` - I change the ```QIcon``` type argument to ```str``` type argument which is named ```icon_filename``` because as far as i know QIcon doesn't support svg file well. ```icon_filename``` will pass to ```TopTitleBarWidget``` class which is included in ```pyqt-top-titlebar-widget```. The class is main widget of the separate title bar and shows svg icon label nicely.
 * ```getCornerWidget()``` to get corner widget of ```QMenuBar``` easily
-* ```setMenuStyle(style: str = 'Windows')``` to set menu style based on style which should be name of the OS. You can either give the 'Windows' or 'Mac' to the argument. Windows is set by default.
-### v1.1.0
-
-```python
-customTitlebarWindow = CustomTitlebarWindow(window)
-customTitlebarWindow.setTopTitleBar()
-customTitlebarWindow.setButtons()
-```
-After v1.1.0, the correct order of calling method is ```setTopTitleBar -> setMinMaxCloseButton``` if you want to set top title bar and each min/max/close button on it.   
-
-## Note
-Below v1.2.0, type of inner widget should be ```QMainWindow```. Because without ```QMenuBar``` this won't work.
 
 ## Example
 ### Code Sample (Menu bar only)
@@ -63,6 +50,8 @@ if __name__ == "__main__":
 
   app = QApplication(sys.argv)
   customTitlebarWindow = CustomTitlebarWindow(Calculator())
+  # customTitlebarWindow.setButtonHint(hint=Qt.WindowCloseButtonHint)
+  # customTitlebarWindow.setButtonStyle(style='Mac')
   customTitlebarWindow.setButtons()
   customTitlebarWindow.show()
   app.exec_()
@@ -82,29 +71,6 @@ As you see, existing corner widget doesn't matter.
 
 ### Code Sample (Including title bar)
 
-#### v1.0.3
-
-```python
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from pyqt_custom_titlebar_window import CustomTitlebarWindow
-from pyqt_dark_notepad import DarkNotepad
-
-if __name__ == "__main__":
-  import sys
-
-  app = QApplication(sys.argv)
-  window = DarkNotepad()
-  customTitlebarWindow = CustomTitlebarWindow(window)
-  customTitlebarWindow.setButtons()
-  customTitlebarWindow.setTopTitleBar(icon_filename='dark-notepad.svg')
-  customTitlebarWindow.show()
-  app.exec_()
-```
-
-#### v1.1.0
-
 ```python
 from PyQt5.QtWidgets import QApplication
 from pyqt_custom_titlebar_window import CustomTitlebarWindow
@@ -117,6 +83,8 @@ if __name__ == "__main__":
   window = DarkNotepad()
   customTitlebarWindow = CustomTitlebarWindow(window)
   customTitlebarWindow.setTopTitleBar(icon_filename='dark-notepad.svg')
+  # customTitlebarWindow.setButtonHint(hint=Qt.WindowCloseButtonHint)
+  # customTitlebarWindow.setButtonStyle(style='Mac')
   customTitlebarWindow.setButtons()
   customTitlebarWindow.show()
   app.exec_()
@@ -128,6 +96,11 @@ if __name__ == "__main__":
 
 ## Release Note
 (Start from 0.5.0)
+### February 22, 2021 (version 1.3.0)
+
+Rename one of the method ```setMinMaxCloseButton``` to ```setButtons```.
+
+Let user set the hint and style of buttons with ```setButtonHint(hint)```, ```setButtonStyle(style)```.
 
 ### February 21, 2021 (version 1.2.1)
 
