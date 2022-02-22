@@ -20,7 +20,7 @@ PyQt5 >= 5.15
 ## Setup
 ```pip3 install git+https://github.com/yjg30737/pyqt-custom-titlebar-window.git --upgrade```
 
-## Included packages
+## Included Packages
 * <a href="https://github.com/yjg30737/pyqt-frameless-window.git">pyqt-frameless-window</a> - To import parent class ```FramelessWindow``` 
 * <a href="https://github.com/yjg30737/pyqt-windows-min-max-close-buttons-widget.git">pyqt-windows-min-max-close-buttons-widget</a> - To provide Windows 10 OS style min/max/close buttons with menu bar
 * <a href="https://github.com/yjg30737/pyqt-mac-min-max-close-buttons-widget.git">pyqt-mac-min-max-close-buttons-widget</a> - To provide macOS style of min/max/close buttons with menu bar
