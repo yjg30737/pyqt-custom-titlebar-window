@@ -124,9 +124,10 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__styleBasedOnOS = style
 
     def setMinMaxCloseButton(self, hint=Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint, style='Windows'):
+        self.__btnHint = hint
+        self.__styleBasedOnOS = style
+
         if isinstance(self.__topTitleBar, TopTitleBarWidget):
-            self.__btnHint = hint
-            self.__styleBasedOnOS = style
 
             self.__topTitleBar.setButtons(hint, style)
             iconTitleWidget = self.__topTitleBar.getIconTitleWidget()
@@ -140,9 +141,6 @@ class CustomTitlebarWindow(FramelessWindow):
 
             lay = QHBoxLayout()
             lay.setContentsMargins(0, 0, 0, 0)
-
-            self.__btnHint = hint
-            self.__styleBasedOnOS = style
 
             if self.__styleBasedOnOS == 'Windows':
                 if isinstance(self.__menubar, QMenuBar):
