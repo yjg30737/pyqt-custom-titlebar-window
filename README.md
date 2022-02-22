@@ -9,7 +9,6 @@ PyQt Custom Titlebar Window (resizable, movable, minimize/maximize/close). User 
 * [Setup](#setup)
 * [Included Packages](#included-packages)
 * [Feature & Usage](#feature-usage)
-* [Note](#note)
 * [Example](#example)
    * [Code Sample (Menu bar only)](#code-sample-menu-bar-only)
    * [Code Sample (Including title bar)](#code-sample-including-title-bar)
