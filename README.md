@@ -26,7 +26,7 @@ PyQt5 >= 5.15
 * <a href="https://github.com/yjg30737/pyqt-mac-min-max-close-buttons-widget.git">pyqt-mac-min-max-close-buttons-widget</a> - To provide macOS style of min/max/close buttons with menu bar
 * <a href="https://github.com/yjg30737/pyqt-top-titlebar-widget.git">pyqt-top-titlebar-widget</a> - For adding top title bar feature
 
-## Feature and Usage
+## Feature
 * If you drag the frame, window will be resized.
 * If you drag the title bar(menu bar if there is no title bar) of inner widget, window will be moved.
 * If you double-click the menu bar, window will be maximized/normalized.
