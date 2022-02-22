@@ -125,6 +125,9 @@ class CustomTitlebarWindow(FramelessWindow):
 
     def setMinMaxCloseButton(self, hint=Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint, style='Windows'):
         if isinstance(self.__topTitleBar, TopTitleBarWidget):
+            self.__btnHint = hint
+            self.__styleBasedOnOS = style
+
             self.__topTitleBar.setButtons(hint, style)
             iconTitleWidget = self.__topTitleBar.getIconTitleWidget()
 
