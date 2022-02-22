@@ -39,10 +39,11 @@ PyQt5 >= 5.15
 * ```getCornerWidget()``` to get corner widget of ```QMenuBar``` easily
 * ```setMenuStyle(style: str = 'Windows')``` to set menu style based on style which should be name of the OS. You can either give the 'Windows' or 'Mac' to the argument. Windows is set by default.
 ### v1.1.0
+
 ```python
 customTitlebarWindow = CustomTitlebarWindow(window)
 customTitlebarWindow.setTopTitleBar()
-customTitlebarWindow.setMinMaxCloseButton()
+customTitlebarWindow.setButtons()
 ```
 After v1.1.0, the correct order of calling method is ```setTopTitleBar -> setMinMaxCloseButton``` if you want to set top title bar and each min/max/close button on it.   
 
@@ -57,15 +58,14 @@ from PyQt5.QtWidgets import QApplication
 from pyqt_custom_titlebar_window import CustomTitlebarWindow
 from pyqt_dark_calculator import Calculator
 
-
 if __name__ == "__main__":
-    import sys
+  import sys
 
-    app = QApplication(sys.argv)
-    customTitlebarWindow = CustomTitlebarWindow(Calculator())
-    customTitlebarWindow.setMinMaxCloseButton()
-    customTitlebarWindow.show()
-    app.exec_()
+  app = QApplication(sys.argv)
+  customTitlebarWindow = CustomTitlebarWindow(Calculator())
+  customTitlebarWindow.setButtons()
+  customTitlebarWindow.show()
+  app.exec_()
 ```
 
 In the code sample, <a href="https://github.com/yjg30737/pyqt-dark-calculator.git">pyqt-dark-calculator</a> is being used as inner widget.  
@@ -97,7 +97,7 @@ if __name__ == "__main__":
   app = QApplication(sys.argv)
   window = DarkNotepad()
   customTitlebarWindow = CustomTitlebarWindow(window)
-  customTitlebarWindow.setMinMaxCloseButton()
+  customTitlebarWindow.setButtons()
   customTitlebarWindow.setTopTitleBar(icon_filename='dark-notepad.svg')
   customTitlebarWindow.show()
   app.exec_()
@@ -110,7 +110,6 @@ from PyQt5.QtWidgets import QApplication
 from pyqt_custom_titlebar_window import CustomTitlebarWindow
 from pyqt_dark_notepad import DarkNotepad
 
-
 if __name__ == "__main__":
   import sys
 
@@ -118,7 +117,7 @@ if __name__ == "__main__":
   window = DarkNotepad()
   customTitlebarWindow = CustomTitlebarWindow(window)
   customTitlebarWindow.setTopTitleBar(icon_filename='dark-notepad.svg')
-  customTitlebarWindow.setMinMaxCloseButton()
+  customTitlebarWindow.setButtons()
   customTitlebarWindow.show()
   app.exec_()
 ```

@@ -120,16 +120,15 @@ class CustomTitlebarWindow(FramelessWindow):
         else:
             self.showMaximized()
 
-    def setMenuStyle(self, style: str = 'Windows'):
-        self.__styleBasedOnOS = style
-
-    def setMinMaxCloseButton(self, hint=Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint, style='Windows'):
+    def setButtonHint(self, hint):
         self.__btnHint = hint
+
+    def setButtonStyle(self, style):
         self.__styleBasedOnOS = style
 
+    def setButtons(self):
         if isinstance(self.__topTitleBar, TopTitleBarWidget):
-
-            self.__topTitleBar.setButtons(hint, style)
+            self.__topTitleBar.setButtons(self.__btnHint, self.__styleBasedOnOS)
             iconTitleWidget = self.__topTitleBar.getIconTitleWidget()
 
             self.__btnWidget = self.__topTitleBar.getBtnWidget()
@@ -144,11 +143,11 @@ class CustomTitlebarWindow(FramelessWindow):
 
             if self.__styleBasedOnOS == 'Windows':
                 if isinstance(self.__menubar, QMenuBar):
-                    self.__btnWidget = WindowsMinMaxCloseButtonsWidget(self.__menubar, hint)
+                    self.__btnWidget = WindowsMinMaxCloseButtonsWidget(self.__menubar, self.__btnHint)
                 else:
-                    self.__btnWidget = WindowsMinMaxCloseButtonsWidget(self.__widget, hint)
+                    self.__btnWidget = WindowsMinMaxCloseButtonsWidget(self.__widget, self.__btnHint)
             elif self.__styleBasedOnOS == 'Mac':
-                self.__btnWidget = MacMinMaxCloseButtonsWidget(hint)
+                self.__btnWidget = MacMinMaxCloseButtonsWidget(self.__btnHint)
             self.initButtonsEvent()
             lay.addWidget(self.__btnWidget)
 
