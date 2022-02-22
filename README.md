@@ -1,4 +1,7 @@
 # pyqt-custom-titlebar-window
+
+<h3>Current Version - v1.3.0</h3>
+
 PyQt Custom Titlebar Window (resizable, movable, minimize/maximize/close). User can put customized widget in the frame. Drag title bar or menu bar on widget to move the window, double-click it to show maximize/normal.
 
 ## Table of Contents
@@ -18,11 +21,10 @@ PyQt5 >= 5.15
 ```pip3 install git+https://github.com/yjg30737/pyqt-custom-titlebar-window.git --upgrade```
 
 ## Included package
-* <a href="https://github.com/yjg30737/pyqt-frameless-window.git">pyqt-frameless-window</a> - Parent widget
-* <s><a href="https://github.com/yjg30737/python-color-getter.git">python-color-getter</a></s> - To get the complementary color of base ```QWidget``` to make the title ```QLabel``` conspicuous (since v1.0.0 this is not being used at all. Because ```pyqt-top-titlebar-widget``` package do the task instead.) 
-* <a href="https://github.com/yjg30737/pyqt-windows-min-max-close-buttons-widget.git">pyqt-windows-min-max-close-buttons-widget</a> - To provide the min/max/close buttons with the Windows 10 OS style
-* <a href="https://github.com/yjg30737/pyqt-mac-min-max-close-buttons-widget.git">pyqt-mac-min-max-close-buttons-widget</a> - To provide the min/max/close buttons with the macOS style
-* <a href="https://github.com/yjg30737/pyqt-top-titlebar-widget.git">pyqt-top-titlebar-widget</a> - For adding top title bar feature (included since v1.0.0)
+* <a href="https://github.com/yjg30737/pyqt-frameless-window.git">pyqt-frameless-window</a> - To import parent class ```FramelessWindow``` 
+* <a href="https://github.com/yjg30737/pyqt-windows-min-max-close-buttons-widget.git">pyqt-windows-min-max-close-buttons-widget</a> - To provide Windows 10 OS style min/max/close buttons with menu bar
+* <a href="https://github.com/yjg30737/pyqt-mac-min-max-close-buttons-widget.git">pyqt-mac-min-max-close-buttons-widget</a> - To provide macOS style of min/max/close buttons with menu bar
+* <a href="https://github.com/yjg30737/pyqt-top-titlebar-widget.git">pyqt-top-titlebar-widget</a> - For adding top title bar feature
 
 ## Feature & Usage
 * If you drag the frame, window will be resized.
