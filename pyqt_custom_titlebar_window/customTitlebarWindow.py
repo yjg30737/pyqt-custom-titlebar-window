@@ -61,6 +61,13 @@ class CustomTitlebarWindow(FramelessWindow):
         self.setStyleSheet(f'QWidget#titleBar {{ background-color: {color.name()} }}')
 
     def eventFilter(self, obj, e) -> bool:
+        if obj == self:
+            # catch resize event or window state change event
+            if e.type() == 14 or e.type() == 105:
+                if self.isMaximized():
+                    self.__maximizeBtn.setText('🗗')
+                else:
+                    self.__maximizeBtn.setText('🗖')
         # catch the enter event
         if e.type() == 10:
             self.unsetCursor()
