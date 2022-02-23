@@ -64,10 +64,7 @@ class CustomTitlebarWindow(FramelessWindow):
         if obj == self:
             # catch resize event or window state change event
             if e.type() == 14 or e.type() == 105:
-                if self.isMaximized():
-                    self.__maximizeBtn.setText('🗗')
-                else:
-                    self.__maximizeBtn.setText('🗖')
+                self.__toggleNormalOrMaximizedTextByOS()
         # catch the enter event
         if e.type() == 10:
             self.unsetCursor()
@@ -96,32 +93,31 @@ class CustomTitlebarWindow(FramelessWindow):
             else:
                 # double click (show maximized/normal)
                 if e.type() == 4 and e.button() == Qt.LeftButton:
-                    self.__showNormalOrMaximized()
+                    self.__showNormalOrMaximizedByOS()
                 # move
                 else:
                     self._move()
 
     def __execTitleBarMoveOrDoubleClickEvent(self, e):
         if e.type() == 4 and e.button() == Qt.LeftButton:
-            self.__showNormalOrMaximized()
+            self.__showNormalOrMaximizedByOS()
         else:
             self._move()
 
-    def __showNormalOrMaximized(self):
+    def __showNormalOrMaximizedByOS(self):
+        self.__toggleNormalOrMaximizedTextByOS()
+        self.__execShowNormalOrMaximized()
+
+    def __toggleNormalOrMaximizedTextByOS(self):
         if self.__styleBasedOnOS == 'Windows':
-            self.__showWindowsOSNormalOrMaximized()
+            if self.isMaximized():
+                self.__maximizeBtn.setText('🗗')
+            else:
+                self.__maximizeBtn.setText('🗖')
         elif self.__styleBasedOnOS == 'Mac':
-            self.__showMacOSNormalOrMaximized()
+            pass
 
-    def __showWindowsOSNormalOrMaximized(self):
-        if self.isMaximized():
-            self.__maximizeBtn.setText('🗖')
-            self.showNormal()
-        else:
-            self.__maximizeBtn.setText('🗗')
-            self.showMaximized()
-
-    def __showMacOSNormalOrMaximized(self):
+    def __execShowNormalOrMaximized(self):
         if self.isMaximized():
             self.showNormal()
         else:
@@ -223,5 +219,5 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__closeBtn = self.__btnWidget.getCloseBtn()
 
         self.__minimizeBtn.clicked.connect(self.showMinimized)
-        self.__maximizeBtn.clicked.connect(self.__showNormalOrMaximized)
+        self.__maximizeBtn.clicked.connect(self.__showNormalOrMaximizedByOS)
         self.__closeBtn.clicked.connect(self.close)
