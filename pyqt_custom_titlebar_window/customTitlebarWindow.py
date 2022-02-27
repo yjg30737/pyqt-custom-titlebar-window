@@ -72,11 +72,11 @@ class CustomTitlebarWindow(FramelessWindow):
         if e.type() == 33:
             self.__titleLbl.setText(obj.windowTitle())
         if obj.objectName() == 'navWidget':
-            # catch the menubar enter event
+            # catch the menubar double click or mouse move event
             if isinstance(obj, QMenuBar):
                 if e.type() == 4 or e.type() == 5:
                     self.__execMenuBarMoveOrDoubleClickEvent(e)
-            # catch the titlebar enter event
+            # catch the titlebar double click or mouse move event
             elif isinstance(obj, TopTitleBarWidget):
                 if e.type() == 4 or e.type() == 5:
                     self.__execTitleBarMoveOrDoubleClickEvent(e)
