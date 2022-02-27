@@ -98,6 +98,10 @@ if __name__ == "__main__":
 
 ## Release Note
 (Start from 0.5.0)
+### February 27, 2021 (version 1.3.1)
+
+Fix the bug(which occurs when user double-clicks the title bar) caused by collision between two events(```mousePressEvent```, ```mouseDoubleClickEvent```) by setting the ```bool``` type ```pressToMove``` variable ```False```, Add method for specific case(```setPressToMove```).
+
 ### February 22, 2021 (version 1.3.0)
 
 Rename one of the method ```setMinMaxCloseButton``` to ```setButtons```.
