@@ -32,7 +32,7 @@ PyQt5 >= 5.15
 * If you double-click the menu bar, window will be maximized/normalized.
 * * Set the window title by itself if you set your inner widget's title with ```setWindowTitle```. It also catches the ```windowTitleChanged``` signal of your inner widget.
 * ```CustomTitlebarWindow(CustomizedWidgetByUser())``` - Constructor.
-* ```setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12), align=Qt.AlignCenter)``` to set title bar on the top of the window.
+* ```setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12), align=Qt.AlignCenter, bottom_separator=False)``` to set title bar on the top of the window.
 * ```setButtons()``` to add min/max/close button on the top right corner of title/menu bar
 * ```setButtonHint(hint)``` to set hints of buttons. There are three options available(close, min/close, min/max/close). Default value is min/max/close.
 * ```setButtonStyle(style)``` to set style of buttons, This accepts only two string('Windows', 'Mac').
