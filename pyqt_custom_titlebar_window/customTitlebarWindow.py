@@ -176,7 +176,7 @@ class CustomTitlebarWindow(FramelessWindow):
                 self.__menubar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
 
     def setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12),
-                       align=Qt.AlignCenter):
+                       align=Qt.AlignCenter, bottom_separator: bool = False):
         if title:
             self.__widget.setWindowTitle(title)
         else:
@@ -197,6 +197,8 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__topTitleBar.installEventFilter(self)
         self.__topTitleBar.setMouseTracking(True)
         self.__topTitleBar.setObjectName('navWidget')
+        if bottom_separator:
+            self.__topTitleBar.setBottomSeparator()
 
         lay = self.layout()
         centralWidget = lay.itemAt(0).widget()
