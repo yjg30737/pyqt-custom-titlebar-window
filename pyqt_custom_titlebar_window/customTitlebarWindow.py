@@ -46,8 +46,6 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__widget.installEventFilter(self)
         self.installEventFilter(self)
 
-        self._dragMenuBarOnlyWayToMoveWindowFlag = True
-
         lay = QGridLayout()
         lay.addWidget(self.__widget)
         lay.setContentsMargins(self._margin, self._margin, self._margin, self._margin)
@@ -205,9 +203,6 @@ class CustomTitlebarWindow(FramelessWindow):
         centralWidget = lay.itemAt(0).widget()
         lay.addWidget(self.__topTitleBar, 0, 0, 1, 1)
         lay.addWidget(centralWidget, 1, 0, 1, 1)
-
-    def setDragMenuBarOnlyWayToMoveWindow(self, f: bool):
-        self._dragMenuBarOnlyWayToMoveWindowFlag = f
 
     def getCornerWidget(self):
         return self.__menubar.cornerWidget()
