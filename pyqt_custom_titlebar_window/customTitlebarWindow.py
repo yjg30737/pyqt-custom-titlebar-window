@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QFont, QIcon
-from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QToolButton, QLabel, \
+from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QPushButton, QLabel, \
     QMenuBar
 
 from pyqt_frameless_window.framelessWindow import FramelessWindow
@@ -36,9 +36,9 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__btnWidget = QWidget()
         self.__btnHint = Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint
 
-        self.__minimizeBtn = QToolButton()
-        self.__maximizeBtn = QToolButton()
-        self.__closeBtn = QToolButton()
+        self.__minimizeBtn = QPushButton()
+        self.__maximizeBtn = QPushButton()
+        self.__closeBtn = QPushButton()
 
         self.__styleBasedOnOS = 'Windows'
 
