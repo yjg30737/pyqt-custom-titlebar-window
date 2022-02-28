@@ -73,15 +73,7 @@ class CustomTitlebarWindow(FramelessWindow):
         # catch full screen toggle event
         if obj.objectName() == 'mainWidget':
             if e.type() == 105:
-                inner_state = int(e.oldState())
-                title_bar_state = 0
-                if inner_state == 0 or inner_state == 4:
-                    if inner_state == 0:
-                        self.showFullScreen()
-                    else:
-                        self.showNormal()
-                    title_bar_state = self.windowState()
-                    obj.setWindowState(title_bar_state)
+                self.__toggleFullScreenFromInnerWidget(e)
         # catch the enter event
         if e.type() == 10:
             self.unsetCursor()
@@ -99,6 +91,17 @@ class CustomTitlebarWindow(FramelessWindow):
                 if e.type() == 4 or e.type() == 5:
                     self.__execTitleBarMoveOrDoubleClickEvent(e)
         return super().eventFilter(obj, e)
+
+    def __toggleFullScreenFromInnerWidget(self, e):
+        inner_state = int(e.oldState())
+        title_bar_state = 0
+        if inner_state == 0 or inner_state == 4:
+            if inner_state == 0:
+                self.showFullScreen()
+            else:
+                self.showNormal()
+            title_bar_state = self.windowState()
+            self.__widget.setWindowState(title_bar_state)
 
     def __execMenuBarMoveOrDoubleClickEvent(self, e):
         p = e.pos()
