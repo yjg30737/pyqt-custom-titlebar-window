@@ -70,6 +70,18 @@ class CustomTitlebarWindow(FramelessWindow):
             # catch resize event or window state change event
             if e.type() == 14 or e.type() == 105:
                 self.__toggleNormalOrMaximizedTextByOS()
+        # catch full screen toggle event
+        if obj.objectName() == 'mainWidget':
+            if e.type() == 105:
+                inner_state = int(e.oldState())
+                title_bar_state = 0
+                if inner_state == 0 or inner_state == 4:
+                    if inner_state == 0:
+                        self.showFullScreen()
+                    else:
+                        self.showNormal()
+                    title_bar_state = self.windowState()
+                    obj.setWindowState(title_bar_state)
         # catch the enter event
         if e.type() == 10:
             self.unsetCursor()
