@@ -1,7 +1,7 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QFont, QIcon
 from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QPushButton, QLabel, \
-    QMenuBar
+    QMenuBar, QToolButton
 
 from pyqt_frameless_window.framelessWindow import FramelessWindow
 
@@ -53,11 +53,16 @@ class CustomTitlebarWindow(FramelessWindow):
         self.setLayout(lay)
 
         if isinstance(self.__menubar, QMenuBar):
-            self.__menubar.installEventFilter(self)
             color = self.__menubar.palette().color(QPalette.Base)
+            self.__initMenuBar()
         else:
             color = self.__widget.palette().color(QPalette.Base)
         self.setStyleSheet(f'QWidget#titleBar {{ background-color: {color.name()} }}')
+
+    def __initMenuBar(self):
+        self.__menubar.installEventFilter(self)
+        tool_button = self.__menubar.findChild(QToolButton)
+        tool_button.setArrowType(Qt.RightArrow)
 
     def eventFilter(self, obj, e) -> bool:
         if obj == self:
