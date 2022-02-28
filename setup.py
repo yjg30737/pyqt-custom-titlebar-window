@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pyqt-custom-titlebar-window',
-    version='1.3.1',
+    version='1.3.2',
     author='Jung Gyu Yoon',
     author_email='yjg30737@gmail.com',
     license='MIT',
