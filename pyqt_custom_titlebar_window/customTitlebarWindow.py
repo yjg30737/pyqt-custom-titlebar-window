@@ -21,6 +21,7 @@ class CustomTitlebarWindow(FramelessWindow):
         self.setObjectName('titleBar')
 
         self.__widget = widget
+        self.__widget.setObjectName('mainWidget')
         self.__menubar = ''
 
         # if inner widget type is QMainWindow, set menu bar as navigation widget
