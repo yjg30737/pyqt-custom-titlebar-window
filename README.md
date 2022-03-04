@@ -23,6 +23,7 @@ PyQt5 >= 5.15
 * <a href="https://github.com/yjg30737/pyqt-windows-min-max-close-buttons-widget.git">pyqt-windows-min-max-close-buttons-widget</a> - To provide Windows 10 OS style min/max/close buttons with menu bar
 * <a href="https://github.com/yjg30737/pyqt-mac-min-max-close-buttons-widget.git">pyqt-mac-min-max-close-buttons-widget</a> - To provide macOS style of min/max/close buttons with menu bar
 * <a href="https://github.com/yjg30737/pyqt-top-titlebar-widget.git">pyqt-top-titlebar-widget</a> - For adding top title bar feature
+* <a href="https://github.com/yjg30737/python-get-absolute-resource-path.git">python-get-absolute-resource-path</a> - For get absoulte resource path of svg icon to set window icon
 
 ## Feature
 * If you drag the frame, window will be resized.
