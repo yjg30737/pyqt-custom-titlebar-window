@@ -14,6 +14,7 @@ setup(
         'pyqt-frameless-window @ git+https://git@github.com/yjg30737/pyqt-frameless-window.git@main',
         'pyqt-windows-min-max-close-buttons-widget @ git+https://git@github.com/yjg30737/pyqt-windows-min-max-close-buttons-widget.git@main',
         'pyqt-mac-min-max-close-buttons-widget @ git+https://git@github.com/yjg30737/pyqt-mac-min-max-close-buttons-widget.git@main',
-        'pyqt-top-titlebar-widget @ git+https://git@github.com/yjg30737/pyqt-top-titlebar-widget.git@main'
+        'pyqt-top-titlebar-widget @ git+https://git@github.com/yjg30737/pyqt-top-titlebar-widget.git@main',
+        'python-get-absolute-resource-path @ git+https://git@github.com/yjg30737/python-get-absolute-resource-path.git@main'
     ]
 )
