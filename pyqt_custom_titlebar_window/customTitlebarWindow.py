@@ -1,3 +1,5 @@
+import os, inspect
+
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QFont, QIcon
 from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QPushButton, QLabel, \
@@ -206,6 +208,16 @@ class CustomTitlebarWindow(FramelessWindow):
             title = self.__widget.windowTitle()
 
         if icon_filename:
+            stack_lst = inspect.stack()
+            ico_frame_idx = 0
+            for i in range(len(stack_lst)):
+                context = stack_lst[i].code_context[0]
+                if context.find(icon_filename) == -1:
+                    pass
+                else:
+                    ico_frame_idx = i
+            caller_path = os.path.dirname(stack_lst[ico_frame_idx].filename)
+            icon_filename = os.path.join(caller_path, icon_filename).replace('\\', '/')
             self.setWindowIcon(QIcon(icon_filename))
         else:
             icon_filename = self.__widget.windowIcon().name()
