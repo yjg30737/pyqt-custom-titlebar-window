@@ -45,6 +45,10 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__closeBtn = QPushButton()
 
         self.__styleBasedOnOS = qApp.platformName()
+        if self.__styleBasedOnOS == 'windows' or self.__styleBasedOnOS == 'mac':
+            pass
+        else:
+            self.__styleBasedOnOS = 'windows'
 
     def __initUi(self):
         self.__widget.installEventFilter(self)
