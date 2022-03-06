@@ -3,7 +3,7 @@ import os, inspect
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QFont, QIcon
 from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QPushButton, QLabel, \
-    QMenuBar, QToolButton
+    QMenuBar, QToolButton, qApp
 
 from pyqt_frameless_window.framelessWindow import FramelessWindow
 
@@ -44,7 +44,7 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__maximizeBtn = QPushButton()
         self.__closeBtn = QPushButton()
 
-        self.__styleBasedOnOS = 'Windows'
+        self.__styleBasedOnOS = qApp.platformName()
 
     def __initUi(self):
         self.__widget.installEventFilter(self)
@@ -135,12 +135,12 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__execShowNormalOrMaximized()
 
     def __toggleNormalOrMaximizedTextByOS(self):
-        if self.__styleBasedOnOS == 'Windows':
+        if self.__styleBasedOnOS == 'windows':
             if self.isMaximized():
                 self.__maximizeBtn.setText('🗗')
             else:
                 self.__maximizeBtn.setText('🗖')
-        elif self.__styleBasedOnOS == 'Mac':
+        elif self.__styleBasedOnOS == 'mac':
             pass
 
     def __execShowNormalOrMaximized(self):
@@ -173,12 +173,12 @@ class CustomTitlebarWindow(FramelessWindow):
             lay = QHBoxLayout()
             lay.setContentsMargins(0, 0, 0, 0)
 
-            if self.__styleBasedOnOS == 'Windows':
+            if self.__styleBasedOnOS == 'windows':
                 if isinstance(self.__menubar, QMenuBar):
                     self.__btnWidget = WindowsMinMaxCloseButtonsWidget(self.__menubar, self.__btnHint)
                 else:
                     self.__btnWidget = WindowsMinMaxCloseButtonsWidget(self.__widget, self.__btnHint)
-            elif self.__styleBasedOnOS == 'Mac':
+            elif self.__styleBasedOnOS == 'mac':
                 self.__btnWidget = MacMinMaxCloseButtonsWidget(self.__btnHint)
             self.initButtonsEvent()
             lay.addWidget(self.__btnWidget)
