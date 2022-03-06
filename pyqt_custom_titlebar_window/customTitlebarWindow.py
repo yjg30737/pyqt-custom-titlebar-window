@@ -226,7 +226,6 @@ class CustomTitlebarWindow(FramelessWindow):
             self.__topTitleBar = TopTitleBarWidget(self.__widget, text=title, font=font, icon_filename=icon_filename,
                                                    align=align)
         self.__topTitleBar.installEventFilter(self)
-        self.__topTitleBar.setMouseTracking(True)
         self.__topTitleBar.setObjectName('navWidget')
         if bottom_separator:
             self.__topTitleBar.setBottomSeparator()
