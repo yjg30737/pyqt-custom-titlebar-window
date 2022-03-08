@@ -37,6 +37,7 @@ PyQt5 >= 5.15
 * ```setButtonStyle(style)``` to set style of buttons, This accepts only two string('Windows', 'Mac').
 * Frame's color synchronizes with the ```QMenuBar```'s background color or inner ```QWidget```'s color if inner widget is not ```QMainWindow```.
 * ```getCornerWidget()``` to get corner widget of ```QMenuBar``` easily
+* ```getInnerWidget()``` to get inner widget easily
 
 ## Example
 ### Code Sample (Menu bar only)
