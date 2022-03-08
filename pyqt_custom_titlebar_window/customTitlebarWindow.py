@@ -252,3 +252,6 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__minimizeBtn.clicked.connect(self.showMinimized)
         self.__maximizeBtn.clicked.connect(self.__showNormalOrMaximizedByOS)
         self.__closeBtn.clicked.connect(self.close)
+
+    def getInnerWidget(self):
+        return self.__widget
