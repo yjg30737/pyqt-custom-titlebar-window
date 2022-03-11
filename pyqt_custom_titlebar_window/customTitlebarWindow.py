@@ -107,8 +107,10 @@ class CustomTitlebarWindow(FramelessWindow):
         title_bar_state = 0
         if inner_state == 0 or inner_state == 4:
             if inner_state == 0:
+                self.__topTitleBar.hide()
                 self.showFullScreen()
             else:
+                self.__topTitleBar.show()
                 self.showNormal()
             title_bar_state = self.windowState()
             self.__widget.setWindowState(title_bar_state)
