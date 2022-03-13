@@ -157,9 +157,6 @@ class CustomTitlebarWindow(FramelessWindow):
         else:
             self.showMaximized()
 
-    def setPressToMove(self, f: bool):
-        self._pressToMove = f
-
     def setButtonHint(self, hint):
         self.__btnHint = hint
 
@@ -239,7 +236,7 @@ class CustomTitlebarWindow(FramelessWindow):
         lay.addWidget(self.__topTitleBar, 0, 0, 1, 1)
         lay.addWidget(centralWidget, 1, 0, 1, 1)
 
-        self._pressToMove = False
+        self.setPressToMove(False)
 
     def getCornerWidget(self):
         return self.__menubar.cornerWidget()
