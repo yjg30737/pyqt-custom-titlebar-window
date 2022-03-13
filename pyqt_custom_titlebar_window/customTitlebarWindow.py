@@ -87,7 +87,7 @@ class CustomTitlebarWindow(FramelessWindow):
         # catch the enter event
         if e.type() == 10:
             self.unsetCursor()
-            self._resized = False
+            self._resizing = False
         # catch the title change event
         if e.type() == 33:
             self.__titleLbl.setText(obj.windowTitle())
