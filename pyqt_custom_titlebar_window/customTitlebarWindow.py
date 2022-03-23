@@ -80,6 +80,10 @@ class CustomTitlebarWindow(FramelessWindow):
             # catch resize event or window state change event
             if e.type() == 14 or e.type() == 105:
                 self.__toggleNormalOrMaximizedTextByOS()
+                # prevent the problem that top title bar window still be hidden
+                if e.type() == 105:
+                    if int(e.oldState()) == 4:
+                        self.__topTitleBar.show()
         # catch full screen toggle event
         if obj.objectName() == 'mainWidget':
             if e.type() == 105:
@@ -104,7 +108,6 @@ class CustomTitlebarWindow(FramelessWindow):
 
     def __toggleFullScreenFromInnerWidget(self, e):
         inner_state = int(e.oldState())
-        title_bar_state = 0
         if inner_state == 0 or inner_state == 4:
             if inner_state == 0:
                 if isinstance(self.__topTitleBar, TopTitleBarWidget):
