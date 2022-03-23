@@ -80,7 +80,7 @@ class CustomTitlebarWindow(FramelessWindow):
             # catch resize event or window state change event
             if e.type() == 14 or e.type() == 105:
                 self.__toggleNormalOrMaximizedTextByOS()
-                # prevent the problem that top title bar window still be hidden
+                # prevent the problem that top title bar window is not visible when full screen turning off
                 if e.type() == 105:
                     if int(e.oldState()) == 4:
                         self.__topTitleBar.show()
