@@ -1,0 +1,14 @@
+{
+	"version": 3,
+	"file": "styles.css",
+	"sources": [
+		"styles.scss",
+		"_sass/styles.scss"
+	],
+	"sourcesContent": [
+		"@import \"styles\";",
+		".carousel.carousel-fade .carousel-item {\r\n    display: block;\r\n    opacity: 0;\r\n    transition: opacity ease-out .7s;\r\n}\r\n\r\n.carousel.carousel-fade .carousel-item.active {\r\n    opacity: 1 !important;\r\n}\r\n"
+	],
+	"names": [],
+	"mappings": "ACAA,AAAA,SAAS,AAAA,cAAc,CAAC,cAAc,CAAC,EACnC,OAAO,EAAE,KAAK,EACd,OAAO,EAAE,CAAC,EACV,UAAU,EAAE,oBAAoB,GACnC;;AAED,AAAA,SAAS,AAAA,cAAc,CAAC,cAAc,AAAA,OAAO,CAAC,EAC1C,OAAO,EAAE,YAAY,GACxB"
+}
