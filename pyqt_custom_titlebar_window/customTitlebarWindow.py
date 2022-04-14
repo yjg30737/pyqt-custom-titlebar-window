@@ -1,5 +1,3 @@
-import os, inspect
-
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QFont, QIcon
 from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QPushButton, QLabel, \
@@ -38,7 +36,7 @@ class CustomTitlebarWindow(FramelessWindow):
 
         self.__topTitleBar = QWidget()
         self.__btnWidget = QWidget()
-        self.__btnHint = Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint
+        self.__btnHint = ['min', 'max', 'close']
 
         self.__minimizeBtn = QPushButton()
         self.__maximizeBtn = QPushButton()
@@ -259,3 +257,6 @@ class CustomTitlebarWindow(FramelessWindow):
 
     def getInnerWidget(self):
         return self.__widget
+
+    def addFoldableFeature(self):
+        self.__topTitleBar.addFoldableFeature()
