@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
   app = QApplication(sys.argv)
   customTitlebarWindow = CustomTitlebarWindow(Calculator())
-  # customTitlebarWindow.setButtonHint(hint=Qt.WindowCloseButtonHint)
+  # customTitlebarWindow.setButtonHint(hint=['close'])
   # customTitlebarWindow.setButtonStyle(style='Mac')
   customTitlebarWindow.setButtons()
   customTitlebarWindow.show()
@@ -86,7 +86,7 @@ if __name__ == "__main__":
   window = DarkNotepad()
   customTitlebarWindow = CustomTitlebarWindow(window)
   customTitlebarWindow.setTopTitleBar(icon_filename='dark-notepad.svg')
-  # customTitlebarWindow.setButtonHint(hint=Qt.WindowCloseButtonHint)
+  # customTitlebarWindow.setButtonHint(['close'])
   # customTitlebarWindow.setButtonStyle(style='Mac')
   customTitlebarWindow.setButtons()
   customTitlebarWindow.show()
