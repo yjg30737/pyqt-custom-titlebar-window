@@ -257,6 +257,3 @@ class CustomTitlebarWindow(FramelessWindow):
 
     def getInnerWidget(self):
         return self.__widget
-
-    def addFoldableFeature(self):
-        self.__topTitleBar.addFoldableFeature()
