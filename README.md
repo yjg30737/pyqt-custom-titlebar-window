@@ -36,6 +36,7 @@ PyQt5 >= 5.15
 * ```setButtons()``` to add min/max/close button on the top right corner of title/menu bar
 * ```setButtonHint(hint)``` to set hints of buttons. There are three options available(close, min/close, min/max/close). Default value is min/max/close.
 * ```setButtonStyle(style)``` to set style of buttons, This accepts only two string('Windows', 'Mac').
+* ```setMenuTitle(title: str)``` to set the title on the left side of menu bar
 * Frame's color synchronizes with the ```QMenuBar```'s background color or inner ```QWidget```'s color if inner widget is not ```QMainWindow```.
 * ```getCornerWidget()``` to get corner widget of ```QMenuBar``` easily
 * ```getInnerWidget()``` to get inner widget easily
