@@ -207,6 +207,10 @@ class CustomTitlebarWindow(FramelessWindow):
 
                 self.__menubar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
 
+    def setMenuTitle(self, title: str = ''):
+        self.__widget.setWindowTitle(title)
+        self.setWindowTitle(title)
+
     def setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12),
                        align=Qt.AlignCenter, bottom_separator: bool = False):
         if title:
@@ -238,6 +242,9 @@ class CustomTitlebarWindow(FramelessWindow):
         lay.addWidget(centralWidget, 1, 0, 1, 1)
 
         self.setPressToMove(False)
+
+        # Set app title
+        self.setWindowTitle(title)
 
     def getCornerWidget(self):
         return self.__menubar.cornerWidget()
