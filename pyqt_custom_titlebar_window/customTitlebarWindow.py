@@ -173,9 +173,6 @@ class CustomTitlebarWindow(FramelessWindow):
             self.initTitleEvent(iconTitleWidget)
             self.initButtonsEvent()
         else:
-            title = self.__widget.windowTitle()
-            self.__titleLbl.setText(title)
-
             lay = QHBoxLayout()
             lay.setContentsMargins(0, 0, 0, 0)
 
@@ -198,35 +195,40 @@ class CustomTitlebarWindow(FramelessWindow):
                 if existingCornerWidget:
                     lay.insertWidget(0, existingCornerWidget)
 
-                # Place the title on appropriate location of QMenuBar
-                if len(self.__menubar.actions()) > 0:
-                    lay.insertWidget(0, self.__titleLbl, alignment=Qt.AlignLeft)
-                else:
-                    self.__menubar.setCornerWidget(self.__titleLbl, Qt.TopLeftCorner)
-
                 self.__menubar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
 
+    def __getWindowTitle(self, title):
+        if title:
+            pass
+        else:
+            title = self.__widget.windowTitle()
+        return title
+
+    def __getWindowIcon(self, icon_filename):
+        if icon_filename:
+            icon_filename = get_absolute_resource_path(icon_filename)
+        else:
+            icon_filename = self.__widget.windowIcon().name()
+        return icon_filename
+
+    def __setWindowIcon(self, icon_filename):
+        icon_filename = self.__getWindowIcon(icon_filename)
+        self.setWindowIcon(QIcon(icon_filename))
+
+
     def setMenuTitle(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12)):
+        title = self.__getWindowTitle(title)
         self.__titleLbl.setText(title)
         self.__titleLbl.setFont(font)
         self.__menubar.setCornerWidget(self.__titleLbl, Qt.TopLeftCorner)
 
         self.setWindowTitle(title)
-        icon_filename = get_absolute_resource_path(icon_filename)
-        self.setWindowIcon(QIcon(icon_filename))
+        self.__setWindowIcon(icon_filename)
 
     def setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12),
                        align=Qt.AlignCenter, bottom_separator: bool = False):
-        if title:
-            self.__widget.setWindowTitle(title)
-        else:
-            title = self.__widget.windowTitle()
-
-        if icon_filename:
-            icon_filename = get_absolute_resource_path(icon_filename)
-            self.setWindowIcon(QIcon(icon_filename))
-        else:
-            icon_filename = self.__widget.windowIcon().name()
+        title = self.__getWindowTitle(title)
+        self.__setWindowIcon(icon_filename)
 
         if isinstance(self.__menubar, QMenuBar):
             self.__topTitleBar = TopTitleBarWidget(self.__menubar, text=title, font=font, icon_filename=icon_filename,
