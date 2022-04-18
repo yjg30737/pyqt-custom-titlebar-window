@@ -207,7 +207,11 @@ class CustomTitlebarWindow(FramelessWindow):
 
                 self.__menubar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
 
-    def setMenuTitle(self, title: str = '', icon_filename: str = ''):
+    def setMenuTitle(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12)):
+        self.__titleLbl.setText(title)
+        self.__titleLbl.setFont(font)
+        self.__menubar.setCornerWidget(self.__titleLbl, Qt.TopLeftCorner)
+
         self.__widget.setWindowTitle(title)
         self.setWindowTitle(title)
         icon_filename = get_absolute_resource_path(icon_filename)
