@@ -202,7 +202,6 @@ class CustomTitlebarWindow(FramelessWindow):
                 if len(self.__menubar.actions()) > 0:
                     lay.insertWidget(0, self.__titleLbl, alignment=Qt.AlignLeft)
                 else:
-                    self.__titleLbl.setContentsMargins(5, 0, 0, 0)
                     self.__menubar.setCornerWidget(self.__titleLbl, Qt.TopLeftCorner)
 
                 self.__menubar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
