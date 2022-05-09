@@ -1,7 +1,7 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPalette, QFont, QIcon, QColor
+from PyQt5.QtGui import QPalette, QFont, QIcon
 from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QPushButton, QLabel, \
-    QMenuBar, QToolButton, qApp, QGraphicsDropShadowEffect
+    QMenuBar, QToolButton, qApp
 
 from pyqt_frameless_window.framelessWindow import FramelessWindow
 
@@ -269,12 +269,3 @@ class CustomTitlebarWindow(FramelessWindow):
 
     def getInnerWidget(self):
         return self.__widget
-
-    def setShadow(self):
-        self.setAttribute(Qt.WA_TranslucentBackground, True)
-
-        self.__effect = QGraphicsDropShadowEffect()
-        self.__effect.setBlurRadius(self._margin * 3)
-        self.__effect.setColor(QColor(0, 0, 0, 127))
-        self.__effect.setOffset(0.0)
-        self.getInnerWidget().setGraphicsEffect(self.__effect)
