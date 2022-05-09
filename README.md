@@ -1,6 +1,6 @@
 # pyqt-custom-titlebar-window
 
-PyQt Custom Titlebar Window (resizable, movable, minimize/maximize/close). User can put customized widget in the frame. Drag title bar or menu bar on widget to move the window, double-click it to show maximize/normal.
+PyQt custom titlebar window(resizable, movable, minimize/maximize/close). User can put customized widget in the frame. Drag title bar or menu bar on widget to move the window, double-click it to show maximize/normal.
 
 ## Table of Contents
 * [Requirements](#requirements)
