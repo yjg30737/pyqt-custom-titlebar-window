@@ -16,12 +16,12 @@ PyQt custom titlebar window(resizable, movable, minimize/maximize/close). User c
 PyQt5 >= 5.15
 
 ## Setup
-```pip3 install git+https://github.com/yjg30737/pyqt-custom-titlebar-window.git --upgrade```
+`python -m pip install pyqt-custom-titlebar-window`
 
 ## Included Packages
-* <a href="https://github.com/yjg30737/pyqt-frameless-window.git">pyqt-frameless-window</a> - To import parent class ```FramelessWindow``` 
-* <a href="https://github.com/yjg30737/pyqt-windows-min-max-close-buttons-widget.git">pyqt-windows-min-max-close-buttons-widget</a> - To provide Windows 10 OS style min/max/close buttons with menu bar
-* <a href="https://github.com/yjg30737/pyqt-mac-min-max-close-buttons-widget.git">pyqt-mac-min-max-close-buttons-widget</a> - To provide macOS style of min/max/close buttons with menu bar
+* <a href="https://github.com/yjg30737/pyqt-frameless-window.git">pyqt-frameless-window</a> - To import parent class `FramelessWindow`
+* <a href="https://github.com/yjg30737/pyqt-windows-buttons-widget.git">pyqt-windows-buttons-widget</a> - To provide Windows 10 OS style min/max/close buttons with menu bar
+* <a href="https://github.com/yjg30737/pyqt-mac-buttons-widget.git">pyqt-mac-buttons-widget</a> - To provide macOS style of min/max/close buttons with menu bar
 * <a href="https://github.com/yjg30737/pyqt-top-titlebar-widget.git">pyqt-top-titlebar-widget</a> - For adding top title bar feature
 * <a href="https://github.com/yjg30737/python-get-absolute-resource-path.git">python-get-absolute-resource-path</a> - For get absoulte resource path of svg icon to set window icon
 
@@ -29,17 +29,17 @@ PyQt5 >= 5.15
 * If you drag the frame, window will be resized.
 * If you drag the title bar(menu bar if there is no title bar) of inner widget, window will be moved.
 * If you double-click the menu bar, window will be maximized/normalized.
-* Set the window title by itself if you set your inner widget's title with ```setWindowTitle```. It also catches the ```windowTitleChanged``` signal of your inner widget.
+* Set the window title by itself if you set your inner widget's title with `setWindowTitle`. It also catches the `windowTitleChanged` signal of your inner widget.
 * Support full screen feature. When full screen feature turns on, top title bar will disappear. Reappear when it turns off.
-* ```CustomTitlebarWindow(CustomizedWidgetByUser())``` - Constructor.
-* ```setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12), align=Qt.AlignCenter, bottom_separator=False)``` to set title bar on the top of the window.
-* ```setButtons()``` to add min/max/close button on the top right corner of title/menu bar
-* ```setButtonHint(hint)``` to set hints of buttons. There are three options available(close, min/close, min/max/close). Default value is min/max/close.
-* ```setButtonStyle(style)``` to set style of buttons, This accepts only two string('Windows', 'Mac').
-* ```setMenuTitle(title: str, icon_filename: str, font=QFont('Arial', 12))``` to set the icon and title not only on the left side of menu bar, but also set it as window icon and title.
-* Frame's color synchronizes with the ```QMenuBar```'s background color or inner ```QWidget```'s color if inner widget is not ```QMainWindow```.
-* ```getCornerWidget()``` to get corner widget of ```QMenuBar``` easily
-* ```getInnerWidget()``` to get inner widget easily
+* `CustomTitlebarWindow(CustomizedWidgetByUser())` - Constructor.
+* `setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12), align=Qt.AlignCenter, bottom_separator=False)` to set title bar on the top of the window.
+* `setButtons()` to add min/max/close button on the top right corner of title/menu bar
+* `setButtonHint(hint)` to set hints of buttons. There are three options available(close, min/close, min/max/close). Default value is min/max/close.
+* `setButtonStyle(style)` to set style of buttons, This accepts only two string('Windows', 'Mac').
+* `setMenuTitle(title: str, icon_filename: str, font=QFont('Arial', 12))` to set the icon and title not only on the left side of menu bar, but also set it as window icon and title.
+* Frame's color synchronizes with the `QMenuBar`'s background color or inner `QWidget`'s color if inner widget is not `QMainWindow`.
+* `getCornerWidget()` to get corner widget of `QMenuBar` easily
+* `getInnerWidget()` to get inner widget easily
 
 ## Example
 ### Code Sample (Menu bar only)
@@ -97,41 +97,3 @@ if __name__ == "__main__":
 ### Result
 
 ![image](https://user-images.githubusercontent.com/55078043/154799161-912fa324-dbfd-469a-a1b6-e67d907eb828.png)
-
-## Release Note
-(Start from 0.5.0)
-### February 27, 2021 (version 1.3.1)
-
-Fix the bug(which occurs when user double-clicks the title bar) caused by collision between two events(```mousePressEvent```, ```mouseDoubleClickEvent```) by setting the ```bool``` type ```pressToMove``` variable ```False```, Add method for specific case(```setPressToMove```).
-
-### February 22, 2021 (version 1.3.0)
-
-Rename one of the method ```setMinMaxCloseButton``` to ```setButtons```.
-
-Let user set the hint and style of buttons with ```setButtonHint(hint)```, ```setButtonStyle(style)```.
-
-### February 21, 2021 (version 1.2.1)
-
-Make this able to handle not only ```QMainWindow```, but also ```QWidget```, ```QDialog``` to enhance flexibility
-
-### February 21, 2021 (version 1.1.0)
-
-Set order of calling method(setTopTitleBar -> setMinMaxCloseButton) and make it able to set Mac style to top title bar
-
-### February 19, 2021 (version 1.0.3)
-
-Use the package(<a href="https://github.com/yjg30737/pyqt-top-titlebar-widget.git">pyqt-top-titlebar-widget</a>) to reduce redunancy and length of code.
-
-### February 17, 2021 (version 0.9.0)
-
-Use the package(<a href="https://github.com/yjg30737/pyqt-windows-min-max-close-buttons-widget.git">pyqt-windows-min-max-close-buttons-widget</a>) to making the windows 10 OS button code and reduce redundancy and length of code.
-
-### February 15, 2021 (version 0.8.0)
-
-Now this module uses the <a href="https://github.com/yjg30737/pyqt-mac-min-max-close-buttons-widget.git">pyqt-mac-min-max-close-buttons-widget</a> to make user able to set macOS style to each button(min/max/close).
-
-### January 28, 2021 (version 0.6.0)
-
-Now this module inherits the <a href="https://github.com/yjg30737/pyqt-frameless-window.git">pyqt-frameless-window</a> to reduce the redundancy.
-
-<small>Note for release note: I update this release info if update information is really crucial to know.</small>
