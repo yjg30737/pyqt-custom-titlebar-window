@@ -10,7 +10,6 @@ PyQt custom titlebar window(resizable, movable, minimize/maximize/close). User c
 * [Example](#example)
    * [Code Sample (Menu bar only)](#code-sample-menu-bar-only)
    * [Code Sample (Including title bar)](#code-sample-including-title-bar)
-* [Release Note](#release-note)
 
 ## Requirements
 PyQt5 >= 5.15
