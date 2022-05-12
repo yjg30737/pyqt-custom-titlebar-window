@@ -22,7 +22,7 @@ If you want to use this in various ways than use this directly. see the example 
    * [Code Sample (Including title bar)](#code-sample-including-title-bar)
 
 ## Requirements
-PyQt5 >= 5.15 - This package is using <a href="https://doc.qt.io/qt-5/qwindow.html#startSystemMove">startSystemMove</a>, <a href="https://doc.qt.io/qt-5/qwindow.html#startSystemResize">startSystemResize</a> which were both introduced in Qt 5.15. Sorry for the high requirements.
+PyQt5 >= 5.15 - This package is using <a href="https://doc.qt.io/qt-5/qwindow.html#startSystemMove">startSystemMove</a>, <a href="https://doc.qt.io/qt-5/qwindow.html#startSystemResize">startSystemResize</a> which were both introduced in Qt 5.15.
 
 ## Setup
 `python -m pip install pyqt-custom-titlebar-window`
