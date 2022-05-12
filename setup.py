@@ -14,7 +14,7 @@ setup(
         'pyqt-frameless-window>=0.0.1',
         'pyqt-windows-buttons-widget>=0.0.1',
         'pyqt-mac-buttons-widget>=0.0.1',
-        'pyqt-top-titlebar-widget @ git+https://git@github.com/yjg30737/pyqt-top-titlebar-widget.git@main',
+        'pyqt-top-titlebar-widget>=0.0.1',
         'python-get-absolute-resource-path>=0.0.1'
     ]
 )

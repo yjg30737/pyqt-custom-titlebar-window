@@ -7,8 +7,8 @@ from pyqt_frameless_window.framelessWindow import FramelessWindow
 
 from pyqt_top_titlebar_widget import TopTitleBarWidget
 
-from pyqt_windows_min_max_close_buttons_widget import WindowsMinMaxCloseButtonsWidget
-from pyqt_mac_min_max_close_buttons_widget import MacMinMaxCloseButtonsWidget
+from pyqt_windows_buttons_widget import WindowsButtonsWidget
+from pyqt_mac_buttons_widget import MacButtonsWidget
 from python_get_absolute_resource_path.getAbsoulteResourcePath import get_absolute_resource_path
 
 
@@ -178,11 +178,11 @@ class CustomTitlebarWindow(FramelessWindow):
 
             if self.__styleBasedOnOS == 'windows':
                 if isinstance(self.__menubar, QMenuBar):
-                    self.__btnWidget = WindowsMinMaxCloseButtonsWidget(self.__menubar, self.__btnHint)
+                    self.__btnWidget = WindowsButtonsWidget(self.__menubar, self.__btnHint)
                 else:
-                    self.__btnWidget = WindowsMinMaxCloseButtonsWidget(self.__widget, self.__btnHint)
+                    self.__btnWidget = WindowsButtonsWidget(self.__widget, self.__btnHint)
             elif self.__styleBasedOnOS == 'mac':
-                self.__btnWidget = MacMinMaxCloseButtonsWidget(self.__btnHint)
+                self.__btnWidget = MacButtonsWidget(self.__btnHint)
             self.initButtonsEvent()
             lay.addWidget(self.__btnWidget)
 
