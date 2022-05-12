@@ -12,7 +12,7 @@ setup(
     install_requires=[
         'PyQt5>=5.15',
         'pyqt-frameless-window>=0.0.1',
-        'pyqt-windows-min-max-close-buttons-widget @ git+https://git@github.com/yjg30737/pyqt-windows-min-max-close-buttons-widget.git@main',
+        'pyqt-windows-buttons-widget>=0.0.1',
         'pyqt-mac-min-max-close-buttons-widget @ git+https://git@github.com/yjg30737/pyqt-mac-min-max-close-buttons-widget.git@main',
         'pyqt-top-titlebar-widget @ git+https://git@github.com/yjg30737/pyqt-top-titlebar-widget.git@main',
         'python-get-absolute-resource-path>=0.0.1'
