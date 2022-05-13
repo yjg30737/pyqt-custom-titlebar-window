@@ -9,7 +9,7 @@ from pyqt_top_titlebar_widget import TopTitleBarWidget
 
 from pyqt_windows_buttons_widget import WindowsButtonsWidget
 from pyqt_mac_buttons_widget import MacButtonsWidget
-from absresgetter.getabsres import getabsres
+import absresgetter
 
 
 class CustomTitlebarWindow(FramelessWindow):
@@ -206,7 +206,7 @@ class CustomTitlebarWindow(FramelessWindow):
 
     def __getWindowIcon(self, icon_filename):
         if icon_filename:
-            icon_filename = getabsres(icon_filename)
+            icon_filename = absresgetter.getabsres(icon_filename)
         else:
             icon_filename = self.__widget.windowIcon().name()
         return icon_filename
