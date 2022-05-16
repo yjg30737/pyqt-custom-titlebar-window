@@ -161,9 +161,6 @@ class CustomTitlebarWindow(FramelessWindow):
     def setButtonHint(self, hint):
         self.__btnHint = hint
 
-    def setButtonStyle(self, style):
-        self.__styleBasedOnOS = style
-
     def setButtons(self):
         if isinstance(self.__topTitleBar, TopTitleBarWidget):
             self.__topTitleBar.setButtons(self.__btnHint, self.__styleBasedOnOS)
