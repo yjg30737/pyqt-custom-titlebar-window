@@ -44,7 +44,6 @@ PyQt5 >= 5.15 - This package is using <a href="https://doc.qt.io/qt-5/qwindow.ht
 * `setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12), align=Qt.AlignCenter, bottom_separator=False)` to set title bar on the top of the window.
 * `setButtons()` to add min/max/close button on the top right corner of title/menu bar
 * `setButtonHint(hint)` to set hints of buttons. There are three options available(close, min/close, min/max/close). Default value is min/max/close.
-* `setButtonStyle(style)` to set style of buttons, This accepts only two string('Windows', 'Mac').
 * `setMenuTitle(title: str, icon_filename: str, font=QFont('Arial', 12))` to set the icon and title not only on the left side of menu bar, but also set it as window icon and title.
 * Frame's color synchronizes with the `QMenuBar`'s background color or inner `QWidget`'s color if inner widget is not `QMainWindow`.
 * `getCornerWidget()` to get corner widget of `QMenuBar` easily
@@ -64,7 +63,6 @@ if __name__ == "__main__":
   app = QApplication(sys.argv)
   customTitlebarWindow = CustomTitlebarWindow(Calculator())
   # customTitlebarWindow.setButtonHint(hint=['close'])
-  # customTitlebarWindow.setButtonStyle(style='Mac')
   customTitlebarWindow.setButtons()
   customTitlebarWindow.show()
   app.exec_()
@@ -97,7 +95,6 @@ if __name__ == "__main__":
   customTitlebarWindow = CustomTitlebarWindow(window)
   customTitlebarWindow.setTopTitleBar(icon_filename='dark-notepad.svg')
   # customTitlebarWindow.setButtonHint(['close'])
-  # customTitlebarWindow.setButtonStyle(style='Mac')
   customTitlebarWindow.setButtons()
   customTitlebarWindow.show()
   app.exec_()
