@@ -4,7 +4,9 @@ PyQt custom titlebar window(resizable, movable, minimize/maximize/close).
 
 User can set modernized and customized frame surrounding the widget you made. 
 
-You can set the title bar separately or set the menu bar as title bar. 
+You can set the title bar separately or set the menu bar as title bar.
+
+Basic buttons like min/max/close are automatically set by user's OS. 
 
 You can drag title bar or menu bar on widget to move the window, double-click it to show maximize/normal.
 
