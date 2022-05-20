@@ -42,11 +42,11 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__maximizeBtn = QPushButton()
         self.__closeBtn = QPushButton()
 
-        self.__styleBasedOnOS = qApp.platformName()
-        if self.__styleBasedOnOS == 'windows' or self.__styleBasedOnOS == 'mac':
+        self.__style = qApp.platformName()
+        if self.__style == 'windows' or self.__style == 'mac':
             pass
         else:
-            self.__styleBasedOnOS = 'windows'
+            self.__style = 'windows'
 
     def __initUi(self):
         self.__widget.installEventFilter(self)
@@ -77,7 +77,7 @@ class CustomTitlebarWindow(FramelessWindow):
         if obj == self:
             # catch resize event or window state change event
             if e.type() == 14 or e.type() == 105:
-                self.__toggleNormalOrMaximizedTextByOS()
+                self.__toggleNormalOrMaximized()
                 # prevent the problem that top title bar window is not visible when full screen turning off
                 if e.type() == 105:
                     if int(e.oldState()) == 4:
@@ -128,28 +128,28 @@ class CustomTitlebarWindow(FramelessWindow):
             else:
                 # double click (show maximized/normal)
                 if e.type() == 4 and e.button() == Qt.LeftButton:
-                    self.__showNormalOrMaximizedByOS()
+                    self.__showNormalOrMaximized()
                 # move
                 else:
                     self._move()
 
     def __execTitleBarMoveOrDoubleClickEvent(self, e):
         if e.type() == 4 and e.button() == Qt.LeftButton:
-            self.__showNormalOrMaximizedByOS()
+            self.__showNormalOrMaximized()
         else:
             self._move()
 
-    def __showNormalOrMaximizedByOS(self):
-        self.__toggleNormalOrMaximizedTextByOS()
+    def __showNormalOrMaximized(self):
+        self.__toggleNormalOrMaximized()
         self.__execShowNormalOrMaximized()
 
-    def __toggleNormalOrMaximizedTextByOS(self):
-        if self.__styleBasedOnOS == 'windows':
+    def __toggleNormalOrMaximized(self):
+        if self.__style == 'windows':
             if self.isMaximized():
                 self.__maximizeBtn.setText('🗗')
             else:
                 self.__maximizeBtn.setText('🗖')
-        elif self.__styleBasedOnOS == 'mac':
+        elif self.__style == 'mac':
             pass
 
     def __execShowNormalOrMaximized(self):
@@ -162,16 +162,18 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__btnHint = hint
 
     # btnWidget(user-customized button widget), currently being developed
-    def setButtons(self, btnWidget=None):
+    def setButtons(self, btnWidget=None, align=Qt.AlignRight):
         # If window has a TopTitleBarWidget
         if isinstance(self.__topTitleBar, TopTitleBarWidget):
             if btnWidget:
-                self.__topTitleBar.setButtons(self.__btnHint, btnWidget)
+                self.__btnWidget = btnWidget
             else:
-                self.__topTitleBar.setButtons(self.__btnHint, self.__styleBasedOnOS)
+                if self.__style == 'windows':
+                    self.__btnWidget = WindowsButtonsWidget(self.__widget, self.__btnHint)
+                elif self.__style == 'mac':
+                    self.__btnWidget = MacButtonsWidget(self.__widget, self.__btnHint)
+            self.__topTitleBar.setButtons(self.__btnWidget, align)
             iconTitleWidget = self.__topTitleBar.getIconTitleWidget()
-
-            self.__btnWidget = self.__topTitleBar.getBtnWidget()
             self.initTitleEvent(iconTitleWidget)
             self.initButtonsEvent()
         # If window has only a menu bar
@@ -182,9 +184,9 @@ class CustomTitlebarWindow(FramelessWindow):
             if btnWidget:
                 self.__btnWidget = btnWidget
             else:
-                if self.__styleBasedOnOS == 'windows':
+                if self.__style == 'windows':
                     self.__btnWidget = WindowsButtonsWidget(self.__menubar, self.__btnHint)
-                elif self.__styleBasedOnOS == 'mac':
+                elif self.__style == 'mac':
                     self.__btnWidget = MacButtonsWidget(self.__menubar, self.__btnHint)
             self.initButtonsEvent()
             lay.addWidget(self.__btnWidget)
@@ -267,7 +269,7 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__closeBtn = self.__btnWidget.getCloseBtn()
 
         self.__minimizeBtn.clicked.connect(self.showMinimized)
-        self.__maximizeBtn.clicked.connect(self.__showNormalOrMaximizedByOS)
+        self.__maximizeBtn.clicked.connect(self.__showNormalOrMaximized)
         self.__closeBtn.clicked.connect(self.close)
 
     def getInnerWidget(self):
