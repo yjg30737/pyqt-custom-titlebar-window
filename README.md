@@ -6,7 +6,9 @@ User can set modernized and customized frame surrounding the widget you made.
 
 You can set the title bar separately or set the menu bar as title bar.
 
-Basic buttons like min/max/close are automatically set by user's OS. 
+Basic buttons like min/max/close are automatically set by user's OS.
+
+You can set your customized buttons(e.g. min/max/close).
 
 You can drag title bar or menu bar on widget to move the window, double-click it to show maximize/normal.
 
@@ -44,7 +46,7 @@ PyQt5 >= 5.15 - This package is using <a href="https://doc.qt.io/qt-5/qwindow.ht
 * Support full screen feature. When full screen feature turns on, top title bar will disappear. Reappear when it turns off.
 * `CustomTitlebarWindow(CustomizedWidgetByUser())` - Constructor.
 * `setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12), align=Qt.AlignCenter, bottom_separator=False)` to set title bar on the top of the window.
-* `setButtons()` to add min/max/close button on the top right corner of title/menu bar
+* `setButtons(btnWidget=None, align=Qt.AlignRight)` to add buttons(e.g. min/max/close) on the top right/left corner of title/menu bar. If `btnWidget` is set to None, buttons' style are automatically set to your platform/OS friendly style. Basically you can give `btnWidget` to your customized buttons(<a href= "https://github.com/yjg30737/pyqt-titlebar-buttons-widget.git">pyqt-titlebar-buttons-widget</a>). I will explain it better. Sorry for weak explanation.
 * `setButtonHint(hint)` to set hints of buttons. There are three options available(close, min/close, min/max/close). Default value is min/max/close.
 * `setMenuTitle(title: str, icon_filename: str, font=QFont('Arial', 12))` to set the icon and title not only on the left side of menu bar, but also set it as window icon and title.
 * Frame's color synchronizes with the `QMenuBar`'s background color or inner `QWidget`'s color if inner widget is not `QMainWindow`.
