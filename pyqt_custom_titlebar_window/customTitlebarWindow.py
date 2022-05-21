@@ -161,7 +161,7 @@ class CustomTitlebarWindow(FramelessWindow):
     def setButtonHint(self, hint):
         self.__btnHint = hint
 
-    def __getButtonsWidgetBasedOnOS(self):
+    def __getButtonsWidgetBasedOnOS(self, widget):
         if self.__style == 'windows':
             btnWidget = WindowsButtonsWidget(self.__topTitleBar, self.__btnHint)
         elif self.__style == 'mac':
@@ -175,7 +175,7 @@ class CustomTitlebarWindow(FramelessWindow):
             if btnWidget:
                 self.__btnWidget = btnWidget
             else:
-                self.__btnWidget = self.__getButtonsWidgetBasedOnOS()
+                self.__btnWidget = self.__getButtonsWidgetBasedOnOS(self.__topTitleBar)
             self.__topTitleBar.setButtons(self.__btnWidget, align)
             iconTitleWidget = self.__topTitleBar.getIconTitleWidget()
             self.initTitleEvent(iconTitleWidget)
@@ -188,7 +188,7 @@ class CustomTitlebarWindow(FramelessWindow):
             if btnWidget:
                 self.__btnWidget = btnWidget
             else:
-                self.__btnWidget = self.__getButtonsWidgetBasedOnOS()
+                self.__btnWidget = self.__getButtonsWidgetBasedOnOS(self.__menubar)
             self.initButtonsEvent()
             lay.addWidget(self.__btnWidget)
 
