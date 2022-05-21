@@ -163,9 +163,9 @@ class CustomTitlebarWindow(FramelessWindow):
 
     def __getButtonsWidgetBasedOnOS(self, widget):
         if self.__style == 'windows':
-            btnWidget = WindowsButtonsWidget(self.__topTitleBar, self.__btnHint)
+            btnWidget = WindowsButtonsWidget(widget, self.__btnHint)
         elif self.__style == 'mac':
-            btnWidget = MacButtonsWidget(self.__topTitleBar, self.__btnHint)
+            btnWidget = MacButtonsWidget(widget, self.__btnHint)
         return btnWidget
 
     # btnWidget(user-customized button widget), currently being developed
