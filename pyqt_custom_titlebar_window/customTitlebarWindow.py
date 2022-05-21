@@ -161,6 +161,13 @@ class CustomTitlebarWindow(FramelessWindow):
     def setButtonHint(self, hint):
         self.__btnHint = hint
 
+    def __getButtonsWidgetBasedOnOS(self):
+        if self.__style == 'windows':
+            btnWidget = WindowsButtonsWidget(self.__topTitleBar, self.__btnHint)
+        elif self.__style == 'mac':
+            btnWidget = MacButtonsWidget(self.__topTitleBar, self.__btnHint)
+        return btnWidget
+
     # btnWidget(user-customized button widget), currently being developed
     def setButtons(self, btnWidget=None, align=Qt.AlignRight):
         # If window has a TopTitleBarWidget
@@ -168,10 +175,7 @@ class CustomTitlebarWindow(FramelessWindow):
             if btnWidget:
                 self.__btnWidget = btnWidget
             else:
-                if self.__style == 'windows':
-                    self.__btnWidget = WindowsButtonsWidget(self.__topTitleBar, self.__btnHint)
-                elif self.__style == 'mac':
-                    self.__btnWidget = MacButtonsWidget(self.__topTitleBar, self.__btnHint)
+                self.__btnWidget = self.__getButtonsWidgetBasedOnOS()
             self.__topTitleBar.setButtons(self.__btnWidget, align)
             iconTitleWidget = self.__topTitleBar.getIconTitleWidget()
             self.initTitleEvent(iconTitleWidget)
@@ -184,10 +188,7 @@ class CustomTitlebarWindow(FramelessWindow):
             if btnWidget:
                 self.__btnWidget = btnWidget
             else:
-                if self.__style == 'windows':
-                    self.__btnWidget = WindowsButtonsWidget(self.__menubar, self.__btnHint)
-                elif self.__style == 'mac':
-                    self.__btnWidget = MacButtonsWidget(self.__menubar, self.__btnHint)
+                self.__btnWidget = self.__getButtonsWidgetBasedOnOS()
             self.initButtonsEvent()
             lay.addWidget(self.__btnWidget)
 
