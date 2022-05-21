@@ -77,7 +77,6 @@ class CustomTitlebarWindow(FramelessWindow):
         if obj == self:
             # catch resize event or window state change event
             if e.type() == 14 or e.type() == 105:
-                self.__toggleNormalOrMaximized()
                 # prevent the problem that top title bar window is not visible when full screen turning off
                 if e.type() == 105:
                     if int(e.oldState()) == 4:
@@ -140,17 +139,7 @@ class CustomTitlebarWindow(FramelessWindow):
             self._move()
 
     def __showNormalOrMaximized(self):
-        self.__toggleNormalOrMaximized()
         self.__execShowNormalOrMaximized()
-
-    def __toggleNormalOrMaximized(self):
-        if self.__style == 'windows':
-            if self.isMaximized():
-                self.__maximizeBtn.setText('🗗')
-            else:
-                self.__maximizeBtn.setText('🗖')
-        elif self.__style == 'mac':
-            pass
 
     def __execShowNormalOrMaximized(self):
         if self.isMaximized():
