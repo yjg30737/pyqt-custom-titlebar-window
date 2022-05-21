@@ -165,6 +165,15 @@ class CustomTitlebarWindow(FramelessWindow):
         # If window has a TopTitleBarWidget
         if isinstance(self.__topTitleBar, TopTitleBarWidget):
             self.__btnWidget = self.__getProperButtonsWidget(self.__topTitleBar, btnWidget)
+
+            # set proper align value based on type of buttons widget (temporary code)
+            # fixme start
+            if isinstance(self.__btnWidget, WindowsButtonsWidget):
+                align = Qt.AlignRight
+            elif isinstance(self.__btnWidget, MacButtonsWidget):
+                align = Qt.AlignLeft
+            # end
+
             self.__topTitleBar.setButtons(self.__btnWidget, align)
             iconTitleWidget = self.__topTitleBar.getIconTitleWidget()
             self.initTitleEvent(iconTitleWidget)
