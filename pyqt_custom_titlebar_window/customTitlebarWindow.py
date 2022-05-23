@@ -58,7 +58,7 @@ class CustomTitlebarWindow(FramelessWindow):
         lay = QGridLayout()
         lay.addWidget(self.__widget)
         lay.setContentsMargins(self._margin, self._margin, self._margin, self._margin)
-        lay.setSpacing(0)
+        lay.setSpacing(self._margin)
         self.setLayout(lay)
 
         if isinstance(self.__menubar, QMenuBar):
