@@ -45,10 +45,10 @@ PyQt5 >= 5.15 - This package is using <a href="https://doc.qt.io/qt-5/qwindow.ht
 * Set the window title by itself if you set your inner widget's title with `setWindowTitle`. It also catches the `windowTitleChanged` signal of your inner widget.
 * Support full screen feature. When full screen feature turns on, top title bar will disappear. Reappear when it turns off.
 * `CustomTitlebarWindow(CustomizedWidgetByUser())` - Constructor.
-* `setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12), align=Qt.AlignCenter, bottom_separator=False)` to set title bar on the top of the window.
+* `setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 14), align=Qt.AlignCenter, bottom_separator=False)` to set title bar on the top of the window.
 * `setButtons(btnWidget=None, align=Qt.AlignRight)` to add buttons(e.g. min/max/close) on the top right/left corner of title/menu bar. If `btnWidget` is set to None, buttons' style are automatically set to your platform/OS friendly style. Basically you can give `btnWidget` to your customized buttons(<a href= "https://github.com/yjg30737/pyqt-titlebar-buttons-widget.git">pyqt-titlebar-buttons-widget</a>). I will explain it better. Sorry for weak explanation.
 * `setButtonHint(hint)` to set hints of buttons. There are three options available(close, min/close, min/max/close). Default value is min/max/close.
-* `setMenuTitle(title: str, icon_filename: str, font=QFont('Arial', 12))` to set the icon and title not only on the left side of menu bar, but also set it as window icon and title.
+* `setMenuTitle(title: str, icon_filename: str, font=QFont('Arial', 14))` to set the icon and title not only on the left side of menu bar, but also set it as window icon and title.
 * Frame's color synchronizes with the `QMenuBar`'s background color or inner `QWidget`'s color if inner widget is not `QMainWindow`.
 * `getCornerWidget()` to get corner widget of `QMenuBar` easily
 * `getInnerWidget()` to get inner widget easily
