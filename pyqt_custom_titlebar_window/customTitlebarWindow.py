@@ -61,6 +61,12 @@ class CustomTitlebarWindow(FramelessWindow):
         lay.setSpacing(self._margin)
         self.setLayout(lay)
 
+        # modernize the font
+        appFont = qApp.font()
+        appFont.setFamily('Arial') # default font family
+        appFont.setStyleStrategy(QFont.PreferOutline | QFont.PreferAntialias)
+        qApp.setFont(appFont)
+
         if isinstance(self.__menubar, QMenuBar):
             color = self.__menubar.palette().color(QPalette.Base)
             self.__initMenuBar()
@@ -215,7 +221,7 @@ class CustomTitlebarWindow(FramelessWindow):
         icon_filename = self.__getWindowIcon(icon_filename)
         self.setWindowIcon(QIcon(icon_filename))
 
-    def setMenuTitle(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12)):
+    def setMenuTitle(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 14)):
         title = self.__getWindowTitle(title)
         self.__titleLbl.setText(title)
         self.__titleLbl.setFont(font)
@@ -224,7 +230,7 @@ class CustomTitlebarWindow(FramelessWindow):
         self.setWindowTitle(title)
         self.__setWindowIcon(icon_filename)
 
-    def setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 12),
+    def setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 14),
                        align=Qt.AlignCenter, bottom_separator: bool = False):
         title = self.__getWindowTitle(title)
         self.__setWindowIcon(icon_filename)
