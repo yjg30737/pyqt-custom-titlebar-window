@@ -61,12 +61,19 @@ class CustomTitlebarWindow(FramelessWindow):
         lay.setSpacing(self._margin)
         self.setLayout(lay)
 
+        # modernize the application
         # modernize the font
         appFont = qApp.font()
-        appFont.setPointSize(min(30, max(12, appFont.pointSize()))) # font size is set to be above 12, below 30
-        appFont.setFamily('Arial') # default font family
-        appFont.setStyleStrategy(QFont.PreferOutline | QFont.PreferAntialias)
+        # font family: arial
+        appFont.setFamily('Arial')
+        # font size: 9~12
+        appFont.setPointSize(min(12, max(9, appFont.pointSize() * qApp.devicePixelRatio())))
+        # font style strategy: antialiasing
+        appFont.setStyleStrategy(QFont.PreferAntialias)
         qApp.setFont(appFont)
+        # fade menu and tooltip
+        qApp.setEffectEnabled(Qt.UI_FadeMenu, True)
+        qApp.setEffectEnabled(Qt.UI_FadeTooltip, True)
 
         if isinstance(self.__menubar, QMenuBar):
             color = self.__menubar.palette().color(QPalette.Base)
