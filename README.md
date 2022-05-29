@@ -14,7 +14,7 @@ You can drag title bar or menu bar on widget to move the window, double-click it
 
 This also makes the application's font look better by setting the font family to 'Arial'(which looks modern and commonly used), antialiasing.
 
-The range of font size is set to 12~30 which is not too big, not too small.
+The range of font size is set to 9~12 which is not too big, not too small.
 
 If you want to set custom titlebar easily than use <a href="https://github.com/yjg30737/pyqt-custom-titlebar-setter.git">pyqt-custom-titlebar-setter</a>.
 
