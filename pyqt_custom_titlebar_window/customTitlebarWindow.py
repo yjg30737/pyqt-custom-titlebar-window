@@ -61,19 +61,7 @@ class CustomTitlebarWindow(FramelessWindow):
         lay.setSpacing(self._margin)
         self.setLayout(lay)
 
-        # modernize the application
-        # modernize the font
-        appFont = qApp.font()
-        # font family: arial
-        appFont.setFamily('Arial')
-        # font size: 9~12
-        appFont.setPointSize(min(12, max(9, appFont.pointSize() * qApp.devicePixelRatio())))
-        # font style strategy: antialiasing
-        appFont.setStyleStrategy(QFont.PreferAntialias)
-        qApp.setFont(appFont)
-        # fade menu and tooltip
-        qApp.setEffectEnabled(Qt.UI_FadeMenu, True)
-        qApp.setEffectEnabled(Qt.UI_FadeTooltip, True)
+        self.__modernizeAppFont()
 
         if isinstance(self.__menubar, QMenuBar):
             color = self.__menubar.palette().color(QPalette.Base)
@@ -86,6 +74,21 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__menubar.installEventFilter(self)
         tool_button = self.__menubar.findChild(QToolButton)
         tool_button.setArrowType(Qt.RightArrow)
+
+    # modernize the application
+    def __modernizeAppFont(self):
+        # modernize the font
+        appFont = qApp.font()
+        # font family: arial
+        appFont.setFamily('Arial')
+        # font size: 9~12
+        appFont.setPointSize(min(12, max(9, appFont.pointSize() * qApp.devicePixelRatio())))
+        # font style strategy: antialiasing
+        appFont.setStyleStrategy(QFont.PreferAntialias)
+        qApp.setFont(appFont)
+        # fade menu and tooltip
+        qApp.setEffectEnabled(Qt.UI_FadeMenu, True)
+        qApp.setEffectEnabled(Qt.UI_FadeTooltip, True)
 
     def eventFilter(self, obj, e) -> bool:
         if obj == self:
