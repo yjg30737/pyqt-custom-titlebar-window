@@ -7,6 +7,8 @@ from pyqt_frameless_window.framelessWindow import FramelessWindow
 
 from pyqt_top_titlebar_widget import TopTitleBarWidget
 
+from pyqt_svg_label import SvgLabel
+
 from pyqt_windows_buttons_widget import WindowsButtonsWidget
 from pyqt_mac_buttons_widget import MacButtonsWidget
 import absresgetter
@@ -236,8 +238,14 @@ class CustomTitlebarWindow(FramelessWindow):
         title = self.__getWindowTitle(title)
         self.__titleLbl.setText(title)
         self.__titleLbl.setFont(font)
-        self.__menubar.setCornerWidget(self.__titleLbl, Qt.TopLeftCorner)
-
+        iconLbl = SvgLabel()
+        iconLbl.setSvgFile(icon_filename)
+        iconLbl.setFixedSize(self.__menubar.sizeHint().height() // 2, self.__menubar.sizeHint().height() // 2)
+        self.__menubar.setCornerWidget(iconLbl, Qt.TopLeftCorner)
+        lay = QGridLayout()
+        lay.addWidget(self.__titleLbl, 0, 0, 1, 1, Qt.AlignCenter)
+        lay.setContentsMargins(0, 0, 0, 0)
+        self.__menubar.setLayout(lay)
         self.setWindowTitle(title)
         self.__setWindowIcon(icon_filename)
 
