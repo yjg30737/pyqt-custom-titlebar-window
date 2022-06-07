@@ -40,6 +40,7 @@ PyQt5 >= 5.15 - This package is using <a href="https://doc.qt.io/qt-5/qwindow.ht
 * <a href="https://github.com/yjg30737/pyqt-windows-buttons-widget.git">pyqt-windows-buttons-widget</a> - To provide Windows 10 OS style min/max/close buttons with menu bar
 * <a href="https://github.com/yjg30737/pyqt-mac-buttons-widget.git">pyqt-mac-buttons-widget</a> - To provide macOS style of min/max/close buttons with menu bar
 * <a href="https://github.com/yjg30737/pyqt-top-titlebar-widget.git">pyqt-top-titlebar-widget</a> - For adding top title bar feature
+* <a href="https://github.com/yjg30737/pyqt-svg-label.git">pyqt-svg-label</a> - For setting icon/title to menu bar if user shows menu bar only
 * <a href="https://github.com/yjg30737/absresgetter.git">absresgetter</a> - For get absoulte resource path of svg icon to set window icon
 
 ## Feature
