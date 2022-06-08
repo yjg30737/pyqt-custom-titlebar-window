@@ -207,6 +207,9 @@ class CustomTitlebarWindow(FramelessWindow):
 
             cornerWidget = QWidget()
             cornerWidget.setLayout(lay)
+            cornerWidget.setAutoFillBackground(True)
+            color = self.__menubar.palette().color(QPalette.Base)
+            cornerWidget.setStyleSheet(cornerWidget.styleSheet() + f'QWidget {{ background-color: {color.name()} }};')
 
             # set the corner widget that already exists in QMenuBar
             if self.__menubar:
@@ -238,6 +241,9 @@ class CustomTitlebarWindow(FramelessWindow):
         title = self.__getWindowTitle(title)
         self.__titleLbl.setText(title)
         self.__titleLbl.setFont(font)
+        self.__titleLbl.setAutoFillBackground(True)
+        color = self.__menubar.palette().color(QPalette.Base)
+        self.__titleLbl.setStyleSheet(self.__titleLbl.styleSheet() + f'QWidget {{ background-color: {color.name()} }};')
         iconLbl = SvgLabel()
         iconLbl.setSvgFile(icon_filename)
         iconLbl.setFixedSize(self.__menubar.sizeHint().height() // 2, self.__menubar.sizeHint().height() // 2)
