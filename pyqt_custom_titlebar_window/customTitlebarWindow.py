@@ -217,6 +217,9 @@ class CustomTitlebarWindow(FramelessWindow):
                 if existingCornerWidget:
                     lay.insertWidget(0, existingCornerWidget)
 
+                cornerWidget.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.MinimumExpanding)
+                cornerWidget.setMinimumHeight(self.__menubar.height())
+
                 self.__menubar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
 
     def __getWindowTitle(self, title):
