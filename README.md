@@ -82,11 +82,11 @@ In the code sample, <a href="https://github.com/yjg30737/pyqt-dark-calculator.gi
 
 ### Result
  
-![image](https://user-images.githubusercontent.com/55078043/172528838-43a02079-889d-4ba3-b2ef-32f6e6a8bcd4.png)
+![image](https://user-images.githubusercontent.com/55078043/172531274-c8f78b8b-24f4-425b-947f-8910078f2cfb.png)
 
 Here's another example with <a href="https://github.com/yjg30737/pyqt-dark-notepad.git">pyqt-dark-notepad</a>.
 
-![image](https://user-images.githubusercontent.com/55078043/172528808-c048a8f9-386a-4600-bfb7-20666df5cb35.png)
+![image](https://user-images.githubusercontent.com/55078043/172531327-312d1638-e109-41cf-8aa3-ed125cb2c8a1.png)
 
 As you see, existing corner widget doesn't matter.
 
@@ -112,4 +112,4 @@ if __name__ == "__main__":
 
 ### Result
 
-![image](https://user-images.githubusercontent.com/55078043/172528990-070da31d-bfac-4046-9a05-4bca343d4fb9.png)
+![image](https://user-images.githubusercontent.com/55078043/172531428-18f64493-d2a2-4a7c-ab46-8b84ff9b982c.png)
