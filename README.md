@@ -71,6 +71,7 @@ if __name__ == "__main__":
 
   app = QApplication(sys.argv)
   customTitlebarWindow = CustomTitlebarWindow(Calculator())
+  customTitlebarWindow.setMenuTitle(icon_filename='calculator.svg')
   # customTitlebarWindow.setButtonHint(hint=['close'])
   customTitlebarWindow.setButtons()
   customTitlebarWindow.show()
@@ -80,12 +81,12 @@ if __name__ == "__main__":
 In the code sample, <a href="https://github.com/yjg30737/pyqt-dark-calculator.git">pyqt-dark-calculator</a> is being used as inner widget.  
 
 ### Result
-
-![image](https://user-images.githubusercontent.com/55078043/172280599-a0fdb418-caf0-452e-a65b-7f14c49c2bba.png)
+ 
+![image](https://user-images.githubusercontent.com/55078043/172528838-43a02079-889d-4ba3-b2ef-32f6e6a8bcd4.png)
 
 Here's another example with <a href="https://github.com/yjg30737/pyqt-dark-notepad.git">pyqt-dark-notepad</a>.
 
-![image](https://user-images.githubusercontent.com/55078043/172280833-b35682b7-75c9-4e3e-a213-4ad4bac20ef8.png)
+![image](https://user-images.githubusercontent.com/55078043/172528808-c048a8f9-386a-4600-bfb7-20666df5cb35.png)
 
 As you see, existing corner widget doesn't matter.
 
@@ -111,4 +112,4 @@ if __name__ == "__main__":
 
 ### Result
 
-![image](https://user-images.githubusercontent.com/55078043/172276166-ef4f424a-80dc-4f5b-addb-0892c2aa8cce.png)
+![image](https://user-images.githubusercontent.com/55078043/172528990-070da31d-bfac-4046-9a05-4bca343d4fb9.png)
