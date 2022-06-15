@@ -104,6 +104,7 @@ class CustomTitlebarWindow(FramelessWindow):
         if obj.objectName() == 'mainWidget':
             if e.type() == 105:
                 self.__toggleFullScreenFromInnerWidget(e)
+
         # catch the enter event
         if e.type() == 10:
             self.unsetCursor()
@@ -116,6 +117,14 @@ class CustomTitlebarWindow(FramelessWindow):
             if isinstance(obj, QMenuBar):
                 if e.type() == 4 or e.type() == 5:
                     self.__execMenuBarMoveOrDoubleClickEvent(e)
+                elif e.type() == 100:
+                    cornerWidget = self.getCornerWidget()
+                    if cornerWidget:
+                        # apply background color change to corner widget and title label
+                        color = self.__menubar.palette().color(QPalette.Base)
+                        cornerWidget.setStyleSheet(f'QWidget {{ background-color: {color.name()} }};')
+                        self.__titleLbl.setStyleSheet(f'QWidget {{ background-color: {color.name()} }};')
+
             # catch the titlebar double click or mouse move event
             elif isinstance(obj, TopTitleBarWidget):
                 if e.type() == 4 or e.type() == 5:
@@ -209,7 +218,7 @@ class CustomTitlebarWindow(FramelessWindow):
             cornerWidget.setLayout(lay)
             cornerWidget.setAutoFillBackground(True)
             color = self.__menubar.palette().color(QPalette.Base)
-            cornerWidget.setStyleSheet(cornerWidget.styleSheet() + f'QWidget {{ background-color: {color.name()} }};')
+            cornerWidget.setStyleSheet(f'QWidget {{ background-color: {color.name()} }};')
 
             # set the corner widget that already exists in QMenuBar
             if self.__menubar:
@@ -246,7 +255,8 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__titleLbl.setFont(font)
         self.__titleLbl.setAutoFillBackground(True)
         color = self.__menubar.palette().color(QPalette.Base)
-        self.__titleLbl.setStyleSheet(self.__titleLbl.styleSheet() + f'QWidget {{ background-color: {color.name()} }};')
+        self.__titleLbl.setStyleSheet(f'QWidget {{ background-color: {color.name()} }};')
+        self.__titleLbl.setMinimumHeight(self.__menubar.height())
         iconLbl = SvgLabel()
         iconLbl.setSvgFile(icon_filename)
         iconLbl.setFixedSize(self.__menubar.sizeHint().height() // 2, self.__menubar.sizeHint().height() // 2)
