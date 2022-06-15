@@ -1,7 +1,7 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QFont, QIcon
 from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QPushButton, QLabel, \
-    QMenuBar, QToolButton, qApp
+    QMenuBar, QToolButton, qApp, QSizePolicy
 
 from pyqt_frameless_window.framelessWindow import FramelessWindow
 
