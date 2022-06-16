@@ -126,7 +126,6 @@ class CustomTitlebarWindow(FramelessWindow):
                         color = self.__menubar.palette().color(QPalette.Base)
                         cornerWidget.setStyleSheet(f'QWidget {{ background-color: {color.name()} }};')
                         self.__titleLbl.setStyleSheet(f'QWidget {{ background-color: {color.name()} }};')
-                        self.__iconLbl.setStyleSheet(f'QWidget {{ background-color: {color.name()} }};')
 
             # catch the titlebar double click or mouse move event
             elif isinstance(obj, TopTitleBarWidget):
@@ -219,10 +218,6 @@ class CustomTitlebarWindow(FramelessWindow):
 
             cornerWidget = QWidget()
             cornerWidget.setLayout(lay)
-            cornerWidget.setAutoFillBackground(True)
-            color = self.__menubar.palette().color(QPalette.Base)
-            cornerWidget.setStyleSheet(f'QWidget {{ background-color: {color.name()} }};')
-
             # set the corner widget that already exists in QMenuBar
             if self.__menubar:
                 existingCornerWidget = self.__menubar.cornerWidget(Qt.TopRightCorner)
@@ -259,9 +254,6 @@ class CustomTitlebarWindow(FramelessWindow):
         title = self.__getWindowTitle(title)
         self.__titleLbl.setText(title)
         self.__titleLbl.setFont(font)
-        self.__titleLbl.setAutoFillBackground(True)
-        color = self.__menubar.palette().color(QPalette.Base)
-        self.__titleLbl.setStyleSheet(f'QWidget {{ background-color: {color.name()} }};')
         self.__titleLbl.setMinimumHeight(self.__menubar.height())
         cornerWidget = self.__menubar.cornerWidget()
         if cornerWidget:
@@ -276,9 +268,6 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__iconLbl = SvgLabel()
         self.__iconLbl.setSvgFile(icon_filename)
         self.__iconLbl.setFixedSize(self.__menubar.sizeHint().height() // 1.2, self.__menubar.sizeHint().height() // 1.2)
-        self.__iconLbl.setAutoFillBackground(True)
-        color = self.__menubar.palette().color(QPalette.Base)
-        self.__iconLbl.setStyleSheet(f'QWidget {{ background-color: {color.name()} }};')
         self.__menubar.setCornerWidget(self.__iconLbl, Qt.TopLeftCorner)
         self.__setWindowIcon(icon_filename)
 
