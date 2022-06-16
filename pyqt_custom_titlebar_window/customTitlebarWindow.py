@@ -11,6 +11,7 @@ from pyqt_svg_label import SvgLabel
 
 from pyqt_windows_buttons_widget import WindowsButtonsWidget
 from pyqt_mac_buttons_widget import MacButtonsWidget
+from pyqt_resource_helper import PyQtResourceHelper
 import absresgetter
 
 
@@ -35,6 +36,7 @@ class CustomTitlebarWindow(FramelessWindow):
 
         self.__windowTitleIconLabel = QLabel()
         self.__titleLbl = QLabel()
+        self.__iconLbl = QLabel()
 
         self.__topTitleBar = QWidget()
         self.__btnWidget = QWidget()
@@ -124,6 +126,7 @@ class CustomTitlebarWindow(FramelessWindow):
                         color = self.__menubar.palette().color(QPalette.Base)
                         cornerWidget.setStyleSheet(f'QWidget {{ background-color: {color.name()} }};')
                         self.__titleLbl.setStyleSheet(f'QWidget {{ background-color: {color.name()} }};')
+                        self.__iconLbl.setStyleSheet(f'QWidget {{ background-color: {color.name()} }};')
 
             # catch the titlebar double click or mouse move event
             elif isinstance(obj, TopTitleBarWidget):
@@ -225,6 +228,8 @@ class CustomTitlebarWindow(FramelessWindow):
                 existingCornerWidget = self.__menubar.cornerWidget(Qt.TopRightCorner)
                 if existingCornerWidget:
                     lay.insertWidget(0, existingCornerWidget)
+                    if self.__titleLbl.text():
+                        lay.insertWidget(0, self.__titleLbl)
 
                 cornerWidget.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.MinimumExpanding)
                 cornerWidget.setMinimumHeight(self.__menubar.height())
@@ -249,7 +254,7 @@ class CustomTitlebarWindow(FramelessWindow):
         icon_filename = self.__getWindowIcon(icon_filename)
         self.setWindowIcon(QIcon(icon_filename))
 
-    def setMenuTitle(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 14)):
+    def setMenuTitle(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 9)):
         title = self.__getWindowTitle(title)
         self.__titleLbl.setText(title)
         self.__titleLbl.setFont(font)
@@ -257,15 +262,21 @@ class CustomTitlebarWindow(FramelessWindow):
         color = self.__menubar.palette().color(QPalette.Base)
         self.__titleLbl.setStyleSheet(f'QWidget {{ background-color: {color.name()} }};')
         self.__titleLbl.setMinimumHeight(self.__menubar.height())
-        iconLbl = SvgLabel()
-        iconLbl.setSvgFile(icon_filename)
-        iconLbl.setFixedSize(self.__menubar.sizeHint().height() // 2, self.__menubar.sizeHint().height() // 2)
-        self.__menubar.setCornerWidget(iconLbl, Qt.TopLeftCorner)
-        lay = QGridLayout()
-        lay.addWidget(self.__titleLbl, 0, 0, 1, 1, Qt.AlignCenter)
-        lay.setContentsMargins(0, 0, 0, 0)
-        self.__menubar.setLayout(lay)
+        self.__iconLbl = SvgLabel()
+        self.__iconLbl.setSvgFile(icon_filename)
+        self.__iconLbl.setFixedSize(self.__menubar.sizeHint().height() // 2, self.__menubar.sizeHint().height() // 2)
+        self.__iconLbl.setAutoFillBackground(True)
+        color = self.__menubar.palette().color(QPalette.Base)
+        self.__iconLbl.setStyleSheet(f'QWidget {{ background-color: {color.name()} }};')
+        self.__menubar.setCornerWidget(self.__iconLbl, Qt.TopLeftCorner)
         self.setWindowTitle(title)
+        cornerWidget = self.__menubar.cornerWidget()
+        if cornerWidget:
+            lay = cornerWidget.layout()
+            if lay:
+                lay.insertWidget(0, self.__titleLbl)
+        else:
+            self.__menubar.setCornerWidget(self.__titleLbl, Qt.TopRightCorner)
         self.__setWindowIcon(icon_filename)
 
     def setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 14),
