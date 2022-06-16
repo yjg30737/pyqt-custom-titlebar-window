@@ -255,6 +255,7 @@ class CustomTitlebarWindow(FramelessWindow):
         self.setWindowIcon(QIcon(icon_filename))
 
     def setMenuTitle(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 9)):
+        # set menu title
         title = self.__getWindowTitle(title)
         self.__titleLbl.setText(title)
         self.__titleLbl.setFont(font)
@@ -262,14 +263,6 @@ class CustomTitlebarWindow(FramelessWindow):
         color = self.__menubar.palette().color(QPalette.Base)
         self.__titleLbl.setStyleSheet(f'QWidget {{ background-color: {color.name()} }};')
         self.__titleLbl.setMinimumHeight(self.__menubar.height())
-        self.__iconLbl = SvgLabel()
-        self.__iconLbl.setSvgFile(icon_filename)
-        self.__iconLbl.setFixedSize(self.__menubar.sizeHint().height() // 2, self.__menubar.sizeHint().height() // 2)
-        self.__iconLbl.setAutoFillBackground(True)
-        color = self.__menubar.palette().color(QPalette.Base)
-        self.__iconLbl.setStyleSheet(f'QWidget {{ background-color: {color.name()} }};')
-        self.__menubar.setCornerWidget(self.__iconLbl, Qt.TopLeftCorner)
-        self.setWindowTitle(title)
         cornerWidget = self.__menubar.cornerWidget()
         if cornerWidget:
             lay = cornerWidget.layout()
@@ -277,6 +270,16 @@ class CustomTitlebarWindow(FramelessWindow):
                 lay.insertWidget(0, self.__titleLbl)
         else:
             self.__menubar.setCornerWidget(self.__titleLbl, Qt.TopRightCorner)
+        self.setWindowTitle(title)
+
+        # set menu icon
+        self.__iconLbl = SvgLabel()
+        self.__iconLbl.setSvgFile(icon_filename)
+        self.__iconLbl.setFixedSize(self.__menubar.sizeHint().height() // 2, self.__menubar.sizeHint().height() // 2)
+        self.__iconLbl.setAutoFillBackground(True)
+        color = self.__menubar.palette().color(QPalette.Base)
+        self.__iconLbl.setStyleSheet(f'QWidget {{ background-color: {color.name()} }};')
+        self.__menubar.setCornerWidget(self.__iconLbl, Qt.TopLeftCorner)
         self.__setWindowIcon(icon_filename)
 
     def setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 14),
