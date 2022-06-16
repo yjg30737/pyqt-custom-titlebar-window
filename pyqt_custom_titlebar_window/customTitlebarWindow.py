@@ -275,7 +275,7 @@ class CustomTitlebarWindow(FramelessWindow):
         # set menu icon
         self.__iconLbl = SvgLabel()
         self.__iconLbl.setSvgFile(icon_filename)
-        self.__iconLbl.setFixedSize(self.__menubar.sizeHint().height() // 2, self.__menubar.sizeHint().height() // 2)
+        self.__iconLbl.setFixedSize(self.__menubar.sizeHint().height() // 1.2, self.__menubar.sizeHint().height() // 1.2)
         self.__iconLbl.setAutoFillBackground(True)
         color = self.__menubar.palette().color(QPalette.Base)
         self.__iconLbl.setStyleSheet(f'QWidget {{ background-color: {color.name()} }};')
