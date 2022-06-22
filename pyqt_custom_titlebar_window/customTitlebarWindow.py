@@ -269,7 +269,8 @@ class CustomTitlebarWindow(FramelessWindow):
         # set menu icon
         self.__iconLbl = SvgLabel()
         self.__iconLbl.setSvgFile(icon_filename)
-        self.__iconLbl.setFixedSize(self.__menubar.sizeHint().height() // 1.2, self.__menubar.sizeHint().height() // 1.2)
+        w = h = self.__titleLbl.font().pointSize()*2*qApp.screens()[0].logicalDotsPerInch()/96.0
+        self.__iconLbl.setFixedSize(w, h)
         self.__menubar.setCornerWidget(self.__iconLbl, Qt.TopLeftCorner)
         self.__setWindowIcon(icon_filename)
 
