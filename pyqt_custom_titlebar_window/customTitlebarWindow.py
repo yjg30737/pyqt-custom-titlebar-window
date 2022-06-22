@@ -215,7 +215,7 @@ class CustomTitlebarWindow(FramelessWindow):
             self.initButtonsEvent()
             lay.addWidget(self.__btnWidget)
 
-            w = h = self.__titleLbl.fontMetrics().height() * 2
+            w = h = self.__titleLbl.font().pointSize() * 3 * qApp.screens()[0].logicalDotsPerInch()/96.0
             self.__btnWidget.setButtonSize(w, h)
 
             cornerWidget = QWidget()
