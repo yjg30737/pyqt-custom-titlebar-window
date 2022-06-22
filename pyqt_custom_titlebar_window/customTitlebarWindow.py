@@ -86,7 +86,7 @@ class CustomTitlebarWindow(FramelessWindow):
         # font family: arial
         appFont.setFamily('Arial')
         # font size: 9~12
-        appFont.setPointSize(min(12, max(9, appFont.pointSize() * qApp.desktop().logicalDpiX()/96.0)))
+        appFont.setPointSize(min(12, max(9, appFont.pointSize() * qApp.desktop().logicalDotsPerInch()/96.0)))
         # font style strategy: antialiasing
         appFont.setStyleStrategy(QFont.PreferAntialias)
         qApp.setFont(appFont)
