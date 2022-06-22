@@ -11,7 +11,6 @@ from pyqt_svg_label import SvgLabel
 
 from pyqt_windows_buttons_widget import WindowsButtonsWidget
 from pyqt_mac_buttons_widget import MacButtonsWidget
-from pyqt_resource_helper import PyQtResourceHelper
 import absresgetter
 
 
@@ -215,6 +214,9 @@ class CustomTitlebarWindow(FramelessWindow):
             self.__btnWidget = self.__getProperButtonsWidget(self.__menubar, btnWidget)
             self.initButtonsEvent()
             lay.addWidget(self.__btnWidget)
+
+            w = h = self.__titleLbl.fontMetrics().height() * 2
+            self.__btnWidget.setButtonSize(w, h)
 
             cornerWidget = QWidget()
             cornerWidget.setLayout(lay)
