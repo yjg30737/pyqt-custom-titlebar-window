@@ -11,6 +11,7 @@ from pyqt_svg_label import SvgLabel
 
 from pyqt_windows_buttons_widget import WindowsButtonsWidget
 from pyqt_mac_buttons_widget import MacButtonsWidget
+from pyqt_resource_helper import PyQtResourceHelper
 import absresgetter
 
 
@@ -56,8 +57,6 @@ class CustomTitlebarWindow(FramelessWindow):
         self.installEventFilter(self)
 
         # connect the close event with inner widget
-        self.closeEvent = self.__widget.closeEvent
-
         lay = QGridLayout()
         lay.addWidget(self.__widget)
         lay.setContentsMargins(self._margin, self._margin, self._margin, self._margin)
@@ -103,6 +102,8 @@ class CustomTitlebarWindow(FramelessWindow):
                         self.__topTitleBar.show()
         # catch full screen toggle event
         if obj.objectName() == 'mainWidget':
+            if e.type() == 19:
+                self.close()
             if e.type() == 105:
                 self.__toggleFullScreenFromInnerWidget(e)
 
