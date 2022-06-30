@@ -12,10 +12,6 @@ You can set your customized buttons(e.g. min/max/close).
 
 You can drag title bar or menu bar on widget to move the window, double-click it to show maximize/normal.
 
-This also makes the application's font look better by setting the font family to 'Arial'(which looks modern and commonly used), antialiasing.
-
-The range of font size is set to 9~12 which is not too big, not too small.
-
 If you want to set custom titlebar easily than use <a href="https://github.com/yjg30737/pyqt-custom-titlebar-setter.git">pyqt-custom-titlebar-setter</a>.
 
 If you want to use this in various ways than use this directly. see the example below.
@@ -50,10 +46,10 @@ PyQt5 >= 5.15 - This package is using <a href="https://doc.qt.io/qt-5/qwindow.ht
 * Set the window title by itself if you set your inner widget's title with `setWindowTitle`. It also catches the `windowTitleChanged` signal of your inner widget.
 * Support full screen feature. When full screen feature turns on, top title bar will disappear. Reappear when it turns off.
 * `CustomTitlebarWindow(CustomizedWidgetByUser())` - Constructor.
-* `setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 14), align=Qt.AlignCenter, bottom_separator=False)` to set title bar on the top of the window. `font` size should be at least 14. 
+* `setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 14), align=Qt.AlignCenter, bottom_separator=False)` to set title bar on the top of the window.
 * `setButtons(btnWidget=None, align=Qt.AlignRight)` to add buttons(e.g. min/max/close) on the top right/left corner of title/menu bar. If `btnWidget` is set to None, buttons' style are automatically set to your platform/OS friendly style. Basically you can give `btnWidget` to your customized buttons(<a href= "https://github.com/yjg30737/pyqt-titlebar-buttons-widget.git">pyqt-titlebar-buttons-widget</a>). I will explain it better. Sorry for weak explanation.
 * `setButtonHint(hint)` to set hints of buttons. There are three options available(close, min/close, min/max/close). Default value is min/max/close.
-* `setMenuTitle(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 9))` to set the icon and title not only on the left side of menu bar, but also set it as window icon and title. `font` size should be at least 9. 
+* `setMenuTitle(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 9))` to set the icon and title not only on the left side of menu bar, but also set it as window icon and title.
 
 Note: using this function, `macOS` button will be positioned to right which is unorthodox.
 * Frame's color synchronizes with the `QMenuBar`'s background color or inner `QWidget`'s color if inner widget is not `QMainWindow`.
