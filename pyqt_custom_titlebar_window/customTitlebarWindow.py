@@ -1,7 +1,7 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QFont, QIcon
 from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QPushButton, QLabel, \
-    QMenuBar, QToolButton, qApp, QSizePolicy
+    QMenuBar, QToolButton, QSizePolicy, qApp
 
 from pyqt_frameless_window.framelessWindow import FramelessWindow
 
@@ -62,8 +62,6 @@ class CustomTitlebarWindow(FramelessWindow):
         lay.setSpacing(self._margin)
         self.setLayout(lay)
 
-        self.__modernizeAppFont()
-
         if isinstance(self.__menubar, QMenuBar):
             color = self.__menubar.palette().color(QPalette.Base)
             self.__initMenuBar()
@@ -75,21 +73,6 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__menubar.installEventFilter(self)
         tool_button = self.__menubar.findChild(QToolButton)
         tool_button.setArrowType(Qt.RightArrow)
-
-    # modernize the application
-    def __modernizeAppFont(self):
-        # modernize the font
-        appFont = qApp.font()
-        # font family: arial
-        appFont.setFamily('Arial')
-        # font size: 9~12
-        appFont.setPointSize(min(12, max(9, appFont.pointSize() * qApp.desktop().logicalDpiX()/96.0)))
-        # font style strategy: antialiasing
-        appFont.setStyleStrategy(QFont.PreferAntialias)
-        qApp.setFont(appFont)
-        # fade menu and tooltip
-        qApp.setEffectEnabled(Qt.UI_FadeMenu, True)
-        qApp.setEffectEnabled(Qt.UI_FadeTooltip, True)
 
     def eventFilter(self, obj, e) -> bool:
         if obj == self:
@@ -195,10 +178,13 @@ class CustomTitlebarWindow(FramelessWindow):
         if isinstance(self.__topTitleBar, TopTitleBarWidget):
             self.__btnWidget = self.__getProperButtonsWidget(self.__topTitleBar, btnWidget)
 
+            # set proper align value based on type of buttons widget (temporary code)
+            # fixme start
             if isinstance(self.__btnWidget, WindowsButtonsWidget):
                 align = Qt.AlignRight
             elif isinstance(self.__btnWidget, MacButtonsWidget):
                 align = Qt.AlignLeft
+            # end
 
             self.__topTitleBar.setButtons(self.__btnWidget, align)
             iconTitleWidget = self.__topTitleBar.getIconTitleWidget()
@@ -309,10 +295,19 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__minimizeBtn = self.__btnWidget.getMinimizedBtn()
         self.__maximizeBtn = self.__btnWidget.getMaximizedBtn()
         self.__closeBtn = self.__btnWidget.getCloseBtn()
+        self.__fixBtn = self.__btnWidget.getFixBtn()
 
         self.__minimizeBtn.clicked.connect(self.showMinimized)
         self.__maximizeBtn.clicked.connect(self.__showNormalOrMaximized)
         self.__closeBtn.clicked.connect(self.close)
+        self.__fixBtn.clicked.connect(self.fix)
+
+    def fix(self, f):
+        if f:
+            self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
+        else:
+            self.setWindowFlags(self.windowFlags() & ~Qt.WindowStaysOnTopHint)
+        self.show()
 
     def getInnerWidget(self):
         return self.__widget
