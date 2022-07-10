@@ -1,7 +1,7 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QFont, QIcon
 from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QPushButton, QLabel, \
-    QMenuBar, QToolButton, QSizePolicy, qApp
+    QMenuBar, QToolButton, QSizePolicy, QApplication
 
 from pyqt_frameless_window.framelessWindow import FramelessWindow
 
@@ -43,7 +43,7 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__maximizeBtn = QPushButton()
         self.__closeBtn = QPushButton()
 
-        self.__style = qApp.platformName()
+        self.__style = QApplication.platformName()
         if self.__style == 'windows' or self.__style == 'mac':
             pass
         else:
@@ -60,6 +60,8 @@ class CustomTitlebarWindow(FramelessWindow):
         lay.setSpacing(self._margin)
         self.setLayout(lay)
 
+        self.__modernizeAppFont()
+
         # set frame color
         if isinstance(self.__menubar, QMenuBar):
             color = self.__menubar.palette().color(QPalette.Base)
@@ -72,6 +74,21 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__menubar.installEventFilter(self)
         tool_button = self.__menubar.findChild(QToolButton)
         tool_button.setArrowType(Qt.RightArrow)
+
+    # modernize the application
+    def __modernizeAppFont(self):
+        # modernize the font
+        appFont = QApplication.font()
+        # font family: arial
+        appFont.setFamily('Arial')
+        # font size: 9~12
+        appFont.setPointSize(min(12, max(9, appFont.pointSize() * QApplication.desktop().logicalDpiX()/96.0)))
+        # font style strategy: antialiasing
+        appFont.setStyleStrategy(QFont.PreferAntialias)
+        QApplication.setFont(appFont)
+        # fade menu and tooltip
+        QApplication.setEffectEnabled(Qt.UI_FadeMenu, True)
+        QApplication.setEffectEnabled(Qt.UI_FadeTooltip, True)
 
     def eventFilter(self, obj, e) -> bool:
         if obj == self:
@@ -197,7 +214,7 @@ class CustomTitlebarWindow(FramelessWindow):
             self.initButtonsEvent()
             lay.addWidget(self.__btnWidget)
 
-            w = h = self.__titleLbl.font().pointSize() * 3 * qApp.screens()[0].logicalDotsPerInch()/96.0
+            w = h = self.__titleLbl.font().pointSize() * 3 * QApplication.screens()[0].logicalDotsPerInch()/96.0
             self.__btnWidget.setButtonSize(w, h)
 
             cornerWidget = QWidget()
@@ -251,7 +268,7 @@ class CustomTitlebarWindow(FramelessWindow):
         # set menu icon
         self.__iconLbl = SvgLabel()
         self.__iconLbl.setSvgFile(icon_filename)
-        w = h = self.__titleLbl.font().pointSize()*2*qApp.screens()[0].logicalDotsPerInch()/96.0
+        w = h = self.__titleLbl.font().pointSize()*2*QApplication.screens()[0].logicalDotsPerInch()/96.0
         self.__iconLbl.setFixedSize(w, h)
         self.__menubar.setCornerWidget(self.__iconLbl, Qt.TopLeftCorner)
         self.__setWindowIcon(icon_filename)
