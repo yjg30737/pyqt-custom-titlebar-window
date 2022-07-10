@@ -4,8 +4,6 @@ PyQt custom titlebar window(resizable, movable, minimize/maximize/close).
 
 User can set modernized and customized frame surrounding the widget you made.
 
-This modernizes the app font as well.
-
 You can set the title bar separately or set the menu bar as title bar.
 
 Basic buttons like min/max/close are automatically set by user's OS.
@@ -13,6 +11,10 @@ Basic buttons like min/max/close are automatically set by user's OS.
 You can set your customized buttons(e.g. min/max/close).
 
 You can drag title bar or menu bar on widget to move the window, double-click it to show maximize/normal.
+
+This also makes the application's font look much better by setting the font family to 'Arial'(which looks modern and commonly used), antialiasing the font.
+
+The range of font size is set to 9~12 which is not too big, not too small.
 
 If you want to set custom titlebar easily than use <a href="https://github.com/yjg30737/pyqt-custom-titlebar-setter.git">pyqt-custom-titlebar-setter</a>.
 
