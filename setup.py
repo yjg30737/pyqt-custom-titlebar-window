@@ -9,7 +9,7 @@ with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
 
 setup(
     name='pyqt-custom-titlebar-window',
-    version='0.0.38',
+    version='0.0.39',
     author='Jung Gyu Yoon',
     author_email='yjg30737@gmail.com',
     license='MIT',
