@@ -48,6 +48,7 @@ PyQt5 >= 5.15 - This package is using <a href="https://doc.qt.io/qt-5/qwindow.ht
 * If you drag the title bar(menu bar if there is no title bar) of inner widget, window will be moved.
 * If you double-click the menu bar, window will be maximized/normalized.
 * Set the window title by itself if you set your inner widget's title with `setWindowTitle`. It also catches the `windowTitleChanged` signal of your inner widget.
+* Support close event(QCloseEvent) of inner widget.
 * Support full screen feature. When full screen feature turns on, top title bar will disappear. Reappear when it turns off.
 * `CustomTitlebarWindow(CustomizedWidgetByUser())` - Constructor.
 * `setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 14), align=Qt.AlignCenter, bottom_separator=False)` to set title bar on the top of the window.
