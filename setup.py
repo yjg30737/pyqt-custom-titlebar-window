@@ -24,7 +24,6 @@ setup(
         'pyqt-windows-buttons-widget>=0.0.1',
         'pyqt-mac-buttons-widget>=0.0.1',
         'pyqt-top-titlebar-widget>=0.0.1',
-        'pyqt-svg-label>=0.0.1',
-        'absresgetter>=0.0.1'
+        'pyqt-svg-label>=0.0.1'
     ]
 )
