@@ -54,6 +54,8 @@ class CustomTitlebarWindow(FramelessWindow):
         self.installEventFilter(self)
 
         # connect the close event with inner widget
+        self.closeEvent = self.__widget.closeEvent
+
         lay = QGridLayout()
         lay.addWidget(self.__widget)
         lay.setContentsMargins(self._margin, self._margin, self._margin, self._margin)
