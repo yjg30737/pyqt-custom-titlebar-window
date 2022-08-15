@@ -250,8 +250,7 @@ class CustomTitlebarWindow(FramelessWindow):
         icon_filename = self.__getWindowIcon(icon_filename)
         self.setWindowIcon(QIcon(icon_filename))
 
-    def setMenuAsTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 9)):
-        # set menu title
+    def __setMenuTitle(self, title, font):
         title = self.__getWindowTitle(title)
         self.__titleLbl.setText(title)
         self.__titleLbl.setFont(font)
@@ -265,7 +264,7 @@ class CustomTitlebarWindow(FramelessWindow):
             self.__menubar.setCornerWidget(self.__titleLbl, Qt.TopRightCorner)
         self.setWindowTitle(title)
 
-        # set menu icon
+    def __setMenuIcon(self, icon_filename):
         self.__iconLbl = SvgLabel()
         self.__iconLbl.setSvgFile(icon_filename)
         w = h = self.__titleLbl.font().pointSize()*2*QApplication.screens()[0].logicalDotsPerInch()/96.0
@@ -276,6 +275,12 @@ class CustomTitlebarWindow(FramelessWindow):
         leftCornerWidget = QWidget()
         leftCornerWidget.setLayout(lay)
         self.__menubar.setCornerWidget(leftCornerWidget, Qt.TopLeftCorner)
+
+    def setMenuAsTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 9)):
+        # set menu title
+        self.__setMenuTitle(title, font)
+        # set menu icon
+        self.__setMenuIcon(icon_filename)
         self.__setWindowIcon(icon_filename)
 
     def setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 14),
