@@ -104,14 +104,15 @@ class CustomTitlebarWindow(FramelessWindow):
                 self.close()
             if e.type() == 105:
                 self.__toggleFullScreenFromInnerWidget(e)
-
+            # catch the title change event
+            if e.type() == 33:
+                title = obj.windowTitle()
+                self.__titleLbl.setText(title)
+                self.setWindowTitle(title)
         # catch the enter event
         if e.type() == 10:
             self.unsetCursor()
             self._resizing = False
-        # catch the title change event
-        if e.type() == 33:
-            self.__titleLbl.setText(obj.windowTitle())
         if obj.objectName() == 'navWidget':
             # catch the menubar double click or mouse move event
             if isinstance(obj, QMenuBar):
@@ -262,7 +263,6 @@ class CustomTitlebarWindow(FramelessWindow):
                 lay.insertWidget(0, self.__titleLbl)
         else:
             self.__menubar.setCornerWidget(self.__titleLbl, Qt.TopRightCorner)
-        self.setWindowTitle(title)
 
     def __setMenuIcon(self, icon_filename):
         self.__iconLbl = SvgLabel()
@@ -277,15 +277,18 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__menubar.setCornerWidget(leftCornerWidget, Qt.TopLeftCorner)
 
     def setMenuAsTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 9)):
+        title = self.__getWindowTitle(title)
+        self.setWindowTitle(title)
+        self.__setWindowIcon(icon_filename)
         # set menu title
         self.__setMenuTitle(title, font)
         # set menu icon
         self.__setMenuIcon(icon_filename)
-        self.__setWindowIcon(icon_filename)
 
     def setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 14),
                        align=Qt.AlignCenter, bottom_separator: bool = False):
         title = self.__getWindowTitle(title)
+        self.setWindowTitle(title)
         self.__setWindowIcon(icon_filename)
 
         if isinstance(self.__menubar, QMenuBar):
@@ -306,9 +309,6 @@ class CustomTitlebarWindow(FramelessWindow):
         lay.addWidget(centralWidget, 1, 0, 1, 1)
 
         self.setPressToMove(False)
-
-        # Set app title
-        self.setWindowTitle(title)
 
     def getCornerWidget(self):
         return self.__menubar.cornerWidget()
