@@ -252,7 +252,6 @@ class CustomTitlebarWindow(FramelessWindow):
         self.setWindowIcon(QIcon(icon_filename))
 
     def __setMenuTitle(self, title, font):
-        title = self.__getWindowTitle(title)
         self.__titleLbl.setText(title)
         self.__titleLbl.setFont(font)
         self.__titleLbl.setMinimumHeight(self.__menubar.height())
