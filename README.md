@@ -73,7 +73,7 @@ if __name__ == "__main__":
 
   app = QApplication(sys.argv)
   customTitlebarWindow = CustomTitlebarWindow(Calculator())
-  customTitlebarWindow.setMenuTitle(icon_filename='calculator.svg')
+  customTitlebarWindow.setMenuAsTitleBar(icon_filename='calculator.svg')
   # customTitlebarWindow.setButtonHint(hint=['close'])
   customTitlebarWindow.setButtons()
   customTitlebarWindow.show()

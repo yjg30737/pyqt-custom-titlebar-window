@@ -250,7 +250,7 @@ class CustomTitlebarWindow(FramelessWindow):
         icon_filename = self.__getWindowIcon(icon_filename)
         self.setWindowIcon(QIcon(icon_filename))
 
-    def setMenuTitle(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 9)):
+    def setMenuAsTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 9)):
         # set menu title
         title = self.__getWindowTitle(title)
         self.__titleLbl.setText(title)
