@@ -270,7 +270,12 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__iconLbl.setSvgFile(icon_filename)
         w = h = self.__titleLbl.font().pointSize()*2*QApplication.screens()[0].logicalDotsPerInch()/96.0
         self.__iconLbl.setFixedSize(w, h)
-        self.__menubar.setCornerWidget(self.__iconLbl, Qt.TopLeftCorner)
+        lay = QHBoxLayout()
+        lay.addWidget(self.__iconLbl)
+        lay.setContentsMargins(5, 0, 0, 0)
+        leftCornerWidget = QWidget()
+        leftCornerWidget.setLayout(lay)
+        self.__menubar.setCornerWidget(leftCornerWidget, Qt.TopLeftCorner)
         self.__setWindowIcon(icon_filename)
 
     def setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 14),
