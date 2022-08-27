@@ -98,6 +98,24 @@ class CustomTitlebarWindow(FramelessWindow):
                 if int(e.oldState()) == 4:
                     if isinstance(self.__topTitleBar, TopTitleBarWidget):
                         self.__topTitleBar.show()
+            # set proper minimum size
+            elif e.type() == 17:
+                menubarSizeHint = self.__menubar.sizeHint()
+                widgetSizeHint = self.__widget.sizeHint()
+                # todo
+                # * 2 is a temporary measure
+                topTitleBarSizeHint = self.__topTitleBar.sizeHint() * 2
+                min_width = max(
+                    menubarSizeHint.width(),
+                    widgetSizeHint.width(),
+                    topTitleBarSizeHint.width()
+                )
+                min_height = max(
+                    menubarSizeHint.height(),
+                    widgetSizeHint.height(),
+                    topTitleBarSizeHint.height()
+                )
+                self.setMinimumSize(min_width, min_height)
         # catch full screen toggle event
         if obj.objectName() == 'mainWidget':
             if e.type() == 19:
