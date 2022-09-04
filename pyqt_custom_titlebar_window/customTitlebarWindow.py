@@ -175,9 +175,13 @@ class CustomTitlebarWindow(FramelessWindow):
                 # double click (show maximized/normal)
                 if e.type() == 4 and e.button() == Qt.LeftButton:
                     self.__showNormalOrMaximized()
-                # move
+                # click once
                 else:
-                    self._move()
+                    # doesn't move if window state is full screen
+                    self.setPressToMove(int(self.windowState()) != 4)
+                    # move
+                    if self.isPressToMove():
+                        self._move()
 
     def __execTitleBarMoveOrDoubleClickEvent(self, e):
         if e.type() == 4 and e.button() == Qt.LeftButton:
