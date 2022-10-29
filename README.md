@@ -36,7 +36,7 @@ PyQt5 >= 5.15 - This package is using <a href="https://doc.qt.io/qt-5/qwindow.ht
 `python -m pip install pyqt-custom-titlebar-window`
 
 ## Included Packages
-* <a href="https://github.com/yjg30737/pyqt-frameless-window.git">pyqt-frameless-window</a> - To import parent class `FramelessWindow`
+* <a href="https://pypi.org/project/pyqt-frameless-window/0.0.61/">pyqt-frameless-window (v0.0.61)</a> - To import parent class `FramelessWindow`
 * <a href="https://github.com/yjg30737/pyqt-windows-buttons-widget.git">pyqt-windows-buttons-widget</a> - To provide Windows 10 OS style min/max/close buttons with menu bar
 * <a href="https://github.com/yjg30737/pyqt-mac-buttons-widget.git">pyqt-mac-buttons-widget</a> - To provide macOS style of min/max/close buttons with menu bar
 * <a href="https://github.com/yjg30737/pyqt-top-titlebar-widget.git">pyqt-top-titlebar-widget</a> - For adding top title bar feature
