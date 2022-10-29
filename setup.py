@@ -20,7 +20,7 @@ setup(
     long_description=long_description,
     install_requires=[
         'PyQt5>=5.15',
-        'pyqt-frameless-window>=0.0.1',
+        'pyqt-frameless-window==0.0.61',
         'pyqt-windows-buttons-widget>=0.0.1',
         'pyqt-mac-buttons-widget>=0.0.1',
         'pyqt-top-titlebar-widget>=0.0.1',
