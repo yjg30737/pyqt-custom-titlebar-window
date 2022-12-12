@@ -100,9 +100,11 @@ class CustomTitlebarWindow(FramelessWindow):
                         self.__topTitleBar.show()
             # set proper minimum size
             elif e.type() == 17:
-                menubarSizeHint = self.__menubar.sizeHint()
+                # todo refactoring
+                # temporary measurement for distinguishing QMainWindow and QWidget/QDialog to prevent error
+                menubarSizeHint = self.__menubar.sizeHint() if isinstance(self.__widget, QMainWindow) else self.__widget.sizeHint()
                 widgetSizeHint = self.__widget.sizeHint()
-                # todo
+                # todo refactoring
                 # * 2 is a temporary measure
                 topTitleBarSizeHint = self.__topTitleBar.sizeHint() * 2
                 min_width = max(
