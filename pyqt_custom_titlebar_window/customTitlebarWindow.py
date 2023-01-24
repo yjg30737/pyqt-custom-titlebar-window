@@ -233,29 +233,34 @@ class CustomTitlebarWindow(FramelessWindow):
             self.initButtonsEvent()
         # If window has only a menu bar
         else:
-            lay = QHBoxLayout()
-            lay.setContentsMargins(0, 0, 0, 0)
-            self.__btnWidget = self.__getProperButtonsWidget(self.__menubar, btnWidget)
-            self.initButtonsEvent()
-            lay.addWidget(self.__btnWidget)
+            try:
+                # check if menu bar exists
+                if isinstance(self.__menubar, QMenuBar):
+                    lay = QHBoxLayout()
+                    lay.setContentsMargins(0, 0, 0, 0)
+                    self.__btnWidget = self.__getProperButtonsWidget(self.__menubar, btnWidget)
+                    self.initButtonsEvent()
+                    lay.addWidget(self.__btnWidget)
 
-            w = h = self.__titleLbl.font().pointSize() * 3 * QApplication.screens()[0].logicalDotsPerInch()/96.0
-            self.__btnWidget.setButtonSize(w, h)
+                    w = h = self.__titleLbl.font().pointSize() * 3 * QApplication.screens()[0].logicalDotsPerInch()/96.0
+                    self.__btnWidget.setButtonSize(w, h)
 
-            cornerWidget = QWidget()
-            cornerWidget.setLayout(lay)
-            # set the corner widget that already exists in QMenuBar
-            if self.__menubar:
-                existingCornerWidget = self.__menubar.cornerWidget(Qt.TopRightCorner)
-                if existingCornerWidget:
-                    lay.insertWidget(0, existingCornerWidget)
-                    if self.__titleLbl.text():
-                        lay.insertWidget(0, self.__titleLbl)
+                    cornerWidget = QWidget()
+                    cornerWidget.setLayout(lay)
+                    existingCornerWidget = self.__menubar.cornerWidget(Qt.TopRightCorner)
+                    if existingCornerWidget:
+                        lay.insertWidget(0, existingCornerWidget)
+                        if self.__titleLbl.text():
+                            lay.insertWidget(0, self.__titleLbl)
 
-                cornerWidget.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.MinimumExpanding)
-                cornerWidget.setMinimumHeight(self.__menubar.height())
+                    cornerWidget.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.MinimumExpanding)
+                    cornerWidget.setMinimumHeight(self.__menubar.height())
 
-                self.__menubar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
+                    self.__menubar.setCornerWidget(cornerWidget, Qt.TopRightCorner)
+                else:
+                    raise Exception
+            except Exception as e:
+                print('There is neither title bar nor menu bar in this widget, so you should not use setButtons')
 
     def __getWindowTitle(self, title):
         if title:
@@ -300,13 +305,19 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__menubar.setCornerWidget(leftCornerWidget, Qt.TopLeftCorner)
 
     def setMenuAsTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 9)):
-        title = self.__getWindowTitle(title)
-        self.setWindowTitle(title)
-        self.__setWindowIcon(icon_filename)
-        # set menu title
-        self.__setMenuTitle(title, font)
-        # set menu icon
-        self.__setMenuIcon(icon_filename)
+        try:
+            if isinstance(self.__menubar, QMenuBar):
+                title = self.__getWindowTitle(title)
+                self.setWindowTitle(title)
+                self.__setWindowIcon(icon_filename)
+                # set menu title
+                self.__setMenuTitle(title, font)
+                # set menu icon
+                self.__setMenuIcon(icon_filename)
+            else:
+                raise Exception
+        except Exception as e:
+            print('There is no menu bar in this widget, so you should not use setMenuAsTitleBar')
 
     def setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 14),
                        align=Qt.AlignCenter, bottom_separator: bool = False):
