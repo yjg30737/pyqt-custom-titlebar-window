@@ -290,7 +290,7 @@ class CustomTitlebarWindow(FramelessWindow):
     def __setMenuIcon(self, icon_filename):
         self.__iconLbl = SvgLabel()
         self.__iconLbl.setSvgFile(icon_filename)
-        w = h = self.__titleLbl.font().pointSize()*2*QApplication.screens()[0].logicalDotsPerInch()/96.0
+        w = h = int(self.__titleLbl.font().pointSize()*2*QApplication.screens()[0].logicalDotsPerInch()/96.0)
         self.__iconLbl.setFixedSize(w, h)
         lay = QHBoxLayout()
         lay.addWidget(self.__iconLbl)
