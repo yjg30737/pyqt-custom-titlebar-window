@@ -317,7 +317,7 @@ class CustomTitlebarWindow(FramelessWindow):
         except Exception as e:
             print('There is no menu bar in this widget, so you should not use setMenuAsTitleBar')
 
-    def setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 14),
+    def setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 24),
                        align=Qt.AlignCenter, bottom_separator: bool = False):
         title = self.__getWindowTitle(title)
         self.setWindowTitle(title)

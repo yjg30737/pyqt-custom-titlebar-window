@@ -28,7 +28,7 @@ if __name__ == "__main__":
   app = QApplication(sys.argv)
   window = MainWindow()
   customTitlebarWindow = CustomTitlebarWindow(window)
-  customTitlebarWindow.setTopTitleBar(icon_filename='icon.svg')
+  customTitlebarWindow.setMenuAsTitleBar(icon_filename='icon.svg')
   customTitlebarWindow.setButtonHint(hint=['min', 'max', 'close'])
   customTitlebarWindow.setButtons()
   customTitlebarWindow.show()
