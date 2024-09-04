@@ -29,7 +29,7 @@ if __name__ == "__main__":
   window = MainWindow()
   customTitlebarWindow = CustomTitlebarWindow(window)
   customTitlebarWindow.setMenuAsTitleBar(icon_filename='icon.svg')
-  customTitlebarWindow.setButtonHint(hint=['min', 'max', 'close'])
+  customTitlebarWindow.setButtonHint(hint=['fix', 'close'])
   customTitlebarWindow.setButtons()
   customTitlebarWindow.show()
   app.exec_()

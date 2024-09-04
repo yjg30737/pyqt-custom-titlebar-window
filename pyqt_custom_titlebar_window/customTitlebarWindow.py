@@ -359,7 +359,7 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__minimizeBtn.clicked.connect(self.showMinimized)
         self.__maximizeBtn.clicked.connect(self.__showNormalOrMaximized)
         self.__closeBtn.clicked.connect(self.close)
-        self.__fixBtn.clicked.connect(self.fix)
+        self.__fixBtn.toggled.connect(self.fix)
 
     def fix(self, f):
         if f:

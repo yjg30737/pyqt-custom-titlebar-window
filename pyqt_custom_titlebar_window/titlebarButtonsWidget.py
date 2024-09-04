@@ -26,6 +26,7 @@ class TitlebarButtonsWidget(QWidget):
         self._foldBtn.setStyleAndIcon('ico/fold.svg')
 
         self._fixBtn = Button(base_widget)
+        self._fixBtn.setCheckable(True)
         self._fixBtn.setStyleAndIcon('ico/tack.svg')
 
         self._searchBtn = Button(base_widget)
