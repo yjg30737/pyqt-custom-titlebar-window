@@ -5,12 +5,10 @@ from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QPus
 
 from pyqt_frameless_window.framelessWindow import FramelessWindow
 
-from pyqt_top_titlebar_widget import TopTitleBarWidget
-
-from pyqt_svg_label import SvgLabel
-
-from pyqt_windows_buttons_widget import WindowsButtonsWidget
-from pyqt_mac_buttons_widget import MacButtonsWidget
+from pyqt_custom_titlebar_window.topTitleBarWidget import TopTitleBarWidget
+from pyqt_custom_titlebar_window.svgLabel import SvgLabel
+from pyqt_custom_titlebar_window.windowsButtonsWidget import WindowsButtonsWidget
+from pyqt_custom_titlebar_window.macButtonsWidget import MacButtonsWidget
 
 
 class CustomTitlebarWindow(FramelessWindow):
