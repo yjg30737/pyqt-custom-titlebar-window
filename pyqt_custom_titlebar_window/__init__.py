@@ -1,3 +1,8 @@
+from pathlib import Path
+
+
+SRC_DIR = Path(__file__).resolve().parent
+
 DEFAULT_BUTTON_HOVER_COLOR = '#A2D0DD'
 DEFAULT_BUTTON_PRESSED_COLOR = '#B3E0FF'
 DEFAULT_BUTTON_CHECKED_COLOR = '#B3E0FF'

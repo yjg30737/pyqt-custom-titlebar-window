@@ -3,6 +3,7 @@ import os.path, posixpath
 from PyQt5.QtGui import QColor, QPalette, qGray, QIcon
 from PyQt5.QtWidgets import QGraphicsColorizeEffect, QWidget, QApplication, QPushButton
 
+from pyqt_custom_titlebar_window import SRC_DIR
 from pyqt_custom_titlebar_window.button_style_helper import ButtonStyleHelper
 
 
@@ -14,7 +15,7 @@ class Button(QPushButton):
         self.installEventFilter(self)
 
     def setStyleAndIcon(self, icon: str):
-        self.style_helper.__icon = icon
+        self.style_helper.__icon = path.join(SRC_DIR, icon)
         self.setStyleSheet(self.style_helper.styleInit())
         self.setIcon(QIcon(icon))
 
