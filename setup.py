@@ -14,16 +14,14 @@ setup(
     author_email='yjg30737@gmail.com',
     license='MIT',
     packages=find_packages(),
+    package_data={'pyqt_custom_titlebar_window.ico': ['full_screen.svg', 'help.svg', 'tack.svg',
+                                                            'fold.svg', 'unfold.svg', 'search.svg']},
     description='PyQt custom titlebar window (resizable, movable, minimize/maximize/close, etc.)',
     url='https://github.com/yjg30737/pyqt-custom-titlebar-window.git',
     long_description_content_type='text/markdown',
     long_description=long_description,
     install_requires=[
         'PyQt5>=5.15',
-        'pyqt-frameless-window==0.0.61',
-        'pyqt-windows-buttons-widget>=0.0.1',
-        'pyqt-mac-buttons-widget>=0.0.1',
-        'pyqt-top-titlebar-widget>=0.0.1',
-        'pyqt-svg-label>=0.0.1'
+        'pyqt-frameless-window==0.0.61'
     ]
 )

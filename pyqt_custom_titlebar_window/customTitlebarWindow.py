@@ -5,12 +5,10 @@ from PyQt5.QtWidgets import QHBoxLayout, QGridLayout, QWidget, QMainWindow, QPus
 
 from pyqt_frameless_window.framelessWindow import FramelessWindow
 
-from pyqt_top_titlebar_widget import TopTitleBarWidget
-
-from pyqt_svg_label import SvgLabel
-
-from pyqt_windows_buttons_widget import WindowsButtonsWidget
-from pyqt_mac_buttons_widget import MacButtonsWidget
+from pyqt_custom_titlebar_window.topTitleBarWidget import TopTitleBarWidget
+from pyqt_custom_titlebar_window.svgLabel import SvgLabel
+from pyqt_custom_titlebar_window.windowsButtonsWidget import WindowsButtonsWidget
+from pyqt_custom_titlebar_window.macButtonsWidget import MacButtonsWidget
 
 
 class CustomTitlebarWindow(FramelessWindow):
@@ -260,6 +258,7 @@ class CustomTitlebarWindow(FramelessWindow):
                 else:
                     raise Exception
             except Exception as e:
+                print(e)
                 print('There is neither title bar nor menu bar in this widget, so you should not use setButtons')
 
     def __getWindowTitle(self, title):
@@ -319,7 +318,7 @@ class CustomTitlebarWindow(FramelessWindow):
         except Exception as e:
             print('There is no menu bar in this widget, so you should not use setMenuAsTitleBar')
 
-    def setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 14),
+    def setTopTitleBar(self, title: str = '', icon_filename: str = '', font: QFont = QFont('Arial', 24),
                        align=Qt.AlignCenter, bottom_separator: bool = False):
         title = self.__getWindowTitle(title)
         self.setWindowTitle(title)
@@ -360,7 +359,7 @@ class CustomTitlebarWindow(FramelessWindow):
         self.__minimizeBtn.clicked.connect(self.showMinimized)
         self.__maximizeBtn.clicked.connect(self.__showNormalOrMaximized)
         self.__closeBtn.clicked.connect(self.close)
-        self.__fixBtn.clicked.connect(self.fix)
+        self.__fixBtn.toggled.connect(self.fix)
 
     def fix(self, f):
         if f:
