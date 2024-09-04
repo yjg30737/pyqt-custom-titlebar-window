@@ -8,16 +8,16 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle('Main Window')
 
-        self.__fontWidget = FontWidget()
-        self.setCentralWidget(self.__fontWidget)
-
-        # Example menubar
         menu = self.menuBar()
         menu.addAction('File')
         menu.addAction('Edit')
         menu.addAction('View')
         menu.addAction('Help')
         self.setMenuBar(menu)
+        self.__fontWidget = FontWidget()
+        self.setCentralWidget(self.__fontWidget)
+
+        # Example menubar
 
     def getFontWidget(self):
         return self.__fontWidget

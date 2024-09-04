@@ -1,4 +1,4 @@
-import os.path, posixpath
+import os, posixpath
 
 from PyQt5.QtGui import QColor, QPalette, qGray, QIcon
 from PyQt5.QtWidgets import QGraphicsColorizeEffect, QWidget, QApplication, QPushButton
@@ -15,9 +15,9 @@ class Button(QPushButton):
         self.installEventFilter(self)
 
     def setStyleAndIcon(self, icon: str):
-        self.style_helper.__icon = path.join(SRC_DIR, icon)
+        self.style_helper.__icon = os.path.join(SRC_DIR, icon)
         self.setStyleSheet(self.style_helper.styleInit())
-        self.setIcon(QIcon(icon))
+        self.setIcon(QIcon(self.style_helper.__icon))
 
     def eventFilter(self, obj, event):
         if obj == self:

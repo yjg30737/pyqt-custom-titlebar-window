@@ -17,19 +17,19 @@ class TitlebarButtonsWidget(QWidget):
         self._maximizeBtn = Button(base_widget)
 
         self._fullScreenBtn = Button(base_widget)
-        self._fullScreenBtn.setIcon(QIcon('ico/full_screen.svg'))
+        self._fullScreenBtn.setStyleAndIcon('ico/full_screen.svg')
 
         self._helpBtn = Button(base_widget)
-        self._helpBtn.setIcon(QIcon('ico/help.svg'))
+        self._helpBtn.setStyleAndIcon('ico/help.svg')
 
         self._foldBtn = Button(base_widget)
-        self._foldBtn.setIcon(QIcon('ico/fold.svg'))
+        self._foldBtn.setStyleAndIcon('ico/fold.svg')
 
         self._fixBtn = Button(base_widget)
-        self._fixBtn.setIcon(QIcon('ico/tack.svg'))
+        self._fixBtn.setStyleAndIcon('ico/tack.svg')
 
         self._searchBtn = Button(base_widget)
-        self._searchBtn.setIcon(QIcon('ico/search.svg'))
+        self._searchBtn.setStyleAndIcon('ico/search.svg')
 
         self._btn_dict = {'min': self._minimizeBtn, 'max': self._maximizeBtn, 'close': self._closeBtn,
                           'full_screen': self._fullScreenBtn, 'help': self._helpBtn, 'fold': self._foldBtn,

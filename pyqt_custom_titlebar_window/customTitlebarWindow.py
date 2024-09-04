@@ -258,6 +258,7 @@ class CustomTitlebarWindow(FramelessWindow):
                 else:
                     raise Exception
             except Exception as e:
+                print(e)
                 print('There is neither title bar nor menu bar in this widget, so you should not use setButtons')
 
     def __getWindowTitle(self, title):
